@@ -19,8 +19,12 @@ public class SnakeController : MonoBehaviour
 
     private float movingSpeed;
     private float steeringSpeed;
+
     private float currentEnergy;
     private float maxEnergy;
+
+    private float currentHealth;
+    private float maxHealth;
 
 
     private Rigidbody2D rigi;
@@ -29,14 +33,18 @@ public class SnakeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+   
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         movingSpeed = lvControl.speed;
         steeringSpeed = 10.0f;
-        maxEnergy = 100.0f;
 
+        maxEnergy = 100.0f;
+        currentEnergy = maxEnergy;
+
+        maxHealth = 100.0f;
+        currentHealth = maxHealth;
         healthBar = GameObject.Find("Health").GetComponent<RectTransform>();
         energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
-        currentEnergy = maxEnergy;
         bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = transform.GetComponent<Rigidbody2D>();
@@ -57,16 +65,23 @@ public class SnakeController : MonoBehaviour
 
 
         rigi.velocity = transform.up*movingSpeed;
-        //firstBody.position = transform.position;
-        firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
+        firstBody.position = transform.position;
+        //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
         for (int n = length-1; n > 0; n--)
         {
-            //allBody.GetChild(n).transform.position =allBody.GetChild(n-1).transform.position;
-            allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
+            allBody.GetChild(n).transform.position =allBody.GetChild(n-1).transform.position;
+            //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
         }
         AbilitiesDetection();
         MovementDetection();
       
+    }
+
+    public void GotDamage(float damage)
+    {
+        currentHealth -= damage;
+        healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength/maxEnergy), 0);
+
     }
 
     public void GetApple()
@@ -95,7 +110,6 @@ public class SnakeController : MonoBehaviour
                 currentEnergy -= excuteTimesPerSecond * accelerateCost;
                 energyBar.anchoredPosition = new Vector2(energyBar.anchoredPosition.x - (excuteTimesPerSecond * accelerateCost * (barLength / maxEnergy)), 0);
 
-                healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - 0.5f, 0);
 
             }
             else

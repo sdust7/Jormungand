@@ -19,11 +19,12 @@ public class DeadlyController : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag == "Snake")
+        if (collision.gameObject.tag == "Snake")
         {
-            lvControl.GameOver();
+            lvControl.DamageSnake(5.0f);
         }
     }
 }

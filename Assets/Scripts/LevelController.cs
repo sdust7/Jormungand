@@ -59,5 +59,10 @@ public class LevelController : MonoBehaviour
         canvas.GameWin();
     }
 
+    public void DamageSnake(float damage)
+    {
+        snake.GotDamage(damage);
+    }
+
 
 }
