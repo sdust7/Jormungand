@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class SnakeController : MonoBehaviour
 {
+    private const float accelerateCost = 10.0f;
+    private const float excuteTimesPerSecond = 1 / 50.0f;
+    private const float barLength = 315.0f;
     private int length;
-    private Slider energyBar;
-    private Slider healthBar;
     private LevelController lvControl;
     private GameObject bodyPrefab;
     private Transform allBody;
     private Transform firstBody;
+    private RectTransform energyBar;
+
+    private RectTransform healthBar;
+
     private float movingSpeed;
     private float steeringSpeed;
-    private float energy;
+    private float currentEnergy;
+    private float maxEnergy;
+
 
     private Rigidbody2D rigi;
     float timer;
@@ -24,13 +32,15 @@ public class SnakeController : MonoBehaviour
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         movingSpeed = lvControl.speed;
         steeringSpeed = 10.0f;
+        maxEnergy = 100.0f;
+
+        healthBar = GameObject.Find("Health").GetComponent<RectTransform>();
+        energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
+        currentEnergy = maxEnergy;
         bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = transform.GetComponent<Rigidbody2D>();
         length = 20;
-        energy = 100;
-        energyBar = GameObject.Find("EnergyBar").GetComponent<Slider>(); 
-        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
 
         for (int n = 0; n < length; n++)
         {
@@ -54,7 +64,6 @@ public class SnakeController : MonoBehaviour
             //allBody.GetChild(n).transform.position =allBody.GetChild(n-1).transform.position;
             allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
         }
-        energyBar.value = energy;
         AbilitiesDetection();
         MovementDetection();
       
@@ -72,18 +81,22 @@ public class SnakeController : MonoBehaviour
 
     private void RecoverEnergy(float value)
     {
-        energy += value;
+        currentEnergy += value;
     }
 
     private void AbilitiesDetection()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            if (energy >= 10.0f)
+            if (currentEnergy >= 5.0f)
             {
                 movingSpeed = 20.0f;
                 steeringSpeed = 10.0f;
-                energy -= 0.1f;
+                currentEnergy -= excuteTimesPerSecond * accelerateCost;
+                energyBar.anchoredPosition = new Vector2(energyBar.anchoredPosition.x - (excuteTimesPerSecond * accelerateCost * (barLength / maxEnergy)), 0);
+
+                healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - 0.5f, 0);
+
             }
             else
             {
