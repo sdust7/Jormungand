@@ -9,14 +9,20 @@ public class LevelController : MonoBehaviour
     public float speed;
     public int score;
     public int goal;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         canvas = GameObject.Find("Canvas").GetComponent<UIController>();
         snake = GameObject.Find("SnakeHead").GetComponent<SnakeController>();
         speed = 10;
         score = 0;
         goal = 5;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+   
     }
 
     // Update is called once per frame

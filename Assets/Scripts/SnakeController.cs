@@ -5,9 +5,11 @@ using UnityEngine;
 public class SnakeController : MonoBehaviour
 {
     private int length;
+    private LevelController lvControl;
     private GameObject bodyPrefab;
     private Transform allBody;
     private Transform firstBody;
+    private float speed;
 
     private Rigidbody2D rigi;
     float timer;
@@ -15,6 +17,8 @@ public class SnakeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
+        speed = lvControl.speed;
         bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = transform.GetComponent<Rigidbody2D>();
@@ -32,11 +36,13 @@ public class SnakeController : MonoBehaviour
     void FixedUpdate()
     {
 
-        rigi.velocity = transform.up*10;
-        firstBody.position = transform.position;
+        rigi.velocity = transform.up*speed;
+        //firstBody.position = transform.position;
+        firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
         for (int n = length-1; n > 0; n--)
         {
-            allBody.GetChild(n).transform.position =allBody.GetChild(n-1).transform.position;
+            //allBody.GetChild(n).transform.position =allBody.GetChild(n-1).transform.position;
+            allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
         }
         MovementDetection();
       
