@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         trackTarget = GameObject.Find("SnakeHead").transform;
-        followSpeed = 1.0f;
+        //followSpeed = 1.0f;
         transform.position = new Vector3(trackTarget.position.x, trackTarget.position.y,-100);
     }
 
@@ -35,6 +35,6 @@ public class CameraController : MonoBehaviour
             float yTarget = trackTarget.position.y + yOffset;
             yNew = Mathf.Lerp(transform.position.y, yTarget, Time.deltaTime * followSpeed);
         }
-        transform.position = new Vector3(xNew, yNew,transform.position.z);
+        transform.position = new Vector3(trackTarget.position.x, trackTarget.position.y,transform.position.z);
     }
 }

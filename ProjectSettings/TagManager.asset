@@ -8,6 +8,7 @@ TagManager:
   - Apple
   - Pickable
   - Deadly
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -53,6 +54,9 @@ TagManager:
     locked: 0
   - name: Snake
     uniqueID: 640957141
+    locked: 0
+  - name: Tree
+    uniqueID: 1181782005
     locked: 0
   - name: UI
     uniqueID: 2298238829
