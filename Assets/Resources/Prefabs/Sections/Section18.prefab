@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8932509975610723797}
   m_Layer: 0
   m_Name: Section18
-  m_TagString: Untagged
+  m_TagString: Sections
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8932509975610723794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 50.293514, y: 1.4654677, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8932509976561505931}
@@ -230,11 +230,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8932509977390138045}
     m_Modifications:
-    - target: {fileID: 4394858351455649938, guid: d543db82b858a3b4f8ac3726956f7207,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone2
-      objectReference: {fileID: 0}
     - target: {fileID: 4394858351455649939, guid: d543db82b858a3b4f8ac3726956f7207,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -290,6 +285,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4394858351455649938, guid: d543db82b858a3b4f8ac3726956f7207,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d543db82b858a3b4f8ac3726956f7207, type: 3}
 --- !u!4 &5119196523653844639 stripped
@@ -305,11 +305,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8932509977390138045}
     m_Modifications:
-    - target: {fileID: 8643228385272344382, guid: 3e5f47cd23756407e9d1e7dd2720efda,
-        type: 3}
-      propertyPath: m_Name
-      value: Stones7
-      objectReference: {fileID: 0}
     - target: {fileID: 935113146083409289, guid: 3e5f47cd23756407e9d1e7dd2720efda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -364,6 +359,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643228385272344382, guid: 3e5f47cd23756407e9d1e7dd2720efda,
+        type: 3}
+      propertyPath: m_Name
+      value: Stones7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e5f47cd23756407e9d1e7dd2720efda, type: 3}
@@ -455,11 +455,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8932509976561505931}
     m_Modifications:
-    - target: {fileID: 7723741469336240099, guid: 4511e3eb631a748b7833034b3285c653,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree4
-      objectReference: {fileID: 0}
     - target: {fileID: 7723741469336240097, guid: 4511e3eb631a748b7833034b3285c653,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -515,6 +510,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7723741469336240099, guid: 4511e3eb631a748b7833034b3285c653,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4511e3eb631a748b7833034b3285c653, type: 3}
 --- !u!4 &1208824588319557310 stripped
@@ -530,11 +530,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8932509977390138045}
     m_Modifications:
-    - target: {fileID: 1822286542312714470, guid: 2f2773f1f1cde452dbc6d44f579bf945,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone5
-      objectReference: {fileID: 0}
     - target: {fileID: 1955234008381922154, guid: 2f2773f1f1cde452dbc6d44f579bf945,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -589,6 +584,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1822286542312714470, guid: 2f2773f1f1cde452dbc6d44f579bf945,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2773f1f1cde452dbc6d44f579bf945, type: 3}

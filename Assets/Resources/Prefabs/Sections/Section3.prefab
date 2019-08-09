@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 7984268013731471763}
   m_Layer: 0
   m_Name: Section3
-  m_TagString: Untagged
+  m_TagString: Sections
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6391044749556408679}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.5, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2073955353851082644}
@@ -231,11 +231,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2073955353851082644}
     m_Modifications:
-    - target: {fileID: 3462719783629690390, guid: 6c1d97577e0e941a3ada7cee4b8b3a5b,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree5
-      objectReference: {fileID: 0}
     - target: {fileID: 3462719783629690388, guid: 6c1d97577e0e941a3ada7cee4b8b3a5b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -290,6 +285,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3462719783629690390, guid: 6c1d97577e0e941a3ada7cee4b8b3a5b,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c1d97577e0e941a3ada7cee4b8b3a5b, type: 3}
@@ -381,11 +381,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6806461706712782865}
     m_Modifications:
-    - target: {fileID: 2633605729683913124, guid: 93e39681ea9ef4df99bcf787fdc703f5,
-        type: 3}
-      propertyPath: m_Name
-      value: Stones10
-      objectReference: {fileID: 0}
     - target: {fileID: 2561003153130175258, guid: 93e39681ea9ef4df99bcf787fdc703f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -441,6 +436,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2633605729683913124, guid: 93e39681ea9ef4df99bcf787fdc703f5,
+        type: 3}
+      propertyPath: m_Name
+      value: Stones10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93e39681ea9ef4df99bcf787fdc703f5, type: 3}
 --- !u!4 &1415374500452340452 stripped
@@ -456,11 +456,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6806461706712782865}
     m_Modifications:
-    - target: {fileID: 8643228385272344382, guid: 3e5f47cd23756407e9d1e7dd2720efda,
-        type: 3}
-      propertyPath: m_Name
-      value: Stones7
-      objectReference: {fileID: 0}
     - target: {fileID: 935113146083409289, guid: 3e5f47cd23756407e9d1e7dd2720efda,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -515,6 +510,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643228385272344382, guid: 3e5f47cd23756407e9d1e7dd2720efda,
+        type: 3}
+      propertyPath: m_Name
+      value: Stones7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e5f47cd23756407e9d1e7dd2720efda, type: 3}
@@ -606,11 +606,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6806461706712782865}
     m_Modifications:
-    - target: {fileID: 449106607051225737, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone1
-      objectReference: {fileID: 0}
     - target: {fileID: 449106607051225750, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -665,6 +660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449106607051225737, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9, type: 3}

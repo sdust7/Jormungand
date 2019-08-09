@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6611067542029236455}
   m_Layer: 0
   m_Name: Section1
-  m_TagString: Untagged
+  m_TagString: Sections
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -379,11 +379,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6611067543938439782}
     m_Modifications:
-    - target: {fileID: 449106607051225737, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone1
-      objectReference: {fileID: 0}
     - target: {fileID: 449106607051225750, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -439,6 +434,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 449106607051225737, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5800ae0659a0c394a9ef3cbccb3cbcc9, type: 3}
 --- !u!4 &6611067542882596147 stripped
@@ -454,11 +454,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6611067543938439782}
     m_Modifications:
-    - target: {fileID: 4394858351455649938, guid: d543db82b858a3b4f8ac3726956f7207,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone2
-      objectReference: {fileID: 0}
     - target: {fileID: 4394858351455649939, guid: d543db82b858a3b4f8ac3726956f7207,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -513,6 +508,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4394858351455649938, guid: d543db82b858a3b4f8ac3726956f7207,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d543db82b858a3b4f8ac3726956f7207, type: 3}
