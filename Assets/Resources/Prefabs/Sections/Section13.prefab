@@ -43,6 +43,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4307141834356625177}
   - component: {fileID: 4307141834356625178}
+  - component: {fileID: 3467623938724211972}
+  - component: {fileID: 6537422089119902943}
   m_Layer: 0
   m_Name: Section13
   m_TagString: Sections
@@ -115,6 +117,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &3467623938724211972
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307141834356625179}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 40, y: 40}
+    newSize: {x: 40, y: 40}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 40}
+  m_EdgeRadius: 0
+--- !u!114 &6537422089119902943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4307141834356625179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4edb37ca3247046886f40f97521e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4307141834822340766
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +196,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4307141834304205497}
     m_Modifications:
+    - target: {fileID: 7723741469336240099, guid: 4511e3eb631a748b7833034b3285c653,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree4
+      objectReference: {fileID: 0}
     - target: {fileID: 7723741469336240097, guid: 4511e3eb631a748b7833034b3285c653,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -210,11 +255,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7723741469336240099, guid: 4511e3eb631a748b7833034b3285c653,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4511e3eb631a748b7833034b3285c653, type: 3}
@@ -381,6 +421,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4307141834822340765}
     m_Modifications:
+    - target: {fileID: 1822286542312714470, guid: 2f2773f1f1cde452dbc6d44f579bf945,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone5
+      objectReference: {fileID: 0}
     - target: {fileID: 1955234008381922154, guid: 2f2773f1f1cde452dbc6d44f579bf945,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -436,11 +481,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1822286542312714470, guid: 2f2773f1f1cde452dbc6d44f579bf945,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f2773f1f1cde452dbc6d44f579bf945, type: 3}
 --- !u!4 &2370134020206608717 stripped
@@ -456,6 +496,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4307141834822340765}
     m_Modifications:
+    - target: {fileID: 4394858351455649938, guid: d543db82b858a3b4f8ac3726956f7207,
+        type: 3}
+      propertyPath: m_Name
+      value: Stone2
+      objectReference: {fileID: 0}
     - target: {fileID: 4394858351455649939, guid: d543db82b858a3b4f8ac3726956f7207,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -510,11 +555,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4394858351455649938, guid: d543db82b858a3b4f8ac3726956f7207,
-        type: 3}
-      propertyPath: m_Name
-      value: Stone2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d543db82b858a3b4f8ac3726956f7207, type: 3}
@@ -606,6 +646,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4307141834304205497}
     m_Modifications:
+    - target: {fileID: 2763034472309286610, guid: 26cefd2f1f034448485d1fae29c45fde,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree6
+      objectReference: {fileID: 0}
     - target: {fileID: 2763034472309286608, guid: 26cefd2f1f034448485d1fae29c45fde,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -660,11 +705,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2763034472309286610, guid: 26cefd2f1f034448485d1fae29c45fde,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26cefd2f1f034448485d1fae29c45fde, type: 3}
