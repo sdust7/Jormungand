@@ -21,6 +21,7 @@ public class DetectionAreasController : MonoBehaviour
     {
         if (collision.tag == "Snake"&&transform.name=="AlertArea")
         {
+            
             sheep.StatusChange(SheepController.SheepStatus.Escape);
         }
     }

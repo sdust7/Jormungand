@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\SheepController.cs" />
     <Compile Include="Assets\Scripts\SnakeController.cs" />
+    <Compile Include="Assets\Scripts\TreeController.cs" />
     <Compile Include="Assets\Scripts\UIController.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>G:/Sdust/UnityWorks/Jormungand/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

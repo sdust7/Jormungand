@@ -10,6 +10,7 @@ TagManager:
   - Deadly
   - Tree
   - Sections
+  - Equipment
   layers:
   - Default
   - TransparentFX
@@ -58,6 +59,9 @@ TagManager:
     locked: 0
   - name: Snake
     uniqueID: 640957141
+    locked: 0
+  - name: Equipment
+    uniqueID: 3000294911
     locked: 0
   - name: Tree
     uniqueID: 1181782005
