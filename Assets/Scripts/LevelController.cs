@@ -17,9 +17,6 @@ public class LevelController : MonoBehaviour
         usedPoints.Add(new Vector3(0, 0, 0));
         canvas = GameObject.Find("Canvas").GetComponent<UIController>();
         snake = GameObject.Find("SnakeHead").GetComponent<SnakeController>();
-        speed = 10;
-        score = 0;
-        goal = 5;
     }
 
     // Start is called before the first frame update
@@ -39,15 +36,14 @@ public class LevelController : MonoBehaviour
         score = 0;
     }
 
-    public void GetApple()
+    public void ExtendBody(int bodies)
     {
-        score++;
-        speed++;
+        score+=bodies;
         if (score >= goal)
         {
             GameWin();
         }
-        snake.GetApple();
+        snake.ExtendBody(bodies);
     }
 
     public void GameOver()

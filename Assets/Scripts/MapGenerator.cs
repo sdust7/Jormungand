@@ -18,7 +18,7 @@ public class MapGenerator : MonoBehaviour
         sections = new List<GameObject>();
         parent = GameObject.Find("MapSections").transform;
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
-        for (int n = 1; n < 21; n++) {
+        for (int n = 0; n < 20; n++) {
             sections.Add(Resources.Load("Prefabs/Sections/Section"+n) as GameObject);
         }
     }

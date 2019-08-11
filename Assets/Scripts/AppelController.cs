@@ -23,7 +23,7 @@ public class AppelController : MonoBehaviour
     {
         if (col.tag == "Snake")
         {
-            lvControl.GetApple();
+            lvControl.ExtendBody(1);
             int x = Random.Range(-10,10);
             int y = Random.Range(-10,10);
             transform.position = new Vector2(x+snake.position.x, y+snake.position.y);

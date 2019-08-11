@@ -84,14 +84,14 @@ public class SnakeController : MonoBehaviour
 
     }
 
-    public void GetApple()
+    public void ExtendBody(int bodies)
     {
-        for (int n = 0; n < 5; n++)
+        for (int n = 0; n < 5*bodies; n++)
         {
             GameObject newBody = Instantiate(bodyPrefab, allBody);
             newBody.transform.position = new Vector2(allBody.GetChild(length-1).position.x, allBody.GetChild(length - 1).position.y);
         }
-        length += 5;
+        length += 5*bodies;
     }
 
     private void RecoverEnergy(float value)
@@ -118,12 +118,12 @@ public class SnakeController : MonoBehaviour
                 steeringSpeed = 10.0f;
             }
         }
-
-        if (Input.GetKeyUp(KeyCode.Space))
+        else
         {
             movingSpeed = 10.0f;
             steeringSpeed = 10.0f;
         }
+
     }
 
     private void MovementDetection()
