@@ -8,6 +8,7 @@ public class SheepController : MonoBehaviour
     {
         Rest, Idel, Walk, Escape,Dead
     };
+    public Animator sheepAnimator;
     private Transform snake;
     private LevelController lvControl;
     private Rigidbody2D rigi;
@@ -28,6 +29,7 @@ public class SheepController : MonoBehaviour
         rigi = transform.GetComponent<Rigidbody2D>();
         snake = GameObject.Find("SnakeHead").transform;
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
+        sheepAnimator = transform.GetComponent<Animator>();
         currentStatus = SheepStatus.Walk;
         escDirectionOffset = 180;
     }
@@ -78,6 +80,7 @@ public class SheepController : MonoBehaviour
         {
             transform.GetComponent<PolygonCollider2D>().enabled = false;
             currentStatus = SheepStatus.Dead;
+            sheepAnimator.enabled = true;
             sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
             lvControl.ExtendBody(4);
 

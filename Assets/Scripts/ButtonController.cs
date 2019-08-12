@@ -16,6 +16,8 @@ public class ButtonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        if(singlePlay!=null)
         MenuSnakeAni = GameObject.Find("MenuSnakeAni").GetComponent<Animator>();
     }
 

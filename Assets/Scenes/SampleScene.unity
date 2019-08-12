@@ -1755,6 +1755,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b0598b08d798d4d8df02de4e696da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  singlePlay: {fileID: 0}
+  multiPlay: {fileID: 0}
 --- !u!4 &1399877685
 Transform:
   m_ObjectHideFlags: 0
@@ -1801,7 +1803,7 @@ MonoBehaviour:
   usedPoints: []
   speed: 10
   score: 0
-  goal: 5
+  goal: 25
 --- !u!4 &1402414647
 Transform:
   m_ObjectHideFlags: 0

@@ -1,0 +1,835 @@
+fileFormatVersion: 2
+guid: 22e8372ba8a1b994787b2e20818f68d1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1833788379373298272
+    second: SheepSkeletonAnimate_0
+  - first:
+      213: -6759469210341704785
+    second: SheepSkeletonAnimate_1
+  - first:
+      213: 6457285780318612215
+    second: SheepSkeletonAnimate_2
+  - first:
+      213: -7048723907560907363
+    second: SheepSkeletonAnimate_3
+  - first:
+      213: 6940545136219779279
+    second: SheepSkeletonAnimate_4
+  - first:
+      213: -5715874913579819074
+    second: SheepSkeletonAnimate_5
+  - first:
+      213: -2196339570016561731
+    second: SheepSkeletonAnimate_6
+  - first:
+      213: 2246451737463207740
+    second: SheepSkeletonAnimate_7
+  - first:
+      213: 390240097463333274
+    second: SheepSkeletonAnimate_8
+  - first:
+      213: -2801861445752867188
+    second: SheepSkeletonAnimate_9
+  - first:
+      213: -5540474621106238674
+    second: SheepSkeletonAnimate_10
+  - first:
+      213: 6743779949484018811
+    second: SheepSkeletonAnimate_11
+  - first:
+      213: 1972045637504327139
+    second: SheepSkeletonAnimate_12
+  - first:
+      213: -8373766363859422824
+    second: SheepSkeletonAnimate_13
+  - first:
+      213: 2538056047740215677
+    second: SheepSkeletonAnimate_14
+  - first:
+      213: 6485849089502203431
+    second: SheepSkeletonAnimate_15
+  - first:
+      213: 1762537603826771447
+    second: SheepSkeletonAnimate_16
+  - first:
+      213: -6299640241846090425
+    second: SheepSkeletonAnimate_17
+  - first:
+      213: -3148637865046719493
+    second: SheepSkeletonAnimate_18
+  - first:
+      213: 3039000076121978516
+    second: SheepSkeletonAnimate_19
+  - first:
+      213: 5512158297813884065
+    second: SheepSkeletonAnimate_20
+  - first:
+      213: -8258073230926457875
+    second: SheepSkeletonAnimate_21
+  - first:
+      213: -2979022265300170099
+    second: SheepSkeletonAnimate_22
+  - first:
+      213: 4363986333030264046
+    second: SheepSkeletonAnimate_23
+  - first:
+      213: -833853981002878430
+    second: SheepSkeletonAnimate_24
+  - first:
+      213: -2579134268761824358
+    second: SheepSkeletonAnimate_25
+  - first:
+      213: -2516245216003654467
+    second: SheepSkeletonAnimate_26
+  - first:
+      213: 4992156394249106536
+    second: SheepSkeletonAnimate_27
+  - first:
+      213: -5363261932716579157
+    second: SheepSkeletonAnimate_28
+  - first:
+      213: -4610269092754056960
+    second: SheepSkeletonAnimate_29
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 1245
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ace17dc634afa4d9a62f3b6ab63175
+      internalID: 1833788379373298272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_1
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 1245
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65c3c280508dbf543bbff32951041c2f
+      internalID: -6759469210341704785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_2
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 1245
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a485ce8f2563b14409d61bf9e0b9da7e
+      internalID: 6457285780318612215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_3
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 1245
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef98080449a4838479460730a58306de
+      internalID: -7048723907560907363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_4
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 1245
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 426163d36e6ecb74b86ecf74722232ef
+      internalID: 6940545136219779279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_5
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 997
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c257e4a9dac29649a64b933f703e688
+      internalID: -5715874913579819074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_6
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 997
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2865efff70906384f965298ff2ef39e0
+      internalID: -2196339570016561731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_7
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 997
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81546c0b0ae18c04eb077e90206c4011
+      internalID: 2246451737463207740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_8
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 997
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d3f62a5172706441a1cf9a4d956dfc1
+      internalID: 390240097463333274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_9
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 997
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9d41b8832afd5e4d8e1b2bd35d445e7
+      internalID: -2801861445752867188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_10
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 749
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea5bf70830f734a48aac2fbb9b666091
+      internalID: -5540474621106238674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_11
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 749
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6662352ebcca61748991b1ebfa368fe7
+      internalID: 6743779949484018811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_12
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 749
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19e77c19d0154164d92d4d1c040d5fbe
+      internalID: 1972045637504327139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_13
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 749
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7edfd29d155ff134d846aaa13f2b70b0
+      internalID: -8373766363859422824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_14
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 749
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aef081424c186040a9e6ce631cff6ce
+      internalID: 2538056047740215677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_15
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 501
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951f560d9b013e24e85ac16d95496f3a
+      internalID: 6485849089502203431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_16
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 501
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb876ea92c8dfff4495c29a774484339
+      internalID: 1762537603826771447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_17
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 501
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f94e5ddae6d4e5c4095ab2509498a47c
+      internalID: -6299640241846090425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_18
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 501
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb74a32e9071c904a8b13f5058bcd1d7
+      internalID: -3148637865046719493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_19
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 501
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d5e1c415356348428f96af851eb3710
+      internalID: 3039000076121978516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_20
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 253
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 251eb8bbab776794ab467e95a5aae801
+      internalID: 5512158297813884065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_21
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 253
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54698acf9c345bb4a89f4d99aae80bb4
+      internalID: -8258073230926457875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_22
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 253
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c10ffec15ad830d43a802da22e4e3924
+      internalID: -2979022265300170099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_23
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 253
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2a24cd3ba4b29b4e9eec8ee61f63803
+      internalID: 4363986333030264046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_24
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 253
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85fc024440276604f98f4fecfd7c1e52
+      internalID: -833853981002878430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_25
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 5
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2c4571254cc40143b39ce4ae06633c0
+      internalID: -2579134268761824358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_26
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 5
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd4bbb4ef39e7345866120dd3c400ff
+      internalID: -2516245216003654467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_27
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 5
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ea9f6a4f9e37f4e9d552917dcabef5
+      internalID: 4992156394249106536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_28
+      rect:
+        serializedVersion: 2
+        x: 1022
+        y: 5
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4442acf24380bde4fa011d405531dec1
+      internalID: -5363261932716579157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SheepSkeletonAnimate_29
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 5
+        width: 329
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff33339c07404d24b985850187934145
+      internalID: -4610269092754056960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
