@@ -91,11 +91,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7571528576084900246}
   - component: {fileID: 7571528576084900248}
-  - component: {fileID: 7571528576084900249}
   - component: {fileID: 7698044121300245438}
   m_Layer: 0
   m_Name: Trunk
-  m_TagString: Deadly
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,18 +129,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &7571528576084900249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7571528576084900247}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab968bc9b06ed17479e7ebbd90fb9548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &7698044121300245438
 SpriteRenderer:
   m_ObjectHideFlags: 0

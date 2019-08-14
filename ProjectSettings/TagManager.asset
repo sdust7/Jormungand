@@ -7,10 +7,11 @@ TagManager:
   - Snake
   - Apple
   - Pickable
-  - Deadly
   - Tree
   - Sections
   - Equipment
+  - Sheep
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - NoCollide
   - 
   - 
   - 

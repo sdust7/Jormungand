@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2561003153130175258}
   - component: {fileID: 5594156738238258403}
   - component: {fileID: 7487200144121312593}
-  - component: {fileID: 7393011280900432675}
   m_Layer: 0
   m_Name: Stones10
-  m_TagString: Deadly
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,15 +182,3 @@ PolygonCollider2D:
       - {x: -0.72999996, y: -2.12}
       - {x: -0.45999998, y: -2.05}
       - {x: -0.28, y: -2.02}
---- !u!114 &7393011280900432675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2633605729683913124}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab968bc9b06ed17479e7ebbd90fb9548, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

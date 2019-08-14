@@ -192,13 +192,27 @@ GameObject:
   m_Component:
   - component: {fileID: 250820504}
   - component: {fileID: 250820503}
+  - component: {fileID: 250820505}
+  - component: {fileID: 250820502}
   m_Layer: 0
-  m_Name: HeadTexture
-  m_TagString: Untagged
+  m_Name: Head
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &250820502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250820501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a01e0464076b464f95cd88b319b6336, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &250820503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -262,6 +276,28 @@ Transform:
   m_Father: {fileID: 1080998575}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &250820505
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 250820501}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.10476202, y: 1.2380707}
+  - {x: 0.4258045, y: 0.90294766}
+  - {x: 0.7415391, y: 0.24854589}
+  - {x: -0.7089231, y: 0.27007604}
+  - {x: -0.38280118, y: 0.84049726}
+  - {x: 0.10004485, y: 1.2380707}
 --- !u!1 &281360233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,13 +1056,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829200645}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EquipSlot
-  m_TagString: Untagged
+  m_TagString: Equipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &829200645
 Transform:
   m_ObjectHideFlags: 0
@@ -1219,11 +1255,9 @@ GameObject:
   - component: {fileID: 1080998575}
   - component: {fileID: 1080998576}
   - component: {fileID: 1080998578}
-  - component: {fileID: 1080998577}
-  - component: {fileID: 1080998579}
-  m_Layer: 0
-  m_Name: SnakeHead
-  m_TagString: Snake
+  m_Layer: 8
+  m_Name: Snake
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1293,18 +1327,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1080998577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080998574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a01e0464076b464f95cd88b319b6336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1080998578
 Rigidbody2D:
   serializedVersion: 4
@@ -1326,28 +1348,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!68 &1080998579
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1080998574}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.27074337, y: 9.8276205}
-  - {x: 1.884965, y: 8.117684}
-  - {x: 2.8897474, y: 6.125719}
-  - {x: -2.7152686, y: 6.1269846}
-  - {x: -1.3555751, y: 8.298428}
-  - {x: 0.34901714, y: 9.8276205}
 --- !u!1 &1129550691
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,6 +2650,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6611067542950943413, guid: 039b4f0fbc5f61743830d91830b01d49,
+        type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6375040638535366812, guid: 039b4f0fbc5f61743830d91830b01d49, type: 3}

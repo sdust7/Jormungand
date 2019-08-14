@@ -13,6 +13,7 @@ public class SnakeController : MonoBehaviour
     private GameObject bodyPrefab;
     private Transform allBody;
     private Transform firstBody;
+    private Transform snake;
     private RectTransform energyBar;
 
     private RectTransform healthBar;
@@ -33,7 +34,7 @@ public class SnakeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-   
+        snake = transform.parent;
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         movingSpeed = lvControl.speed;
         steeringSpeed = 10.0f;
@@ -47,13 +48,13 @@ public class SnakeController : MonoBehaviour
         energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
         bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
         allBody = GameObject.Find("SnakeBody").transform;
-        rigi = transform.GetComponent<Rigidbody2D>();
+        rigi = snake.GetComponent<Rigidbody2D>();
         length = 20;
 
         for (int n = 0; n < length; n++)
         {
             GameObject newBody =  Instantiate(bodyPrefab,allBody);
-            newBody.transform.position = new Vector2(transform.position.x, transform.position.y);
+            newBody.transform.position = new Vector2(snake.position.x, snake.position.y);
         }
         firstBody = allBody.GetChild(0);
 
@@ -64,8 +65,8 @@ public class SnakeController : MonoBehaviour
     {
 
 
-        rigi.velocity = transform.up*movingSpeed;
-        firstBody.position = transform.position;
+        rigi.velocity = snake.up*movingSpeed;
+        firstBody.position = snake.position;
         //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
         for (int n = length-1; n > 0; n--)
         {
@@ -133,11 +134,11 @@ public class SnakeController : MonoBehaviour
             timer += Time.fixedDeltaTime;
             if (timer <= 0.5f)
             {
-                transform.Rotate(0, 0, steeringSpeed * timer);
+                snake.Rotate(0, 0, steeringSpeed * timer);
             }
             else
             {
-                transform.Rotate(0, 0, 5);
+                snake.Rotate(0, 0, 5);
 
             }
 
@@ -147,11 +148,11 @@ public class SnakeController : MonoBehaviour
             timer += Time.fixedDeltaTime;
             if (timer <= 0.5f)
             {
-                transform.Rotate(0, 0, -steeringSpeed * timer);
+                snake.Rotate(0, 0, -steeringSpeed * timer);
             }
             else
             {
-                transform.Rotate(0, 0, -5);
+                snake.Rotate(0, 0, -5);
 
             }
 
@@ -163,6 +164,22 @@ public class SnakeController : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.D))
         {
             timer = 0;
+        }
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "Obstacle":
+                GotDamage(5.0f);
+                break;
+            case "Sheep":
+                collision.transform.GetComponent<SheepController>().CollideWithSnake();
+                break;
+            default:
+                break;
         }
     }
 }

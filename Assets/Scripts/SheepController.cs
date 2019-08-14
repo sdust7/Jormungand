@@ -74,17 +74,18 @@ public class SheepController : MonoBehaviour
             currentStatus = status;
         }
     }
+
+    public void CollideWithSnake()
+    {
+        transform.GetComponent<PolygonCollider2D>().enabled = false;
+        currentStatus = SheepStatus.Dead;
+        sheepAnimator.enabled = true;
+        sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
+        lvControl.ExtendBody(4);
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Snake")
-        {
-            transform.GetComponent<PolygonCollider2D>().enabled = false;
-            currentStatus = SheepStatus.Dead;
-            sheepAnimator.enabled = true;
-            sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
-            lvControl.ExtendBody(4);
-
-        }
 
     }
 }
