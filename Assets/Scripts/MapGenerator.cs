@@ -6,27 +6,49 @@ public class MapGenerator : MonoBehaviour
 {
     private LevelController lvControl;
     private List<GameObject> sections;
+    private List<GameObject> sectionToDesert;
+    private List<GameObject> desertSections;
+
     private Transform parent;
     private Vector2 up;
     private Quaternion[] quaternions;
 
+    private float xValueStartDesert;
+
     // Start is called before the first frame update
     void Start()
     {
-        quaternions = new Quaternion[] { Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, 0, 90), Quaternion.Euler(0, 0,-90), Quaternion.Euler(0, 0, 180) };
+        lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
+        parent = GameObject.Find("MapSections").transform;
+
+        xValueStartDesert = lvControl.xValueStartDesert;
+
+        quaternions = new Quaternion[] { Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, 0, 90), Quaternion.Euler(0, 0, -90), Quaternion.Euler(0, 0, 180) };
 
         sections = new List<GameObject>();
-        parent = GameObject.Find("MapSections").transform;
-        lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
-        for (int n = 0; n < 20; n++) {
-            sections.Add(Resources.Load("Prefabs/Sections/Section"+n) as GameObject);
+        sectionToDesert = new List<GameObject>();
+        desertSections = new List<GameObject>();
+
+        for (int n = 0; n < 20; n++)
+        {
+            sections.Add(Resources.Load("Prefabs/Sections/Section" + n) as GameObject);
+        }
+
+        for (int n = 0; n < 20; n++)
+        {
+            desertSections.Add(Resources.Load("Prefabs/DesertSections/DesertSection" + n) as GameObject);
+        }
+
+        for (int n = 0; n < 6; n++)
+        {
+            sectionToDesert.Add(Resources.Load("Prefabs/SectionToDesert/sectionToDesert" + n) as GameObject);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private bool ExistPoint(Vector3 point)
     {
@@ -40,18 +62,50 @@ public class MapGenerator : MonoBehaviour
         return false;
     }
 
-    private void Generate(Vector3 point,float x, float y)
+    private void Generate(Vector3 point, float x, float y)
     {
-        Vector3 coordinate = point + new Vector3(x,y,point.z);
+        Vector3 coordinate = point + new Vector3(x, y, point.z);
         if (!ExistPoint(coordinate))
         {
-            GameObject section = Instantiate(sections[Random.Range(0, sections.Count)],parent);
-            section.transform.position = coordinate;
-            section.transform.rotation = quaternions[Random.Range(0, 4)];
+            if (coordinate.x == xValueStartDesert)
+            {
+                GeneSection(sectionToDesert, coordinate, false);
+            }
+            else if (coordinate.x >= xValueStartDesert)
+            {
+                GeneSection(desertSections, coordinate, true);
+            }
+            else
+            {
+                GeneSection(sections, coordinate, true);
+            }
+
+
+
+
+
+            //    GameObject section = Instantiate(sections[Random.Range(0, sections.Count)], parent);
+            //section.transform.position = coordinate;
+            //section.transform.rotation = quaternions[Random.Range(0, 4)];
+
             lvControl.usedPoints.Add(coordinate);
         }
 
     }
+
+    private void GeneSection(List<GameObject> sections, Vector3 posi, bool rotate)
+    {
+        if (rotate)
+        {
+            Instantiate(sections[Random.Range(0, sections.Count)], posi, quaternions[Random.Range(0, 4)], parent);
+        }
+        else
+        {
+            Instantiate(sections[Random.Range(0, sections.Count)], posi, Quaternion.identity, parent);
+        }
+
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

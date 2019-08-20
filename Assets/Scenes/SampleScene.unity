@@ -3380,6 +3380,7 @@ MonoBehaviour:
   speed: 10
   score: 0
   goal: 25
+  xValueStartDesert: 120
 --- !u!4 &1402414647
 Transform:
   m_ObjectHideFlags: 0
@@ -6117,6 +6118,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670173818644229522, guid: 039b4f0fbc5f61743830d91830b01d49,
+        type: 3}
+      propertyPath: xValueForDesert
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6375040638535366812, guid: 039b4f0fbc5f61743830d91830b01d49, type: 3}

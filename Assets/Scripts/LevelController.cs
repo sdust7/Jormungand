@@ -11,6 +11,8 @@ public class LevelController : MonoBehaviour
     public int score;
     public int goal;
 
+    public float xValueStartDesert = 160.0f; 
+
     void Awake()
     {
         usedPoints = new List<Vector3>();
