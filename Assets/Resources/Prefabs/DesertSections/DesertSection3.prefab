@@ -27,7 +27,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8089225613279096086}
   - {fileID: 7281428455322155410}
   m_Father: {fileID: 4774832463858158380}
   m_RootOrder: 0
@@ -220,11 +219,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4774832464176472553}
     m_Modifications:
-    - target: {fileID: 3610352455827677554, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd,
-        type: 3}
-      propertyPath: m_Name
-      value: SandStone1
-      objectReference: {fileID: 0}
     - target: {fileID: 8374540109539952500, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -280,6 +274,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3610352455827677554, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd,
+        type: 3}
+      propertyPath: m_Name
+      value: SandStone1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd, type: 3}
 --- !u!4 &3925954767656279161 stripped
@@ -303,12 +302,12 @@ PrefabInstance:
     - target: {fileID: 2832562174996587219, guid: daca58bbdfd694669b7f77dbbc52a6f9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.903054
+      value: -7.4
       objectReference: {fileID: 0}
     - target: {fileID: 2832562174996587219, guid: daca58bbdfd694669b7f77dbbc52a6f9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.5639918
+      value: -9.3
       objectReference: {fileID: 0}
     - target: {fileID: 2832562174996587219, guid: daca58bbdfd694669b7f77dbbc52a6f9,
         type: 3}
@@ -338,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 2832562174996587219, guid: daca58bbdfd694669b7f77dbbc52a6f9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2832562174996587219, guid: daca58bbdfd694669b7f77dbbc52a6f9,
         type: 3}
@@ -363,81 +362,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4774832462612454209}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &4774832463182229805
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4774832463712564908}
-    m_Modifications:
-    - target: {fileID: 4217815699815106798, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_Name
-      value: Cactus3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 10.058738
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.0432167
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 26d77bea91b7947be912959acdc3c304, type: 3}
---- !u!4 &8089225613279096086 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3603212877785668667, guid: 26d77bea91b7947be912959acdc3c304,
-    type: 3}
-  m_PrefabInstance: {fileID: 4774832463182229805}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4774832463218803329
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -445,15 +369,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4774832464176472553}
     m_Modifications:
-    - target: {fileID: 1892038126512085496, guid: 936e9116e1a724c098497ef7fc1e1505,
-        type: 3}
-      propertyPath: m_Name
-      value: SandStone2
-      objectReference: {fileID: 0}
     - target: {fileID: 4224585946091567890, guid: 936e9116e1a724c098497ef7fc1e1505,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.354584
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 4224585946091567890, guid: 936e9116e1a724c098497ef7fc1e1505,
         type: 3}
@@ -504,6 +423,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892038126512085496, guid: 936e9116e1a724c098497ef7fc1e1505,
+        type: 3}
+      propertyPath: m_Name
+      value: SandStone2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 936e9116e1a724c098497ef7fc1e1505, type: 3}
