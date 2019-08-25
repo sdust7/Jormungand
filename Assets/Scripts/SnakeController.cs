@@ -11,6 +11,7 @@ public class SnakeController : MonoBehaviour
     private int length;
     private LevelController lvControl;
     private GameObject bodyPrefab;
+
     private Transform allBody;
     private Transform firstBody;
     private Transform snake;
@@ -47,6 +48,8 @@ public class SnakeController : MonoBehaviour
         healthBar = GameObject.Find("Health").GetComponent<RectTransform>();
         energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
         bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
+
+
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = snake.GetComponent<Rigidbody2D>();
         length = 20;

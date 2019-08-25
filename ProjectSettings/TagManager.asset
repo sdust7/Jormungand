@@ -12,6 +12,7 @@ TagManager:
   - Equipment
   - Sheep
   - Obstacle
+  - Wood
   layers:
   - Default
   - TransparentFX
