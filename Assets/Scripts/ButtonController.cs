@@ -9,6 +9,10 @@ public class ButtonController : MonoBehaviour
     private Animator MenuSnakeAni;
     public GameObject singlePlay;
     public GameObject multiPlay;
+    public GameObject lvObject;
+    public Transform questPanel;
+    public Transform submitPanel;
+    private LevelController lvControl;
 
 
 
@@ -16,7 +20,7 @@ public class ButtonController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        lvControl = lvObject.GetComponent<LevelController>();
         if(singlePlay!=null)
         MenuSnakeAni = GameObject.Find("MenuSnakeAni").GetComponent<Animator>();
     }
@@ -51,6 +55,41 @@ public class ButtonController : MonoBehaviour
 
 
     }
+
+    public void ComfirmQuest()
+    {
+        
+        int id = int.Parse(questPanel.GetChild(0).name);
+        Quest quest = lvControl.questController.allQuest[id];
+        lvControl.myQuest.Add(quest);
+
+        
+        questPanel.gameObject.SetActive(false);
+        Time.timeScale = 1;
+
+
+    }
+
+    public void BackQuest()
+    {
+        questPanel.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void CancelSubmit()
+    {
+        submitPanel.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void SubmitQuest()
+    {
+
+        lvControl.SubmitQuest(submitPanel.GetChild(0).name);
+        submitPanel.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
 
 
     public void ClickSingle()

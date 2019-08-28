@@ -41,7 +41,7 @@ public class UIController : MonoBehaviour
     {
         gameWin.SetActive(true);
     }
-    public void addWood(int number)
+    public void UpdateWood(int number)
     {
         woodCount.text = number.ToString();
     }
