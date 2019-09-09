@@ -23,8 +23,8 @@ TagManager:
   - 
   - 
   - NoCollide
-  - 
-  - 
+  - Obstacles
+  - Targets
   - 
   - 
   - 
