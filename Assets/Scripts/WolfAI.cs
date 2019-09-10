@@ -12,6 +12,7 @@ public class WolfAI : MonoBehaviour
     public WolfState state = WolfState.Wandering;
     private CircleCollider2D circleCollider;
     public Rigidbody2D rb; // IMPORTANT: Set this to the parent if AI is in a child object
+    SnakeController snake = new SnakeController();
     private bool full;
     private bool runningCoroutine = false;
 
@@ -46,6 +47,23 @@ public class WolfAI : MonoBehaviour
             state = WolfState.Hunting;
         }
 
+        switch (state)
+        {
+            case WolfState.Wandering:
+                //wander.ApplySteering(rb);
+                break;
+            case WolfState.Hunting:
+                pursuit.ApplySteering(rb);
+                break;
+            case WolfState.Eating:
+                //wander.ApplySteering(rb);
+                //check if already running coroutine
+                if (runningCoroutine != true)
+                {
+                    StartCoroutine(eatingFull());
+                }
+                break;
+        }
         pursuit.ApplySteering(rb);
 
         //check if already running coroutine
@@ -58,10 +76,11 @@ public class WolfAI : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        //Track fish and player if nearby
-        if (collision != null && (collision.gameObject.layer == 9 || collision.gameObject.name == "Player"))
+        //Track player if nearby
+        if (collision.gameObject.name == "Snake")
         {
-            if (targetObj == this.gameObject || collision.gameObject.name == "Player")
+            print("detected snake: " + collision.name);
+            if (targetObj == this.gameObject || collision.gameObject.name == "Snake")
             {
                 targetObj = collision.gameObject;
                 pursuit.SetTargetObj(targetObj);
@@ -79,18 +98,12 @@ public class WolfAI : MonoBehaviour
     {
         if (full)
             return;
-
-        //Delete fish if not full
-        if (collision != null && collision.gameObject.layer == 9)
-        {
-            full = pursuit.ToggleHunger(full);
-            Destroy(collision.gameObject);
-        }
         //Delete player if not full
-        else if (collision != null && collision.gameObject.layer == 8)
+        else if (collision != null && collision.gameObject.name == "Snake")
         {
             full = pursuit.ToggleHunger(full);
-            Destroy(collision.gameObject);
+            print("Snake hit");
+            snake.GotDamage(10.0f);
         }
     }
 
