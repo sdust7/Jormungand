@@ -256,6 +256,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sheepAnimator: {fileID: 0}
+  radius: 1
+  distance: 5
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 512
+  avoidAngleAccuracy: 5
 --- !u!95 &1755302514031464939
 Animator:
   serializedVersion: 3

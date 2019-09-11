@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2843940910664741172}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 54.28163, y: -20.758009, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7605109494286963910}
@@ -131,11 +131,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3185937761878195546}
     m_Modifications:
-    - target: {fileID: 7571528575066855209, guid: b0f776377f720154bbcdef11da6fef1f,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree1
-      objectReference: {fileID: 0}
     - target: {fileID: 7571528575066855208, guid: b0f776377f720154bbcdef11da6fef1f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -190,6 +185,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 85.63901
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571528575066855209, guid: b0f776377f720154bbcdef11da6fef1f,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0f776377f720154bbcdef11da6fef1f, type: 3}
@@ -281,11 +281,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3185937761878195546}
     m_Modifications:
-    - target: {fileID: 1892038126512085496, guid: 936e9116e1a724c098497ef7fc1e1505,
-        type: 3}
-      propertyPath: m_Name
-      value: SandStone2
-      objectReference: {fileID: 0}
     - target: {fileID: 4224585946091567890, guid: 936e9116e1a724c098497ef7fc1e1505,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -341,6 +336,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 77.658005
       objectReference: {fileID: 0}
+    - target: {fileID: 1892038126512085496, guid: 936e9116e1a724c098497ef7fc1e1505,
+        type: 3}
+      propertyPath: m_Name
+      value: SandStone2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 936e9116e1a724c098497ef7fc1e1505, type: 3}
 --- !u!4 &6770351364119848755 stripped
@@ -356,11 +356,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3185937761878195546}
     m_Modifications:
-    - target: {fileID: 4162694218647822719, guid: b8cf86b6b9e0f4da98ce52be3fa1e6e5,
-        type: 3}
-      propertyPath: m_Name
-      value: Cactus4
-      objectReference: {fileID: 0}
     - target: {fileID: 282939672135404771, guid: b8cf86b6b9e0f4da98ce52be3fa1e6e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -415,6 +410,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4162694218647822719, guid: b8cf86b6b9e0f4da98ce52be3fa1e6e5,
+        type: 3}
+      propertyPath: m_Name
+      value: Cactus4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8cf86b6b9e0f4da98ce52be3fa1e6e5, type: 3}

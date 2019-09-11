@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3435291660796614509}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 58.15313, y: -23.404549, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 31336777525463360}
@@ -281,11 +281,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4084556479412958417}
     m_Modifications:
-    - target: {fileID: 8895801987308301344, guid: d9a267ca0b9024aa28219cfc615aff75,
-        type: 3}
-      propertyPath: m_Name
-      value: SandStone0
-      objectReference: {fileID: 0}
     - target: {fileID: 4806044068785250800, guid: d9a267ca0b9024aa28219cfc615aff75,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -340,6 +335,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -137.68901
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895801987308301344, guid: d9a267ca0b9024aa28219cfc615aff75,
+        type: 3}
+      propertyPath: m_Name
+      value: SandStone0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d9a267ca0b9024aa28219cfc615aff75, type: 3}

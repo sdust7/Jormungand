@@ -8,12 +8,14 @@ public class MapGenerator : MonoBehaviour
     private List<GameObject> sections;
     private List<GameObject> sectionToDesert;
     private List<GameObject> desertSections;
+    private List<GameObject> seaSections;
 
     private Transform parent;
     private Vector2 up;
     private Quaternion[] quaternions;
 
     private float xValueStartDesert;
+    private float xValueStartSea;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +24,14 @@ public class MapGenerator : MonoBehaviour
         parent = GameObject.Find("MapSections").transform;
 
         xValueStartDesert = lvControl.xValueStartDesert;
+        xValueStartSea = lvControl.xValueStartSea;
 
         quaternions = new Quaternion[] { Quaternion.Euler(0, 0, 0), Quaternion.Euler(0, 0, 90), Quaternion.Euler(0, 0, -90), Quaternion.Euler(0, 0, 180) };
 
         sections = new List<GameObject>();
         sectionToDesert = new List<GameObject>();
         desertSections = new List<GameObject>();
+        seaSections = new List<GameObject>();
 
         for (int n = 0; n < 20; n++)
         {
@@ -42,6 +46,10 @@ public class MapGenerator : MonoBehaviour
         for (int n = 0; n < 6; n++)
         {
             sectionToDesert.Add(Resources.Load("Prefabs/SectionToDesert/sectionToDesert" + n) as GameObject);
+        }
+        for (int n = 0; n < 12; n++)
+        {
+            seaSections.Add(Resources.Load("Prefabs/SeaSections/SeaSection" + n) as GameObject);
         }
     }
 
@@ -73,7 +81,11 @@ public class MapGenerator : MonoBehaviour
             }
             else if (coordinate.x >= xValueStartDesert)
             {
-                GeneSection(desertSections, coordinate, true);
+                GeneSection(desertSections, coordinate, false);
+            }
+            else if (coordinate.x <= xValueStartSea)
+            {
+                GeneSection(seaSections, coordinate, true);
             }
             else
             {

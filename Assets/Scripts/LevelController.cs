@@ -19,7 +19,8 @@ public class LevelController : MonoBehaviour
     public QuestController questController;
     public List<Quest> myQuest;
 
-    public float xValueStartDesert = 160.0f; 
+    public float xValueStartDesert = 160.0f;
+    public float xValueStartSea = -160.0f;
 
     void Awake()
     {

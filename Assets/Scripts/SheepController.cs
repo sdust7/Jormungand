@@ -6,12 +6,14 @@ public class SheepController : MonoBehaviour
 {
     public enum SheepStatus
     {
-        Rest, Idel, Walk, Escape,Dead
+        Rest, Idel, Walk, Escape, Dead, Avoid, AvoidAndEscape
     };
     public Animator sheepAnimator;
     private Transform snake;
     private LevelController lvControl;
     private Rigidbody2D rigi;
+
+    [SerializeField]
     private SheepStatus currentStatus;
     private SpriteRenderer sprite;
     private Vector2 stop;
@@ -20,11 +22,19 @@ public class SheepController : MonoBehaviour
     private float escDirectionOffset;
     private float angleToSnake;
     private float timer;
+
+    private Transform fakeTransform;
+
+    public float radius;
+    public float distance;
+    public LayerMask obstacles;
+    public float avoidAngleAccuracy;
+
     // Start is called before the first frame update
     void Start()
     {
         movingSpeed = 2.0f;
-        stop = new Vector2(0, 0);
+        stop = Vector2.zero;
         sprite = transform.GetComponent<SpriteRenderer>();
         rigi = transform.GetComponent<Rigidbody2D>();
         snake = GameObject.Find("SnakeHead").transform;
@@ -32,11 +42,54 @@ public class SheepController : MonoBehaviour
         sheepAnimator = transform.GetComponent<Animator>();
         currentStatus = SheepStatus.Walk;
         escDirectionOffset = 180;
+
+        fakeTransform = new GameObject().transform;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        fakeTransform.position = transform.position;
+        fakeTransform.up = transform.right;
+
+        if (currentStatus == SheepStatus.Dead)
+        {
+
+        }
+        else if (HasToAvoid(fakeTransform, radius, distance))
+        {
+            if (currentStatus == SheepStatus.Escape)
+            {
+                currentStatus = SheepStatus.AvoidAndEscape;
+            }
+            else if (currentStatus == SheepStatus.AvoidAndEscape)
+            {
+            }
+            else
+            {
+                currentStatus = SheepStatus.Avoid;
+            }
+        }
+        else
+        {
+            if (currentStatus == SheepStatus.AvoidAndEscape)
+            {
+                currentStatus = SheepStatus.Escape;
+            }
+            else if (currentStatus == SheepStatus.Avoid)
+            {
+                currentStatus = SheepStatus.Walk;
+            }
+        }
+        //if (HasToAvoid(transform, radius, distance) && currentStatus != SheepStatus.Escape)
+        //{
+        //    currentStatus = SheepStatus.avoid;
+        //}
+        //else if (HasToAvoid(transform, radius, distance) && currentStatus == SheepStatus.Escape || HasToAvoid(transform, radius, distance) && currentStatus == SheepStatus.avoidAndEscape)
+        //{
+        //    currentStatus = SheepStatus.avoidAndEscape;
+        //}
+
         switch (currentStatus)
         {
             case SheepStatus.Dead:
@@ -51,16 +104,24 @@ public class SheepController : MonoBehaviour
                 rigi.velocity = transform.right * movingSpeed;
                 break;
             case SheepStatus.Escape:
-                rigi.velocity = transform.right * movingSpeed*5.0f;
+                rigi.velocity = transform.right * movingSpeed * 5.0f;
                 escDirection = snake.position - transform.position;
                 if (timer >= 2.0f)
                 {
                     escDirectionOffset = Random.Range(120.0f, 240.0f);
                     timer = 0;
                 }
-                angleToSnake =  escDirectionOffset+ Mathf.Atan2(escDirection.y, escDirection.x) * Mathf.Rad2Deg;
-                timer+=Time.fixedDeltaTime;
+                angleToSnake = escDirectionOffset + Mathf.Atan2(escDirection.y, escDirection.x) * Mathf.Rad2Deg;
+                timer += Time.fixedDeltaTime;
                 transform.rotation = Quaternion.AngleAxis(angleToSnake, Vector3.forward);
+                break;
+            case SheepStatus.Avoid:
+                rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed, radius, distance)) * 0.05f, movingSpeed);
+                transform.right = rigi.velocity;
+                break;
+            case SheepStatus.AvoidAndEscape:
+                rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed * 5.0f, radius, distance)) * 0.05f, movingSpeed * 5.0f);
+                transform.right = rigi.velocity;
                 break;
             default:
                 break;
@@ -87,5 +148,102 @@ public class SheepController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
+    }
+
+    public bool HasToAvoid(Transform tran, float radius, float distance)
+    {
+        if (!Physics2D.Raycast(V3ToV2(tran.position - tran.right * radius), tran.up, distance, obstacles))
+        {
+            if (!Physics2D.Raycast(V3ToV2(tran.position + tran.right * radius), tran.up, distance, obstacles))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public Vector3 Avoid(Transform tran, Vector3 velocity, float radius, float distance)
+    {
+        Vector3 rayStartPosiLeft = tran.position - tran.right * radius + tran.up * radius;
+        Vector3 rayStartPosiRight = tran.position + tran.right * radius + tran.up * radius;
+        bool leftIsClear;
+        bool rightIsClear;
+        bool turnLeft = false;
+
+        float angleLeft = 0;
+        float angleRight = 0;
+        Vector3 rotatedLeft = tran.up;
+        Vector3 rotatedRight = tran.up;
+
+        while (angleLeft < 180)
+        {
+            rotatedLeft = Quaternion.Euler(0, 0, angleLeft) * rotatedLeft;
+            rotatedRight = Quaternion.Euler(0, 0, angleRight) * rotatedRight;
+
+            Debug.DrawLine(rayStartPosiLeft, rayStartPosiLeft + rotatedLeft * distance, Color.red);
+            Debug.DrawLine(rayStartPosiRight, rayStartPosiRight + rotatedRight * distance, Color.red);
+
+            leftIsClear = true;
+            rightIsClear = true;
+
+            if (Physics2D.Raycast(rayStartPosiLeft, rotatedLeft, distance, obstacles))
+            {
+                leftIsClear = false;
+                angleLeft += avoidAngleAccuracy;
+            }
+            if (Physics2D.Raycast(rayStartPosiRight, rotatedRight, distance, obstacles))
+            {
+                rightIsClear = false;
+                angleRight -= avoidAngleAccuracy;
+            }
+
+            if (leftIsClear)
+            {
+                turnLeft = true;
+                break;
+            }
+            if (rightIsClear)
+            {
+                turnLeft = false;
+                break;
+            }
+        }
+
+        if (turnLeft)
+        {
+            while (angleLeft < 179)
+            {
+                rotatedLeft = Quaternion.Euler(0, 0, angleLeft) * rotatedLeft;
+                if (Physics2D.Raycast(rayStartPosiRight, rotatedLeft, distance, obstacles))
+                {
+                    angleLeft += avoidAngleAccuracy;
+                }
+                else
+                {
+                    return Quaternion.Euler(0, 0, angleLeft) * rotatedLeft;
+                }
+            }
+        }
+        else
+        {
+            while (angleRight > -179)
+            {
+                rotatedRight = Quaternion.Euler(0, 0, angleRight) * rotatedRight;
+                if (Physics2D.Raycast(rayStartPosiLeft, rotatedRight, distance, obstacles))
+                {
+                    angleRight -= avoidAngleAccuracy;
+                }
+                else
+                {
+                    return Quaternion.Euler(0, 0, angleRight) * rotatedRight;
+                }
+            }
+        }
+        return -tran.right;
+    }
+
+    public Vector2 V3ToV2(Vector3 vec)
+    {
+        return new Vector2(vec.x, vec.y);
     }
 }

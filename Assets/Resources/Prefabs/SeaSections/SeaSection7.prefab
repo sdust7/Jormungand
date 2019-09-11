@@ -144,8 +144,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3977697075413041140}
   - component: {fileID: 3977697075413041141}
+  - component: {fileID: -683733987749270}
+  - component: {fileID: 4396741087319022087}
   m_Layer: 0
-  m_Name: Sea8
+  m_Name: SeaSection7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -216,6 +218,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &-683733987749270
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977697075413041138}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 40, y: 40}
+    newSize: {x: 40, y: 40}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 40}
+  m_EdgeRadius: 0
+--- !u!114 &4396741087319022087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3977697075413041138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4edb37ca3247046886f40f97521e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3977697074356788778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -298,11 +338,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3977697075263835728}
     m_Modifications:
-    - target: {fileID: 9123165398991361136, guid: 0f18ce4f502f5664a952ce85e70e962d,
-        type: 3}
-      propertyPath: m_Name
-      value: Coral2
-      objectReference: {fileID: 0}
     - target: {fileID: 9123165398991361138, guid: 0f18ce4f502f5664a952ce85e70e962d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -357,6 +392,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -46.114002
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123165398991361136, guid: 0f18ce4f502f5664a952ce85e70e962d,
+        type: 3}
+      propertyPath: m_Name
+      value: Coral2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f18ce4f502f5664a952ce85e70e962d, type: 3}

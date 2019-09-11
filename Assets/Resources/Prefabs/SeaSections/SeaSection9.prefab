@@ -142,8 +142,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1302423146034959005}
   - component: {fileID: 1302423146034959010}
+  - component: {fileID: 4564490794002122001}
+  - component: {fileID: 6499697609414654933}
   m_Layer: 0
-  m_Name: Sea10
+  m_Name: SeaSection9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,6 +216,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &4564490794002122001
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302423146034959011}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 40, y: 40}
+    newSize: {x: 40, y: 40}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 40, y: 40}
+  m_EdgeRadius: 0
+--- !u!114 &6499697609414654933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302423146034959011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4edb37ca3247046886f40f97521e15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1302423144777115447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -221,11 +261,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1302423144989962015}
     m_Modifications:
-    - target: {fileID: 7410449878785356058, guid: b7464b7fe60c5d94e897d243beaa878b,
-        type: 3}
-      propertyPath: m_Name
-      value: HeadBone
-      objectReference: {fileID: 0}
     - target: {fileID: 7410449878785356056, guid: b7464b7fe60c5d94e897d243beaa878b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -281,6 +316,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -29.205002
       objectReference: {fileID: 0}
+    - target: {fileID: 7410449878785356058, guid: b7464b7fe60c5d94e897d243beaa878b,
+        type: 3}
+      propertyPath: m_Name
+      value: HeadBone
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7464b7fe60c5d94e897d243beaa878b, type: 3}
 --- !u!4 &8413874279283267119 stripped
@@ -296,11 +336,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1302423144989962015}
     m_Modifications:
-    - target: {fileID: 9123165398991361136, guid: 0f18ce4f502f5664a952ce85e70e962d,
-        type: 3}
-      propertyPath: m_Name
-      value: Coral2
-      objectReference: {fileID: 0}
     - target: {fileID: 9123165398991361138, guid: 0f18ce4f502f5664a952ce85e70e962d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -355,6 +390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123165398991361136, guid: 0f18ce4f502f5664a952ce85e70e962d,
+        type: 3}
+      propertyPath: m_Name
+      value: Coral2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f18ce4f502f5664a952ce85e70e962d, type: 3}
