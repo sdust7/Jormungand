@@ -12,14 +12,17 @@ public class WolfAI : MonoBehaviour
     public WolfState state = WolfState.Wandering;
     private CircleCollider2D circleCollider;
     public Rigidbody2D rb; // IMPORTANT: Set this to the parent if AI is in a child object
-    SnakeController snake = new SnakeController();
+    LevelController snake;
     private bool full;
     private bool runningCoroutine = false;
+    private bool runningScan = false;
+
 
     void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
         pursuit = GetComponent<PursuitBehaviour>();
+        snake = GameObject.Find("LevelController").GetComponent<LevelController>(); ;
     }
 
     IEnumerator eatingFull()
@@ -31,9 +34,25 @@ public class WolfAI : MonoBehaviour
         runningCoroutine = false;
     }
 
+    IEnumerator reScan()
+    {
+        runningScan = true;
+        yield return new WaitForSeconds(0.1f);
+        AstarPath.active.Scan();
+        yield return new WaitForSeconds(2);
+        runningScan = false;
+    }
+
+
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (runningScan != true)
+        {
+            StartCoroutine(reScan());
+        }
+
+        //print(targetObj);
         if (targetObj == this.gameObject)
         {
             state = WolfState.Wandering;
@@ -64,33 +83,23 @@ public class WolfAI : MonoBehaviour
                 }
                 break;
         }
-        pursuit.ApplySteering(rb);
-
-        //check if already running coroutine
-        if (runningCoroutine != true)
-        {
-            StartCoroutine(eatingFull());
-        }
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         //Track player if nearby
-        if (collision.gameObject.name == "Snake")
+        //print(collision.gameObject.name);
+        if (collision != null && collision.gameObject.name == "Head")
         {
-            print("detected snake: " + collision.name);
-            if (targetObj == this.gameObject || collision.gameObject.name == "Snake")
-            {
-                targetObj = collision.gameObject;
-                pursuit.SetTargetObj(targetObj);
-            }
+            //print("detected snake: " + collision.name);
+            targetObj = collision.gameObject;
+            pursuit.SetTargetObj(targetObj);
         }
         //Track self as a substitute for null targets
         else
         {
-            targetObj = this.gameObject;
-            pursuit.SetTargetObj(targetObj);
+            //targetObj = this.gameObject;
+            //pursuit.SetTargetObj(targetObj);
         }
     }
 
@@ -98,12 +107,12 @@ public class WolfAI : MonoBehaviour
     {
         if (full)
             return;
-        //Delete player if not full
-        else if (collision != null && collision.gameObject.name == "Snake")
+        //Damage player if not full
+        if (collision != null && collision.gameObject.name == "Snake")
         {
             full = pursuit.ToggleHunger(full);
             print("Snake hit");
-            snake.GotDamage(10.0f);
+            snake.DamageSnake(10.0f);
         }
     }
 

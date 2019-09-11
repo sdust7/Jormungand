@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6033748905021461929}
   - component: {fileID: 6033748905021461928}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tree7
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 1091548375643798867}
   - component: {fileID: 5265193669600469277}
   - component: {fileID: 5266408097768708458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Trunk
   m_TagString: Obstacle
   m_Icon: {fileID: 0}

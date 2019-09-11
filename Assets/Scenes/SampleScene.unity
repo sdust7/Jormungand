@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 175978630}
   - component: {fileID: 175978635}
   - component: {fileID: 175978634}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: WolfAI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,10 +354,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3c0271ceb6a117458653d3a387c489d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObj: {fileID: 0}
-  predictionTime: 0
-  arrivalRadius: 0
-  nextWayPointDist: 0
+  targetObj: {fileID: 942294783}
+  maxSpeed: 2
+  weight: 1
+  predictionTime: 0.5
+  arrivalRadius: 0.5
+  nextWayPointDist: 0.5
   rigidBod: {fileID: 942294786}
 --- !u!61 &175978631
 BoxCollider2D:
@@ -397,7 +399,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899ab0e4b76c5c449a5938f71debc287, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 1
+  state: 0
   rb: {fileID: 942294786}
 --- !u!114 &175978634
 MonoBehaviour:
@@ -2127,7 +2129,7 @@ MonoBehaviour:
   unwalkableNodeDebugSize: 0.3
   logPathResults: 0
   maxNearestNodeDistance: 100
-  scanOnStartup: 1
+  scanOnStartup: 0
   fullGetNearestSearch: 0
   prioritizeGraphs: 0
   prioritizeGraphsLimit: 1
@@ -2238,7 +2240,7 @@ GameObject:
   - component: {fileID: 942294785}
   - component: {fileID: 942294786}
   - component: {fileID: 942294784}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
