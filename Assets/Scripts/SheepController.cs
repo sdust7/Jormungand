@@ -120,7 +120,7 @@ public class SheepController : MonoBehaviour
                 transform.right = rigi.velocity;
                 break;
             case SheepStatus.AvoidAndEscape:
-                rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed * 5.0f, radius, distance)) * 0.05f, movingSpeed * 5.0f);
+                rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed * 5.0f, radius, distance)) * 0.01f, movingSpeed * 5.0f);
                 transform.right = rigi.velocity;
                 break;
             default:
