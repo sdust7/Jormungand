@@ -46,7 +46,14 @@ public class PursuitBehaviour : MonoBehaviour
         }
         else
         {
-            targetRigidBody = targetObj.GetComponent<Rigidbody2D>();
+            if(targetObj.GetComponent<Rigidbody2D>() == null)
+            {
+                targetRigidBody = targetObj.GetComponent<Rigidbody2D>();
+            }
+            else
+            {
+                targetRigidBody = GameObject.Find("Snake").GetComponent<Rigidbody2D>();
+            }
         }
         seeker = GetComponent<Seeker>();
 
@@ -94,7 +101,7 @@ public class PursuitBehaviour : MonoBehaviour
         target = targetObj.transform.position;
         float dist2ChkP = Vector2.Distance(rigidBod.position, path.vectorPath[currentWayPoint]);
         float dist = Vector3.Distance(target, transform.position);
-        if (dist < 4)
+        /*if (dist < 4)
         {
             if (predictionTime > 0.25f)
             {
@@ -108,7 +115,7 @@ public class PursuitBehaviour : MonoBehaviour
         else
         {
             predictionTime = predictionTimeBase;
-        }
+        }*/
 
         // Get predicted target position after [predictionTime] seconds
         if (targetRigidBody != null)
@@ -121,6 +128,8 @@ public class PursuitBehaviour : MonoBehaviour
         {
             currentWayPoint++;
         }
+        print("Dist: " + dist);
+        print("Radius: " + circleCollider.radius);
         // Return if target is not within collider
         if (dist > circleCollider.radius)
             return;

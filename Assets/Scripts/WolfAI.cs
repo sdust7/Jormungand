@@ -39,7 +39,7 @@ public class WolfAI : MonoBehaviour
         runningScan = true;
         yield return new WaitForSeconds(0.1f);
         AstarPath.active.Scan();
-        yield return new WaitForSeconds(2);
+        //yield return new WaitForSeconds(2);
         runningScan = false;
     }
 
@@ -89,17 +89,23 @@ public class WolfAI : MonoBehaviour
     {
         //Track player if nearby
         //print(collision.gameObject.name);
-        if (collision != null && collision.gameObject.name == "Head")
+        if (collision != null && (collision.gameObject.layer == 10 || collision.gameObject.name == "Head"))
         {
-            //print("detected snake: " + collision.name);
-            targetObj = collision.gameObject;
-            pursuit.SetTargetObj(targetObj);
+            if (targetObj == this.gameObject || collision.gameObject.name == "Head")
+            {
+                targetObj = collision.gameObject;
+                pursuit.SetTargetObj(targetObj);
+            }
         }
         //Track self as a substitute for null targets
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == 10 || collision.gameObject.name == "Head")
         {
-            //targetObj = this.gameObject;
-            //pursuit.SetTargetObj(targetObj);
+            targetObj = this.gameObject;
+            pursuit.SetTargetObj(targetObj);
         }
     }
 
