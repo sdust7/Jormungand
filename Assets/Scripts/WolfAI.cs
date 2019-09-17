@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class WolfAI : MonoBehaviour
 {
     public enum WolfState { Wandering, Hunting, Eating };
 
     private PursuitBehaviour pursuit;
+    private WanderBehaviour wander;
     protected GameObject targetObj;
+    protected GameObject mapSegments;
 
     public WolfState state = WolfState.Wandering;
     private CircleCollider2D circleCollider;
@@ -15,14 +18,33 @@ public class WolfAI : MonoBehaviour
     LevelController snake;
     private bool full;
     private bool runningCoroutine = false;
+
     private bool runningScan = false;
+    AstarData data;
+    GridGraph gg;
+    private int width = 50;
+    private int depth = 50;
+    private float nodeSize = 1;
+
+    MapBounds mapBounds;
+    private Bounds totalBound;
 
 
     void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
         pursuit = GetComponent<PursuitBehaviour>();
+        wander = GetComponent<WanderBehaviour>();
+        mapBounds = GameObject.Find("MapSections").GetComponent<MapBounds>(); 
         snake = GameObject.Find("LevelController").GetComponent<LevelController>(); ;
+    }
+
+    private void Start()
+    {
+        data = AstarPath.active.data;
+        gg = data.FindGraphOfType(typeof(GridGraph)) as GridGraph;
+        gg.center = new Vector3(0, 0, 0);      
+        gg.SetDimensions(width, depth, nodeSize);
     }
 
     IEnumerator eatingFull()
@@ -37,9 +59,10 @@ public class WolfAI : MonoBehaviour
     IEnumerator reScan()
     {
         runningScan = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
+        gg.SetDimensions(width, depth, nodeSize);
         AstarPath.active.Scan();
-        //yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.3f);
         runningScan = false;
     }
 
@@ -51,6 +74,11 @@ public class WolfAI : MonoBehaviour
         {
             StartCoroutine(reScan());
         }
+
+        totalBound = mapBounds.CalculateLocalBounds();
+        width = (int)totalBound.size.x;
+        depth = (int)totalBound.size.y;
+
 
         //print(targetObj);
         if (targetObj == this.gameObject)
@@ -69,13 +97,13 @@ public class WolfAI : MonoBehaviour
         switch (state)
         {
             case WolfState.Wandering:
-                //wander.ApplySteering(rb);
+                wander.ApplySteering(rb);
                 break;
             case WolfState.Hunting:
                 pursuit.ApplySteering(rb);
                 break;
             case WolfState.Eating:
-                //wander.ApplySteering(rb);
+                wander.ApplySteering(rb);
                 //check if already running coroutine
                 if (runningCoroutine != true)
                 {

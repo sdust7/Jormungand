@@ -4,18 +4,10 @@ using UnityEngine;
 using Pathfinding;
 
 
-public class PursuitBehaviour : MonoBehaviour
+public class PursuitBehaviour : SteeringBehaviour
 {
     [SerializeField] protected GameObject targetObj;
     private Vector3 target;
-
-    protected float speed;
-    public float maxSpeed;
-    protected Vector3 desiredVelocity;
-
-    protected float orientation;
-    public float weight = 1;
-
     [SerializeField] private float predictionTime;
     private float predictionTimeBase;
     [SerializeField] protected float arrivalRadius;
@@ -37,7 +29,7 @@ public class PursuitBehaviour : MonoBehaviour
         circleCollider = GetComponent<CircleCollider2D>();
     }
 
-    private void Start()
+    private new void Start()
     {
         predictionTimeBase = predictionTime;
         if (targetObj == null)
@@ -46,7 +38,7 @@ public class PursuitBehaviour : MonoBehaviour
         }
         else
         {
-            if(targetObj.GetComponent<Rigidbody2D>() == null)
+            if (targetObj.GetComponent<Rigidbody2D>() == null)
             {
                 targetRigidBody = targetObj.GetComponent<Rigidbody2D>();
             }
@@ -78,7 +70,7 @@ public class PursuitBehaviour : MonoBehaviour
 
     }
 
-    public void ApplySteering(Rigidbody2D rb)
+    public override void ApplySteering(Rigidbody2D rb)
     {
         // Return if no target
         if (targetObj == null)
@@ -128,8 +120,6 @@ public class PursuitBehaviour : MonoBehaviour
         {
             currentWayPoint++;
         }
-        print("Dist: " + dist);
-        print("Radius: " + circleCollider.radius);
         // Return if target is not within collider
         if (dist > circleCollider.radius)
             return;
@@ -170,36 +160,5 @@ public class PursuitBehaviour : MonoBehaviour
             full = true;
         }
         return full;
-    }
-
-    protected Vector3 GetSteeringVelocity(Vector3 desired, Vector3 current)
-    {
-        Vector3 linear = desired - current;
-        return linear;
-    }
-
-    protected float GetOrientation(Vector3 velocity)
-    {
-        if (velocity.magnitude > 0)
-        {
-            float angle = Mathf.Atan2(-velocity.x, velocity.y);
-            return angle * Mathf.Rad2Deg;
-        }
-        else
-        {
-            // If no velocity, don't change the orientation
-            return orientation;
-        }
-    }
-
-    public void SetOrientationToVelocity(Rigidbody2D rb)
-    {
-        orientation = GetOrientation(rb.velocity);
-        rb.rotation = orientation;
-    }
-
-    public void ClampSpeed(Rigidbody2D rb)
-    {
-        rb.velocity = Vector3.ClampMagnitude(rb.velocity, speed);
     }
 }
