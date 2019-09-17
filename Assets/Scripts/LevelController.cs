@@ -63,6 +63,7 @@ public class LevelController : MonoBehaviour
                     reward.transform.position = snake.transform.position + new Vector3(2, 2,0);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     myQuest.Remove(quest);
+                    quest.finished = true;
                 }
                 else
                 {

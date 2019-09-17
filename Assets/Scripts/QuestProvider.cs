@@ -8,11 +8,9 @@ public class QuestProvider : MonoBehaviour
     private LevelController lvControl;
     private Quest myQuest;
     private Transform submitPanel;
-    private bool finished;
 
     private void Awake()
     {
-        finished = false;
         submitPanel = GameObject.Find("MissionPanel").transform.GetChild(1).transform;
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         // myQuest = lvControl.questController.allQuest[Random.Range(0, lvControl.questController.allQuest.Count)];
@@ -37,19 +35,21 @@ public class QuestProvider : MonoBehaviour
 
     private void InteractiveWithSnake()
     {
-        print(hasQuest(myQuest));
-        if (hasQuest(myQuest))
+        if (!myQuest.finished)
         {
-            submitPanel.gameObject.SetActive(true);
-            submitPanel.GetChild(0).name = myQuest.ID;
-            submitPanel.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Do you want to submit quest: " + myQuest.questName +"?";
-            Time.timeScale = 0;
+            if (hasQuest(myQuest))
+            {
+                submitPanel.gameObject.SetActive(true);
+                submitPanel.GetChild(0).name = myQuest.ID;
+                submitPanel.GetChild(1).GetComponent<TextMeshProUGUI>().text = "Do you want to submit quest: " + myQuest.questName + "?";
+                Time.timeScale = 0;
 
-        }
-        else
-        {
-            lvControl.ShowMissionPanel(myQuest);
-            Time.timeScale = 0;
+            }
+            else
+            {
+                lvControl.ShowMissionPanel(myQuest);
+                Time.timeScale = 0;
+            }
         }
     }
 

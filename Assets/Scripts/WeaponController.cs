@@ -38,6 +38,7 @@ public class WeaponController : MonoBehaviour
                 {
                     if (collision.transform.parent.GetComponent<SpriteRenderer>().enabled)
                     {
+                        collision.transform.GetComponent<CircleCollider2D>().enabled = false;
                         GameObject wood;
                         float x;
                         float y;

@@ -7,6 +7,7 @@ public class Quest
     public string questName;
     public string description;
     public string reward;
+    public bool finished;
 
     public Quest(string ID, string name, string des,string reward)
     {
@@ -14,6 +15,7 @@ public class Quest
         questName = name;
         description = des;
         this.reward = reward;
+        finished = false;
     }
     
 
