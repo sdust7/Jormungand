@@ -52,7 +52,7 @@ public class SnakeController : MonoBehaviour
 
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = snake.GetComponent<Rigidbody2D>();
-        length = 20;
+        length =700;
 
         for (int n = 0; n < length; n++)
         {
