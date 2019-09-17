@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 334072648758520771}
   m_Layer: 0
   m_Name: SeaSection6
-  m_TagString: Untagged
+  m_TagString: Sections
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -190,7 +190,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1726921795
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 374c9178ddc81434397618abd5fa6d8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -263,6 +263,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2285882842022843197}
     m_Modifications:
+    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
+        type: 3}
+      propertyPath: m_Name
+      value: Bone (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 4253688176052698938, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -318,11 +323,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -37.069
       objectReference: {fileID: 0}
-    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
-        type: 3}
-      propertyPath: m_Name
-      value: Bone (3)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e5da1cd13328b4daf24f4f5f60ceff, type: 3}
 --- !u!4 &2643952244012994804 stripped
@@ -338,6 +338,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2285882842022843197}
     m_Modifications:
+    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
+        type: 3}
+      propertyPath: m_Name
+      value: Bone
+      objectReference: {fileID: 0}
     - target: {fileID: 4253688176052698938, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -393,11 +398,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
-        type: 3}
-      propertyPath: m_Name
-      value: Bone
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e5da1cd13328b4daf24f4f5f60ceff, type: 3}
 --- !u!4 &2643952243931291239 stripped
@@ -413,6 +413,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2285882842022843197}
     m_Modifications:
+    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
+        type: 3}
+      propertyPath: m_Name
+      value: Bone (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 4253688176052698938, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -468,11 +473,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.9820004
       objectReference: {fileID: 0}
-    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
-        type: 3}
-      propertyPath: m_Name
-      value: Bone (2)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e5da1cd13328b4daf24f4f5f60ceff, type: 3}
 --- !u!4 &2643952243361717875 stripped
@@ -488,6 +488,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2285882842022843197}
     m_Modifications:
+    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
+        type: 3}
+      propertyPath: m_Name
+      value: Bone (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 4253688176052698938, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -542,11 +547,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -39.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4253688176052698936, guid: 61e5da1cd13328b4daf24f4f5f60ceff,
-        type: 3}
-      propertyPath: m_Name
-      value: Bone (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61e5da1cd13328b4daf24f4f5f60ceff, type: 3}

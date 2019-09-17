@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Equipments
+{
+    Axe = 0,
+    FireworkStand = 1
+}
+
+
 public class WeaponController : MonoBehaviour
 {
     private GameObject applePrefab;
@@ -11,23 +19,133 @@ public class WeaponController : MonoBehaviour
     private Transform appleInVoid;
     private Transform allWoods;
     private Transform allApple;
+
+    private Transform fireworkInVoid;
+
+    public Equipments thisEquipmentIs;
+    public float fireworkReloadTime;
+    public float fireworkCoolDownTime;
+    private float fireworkReloadTimer;
+    private float fireworkCDTimer;
+
+    private Transform leftFirework;
+    private Transform rightFirework;
+
     // Start is called before the first frame update
     void Start()
     {
-        applePrefab = Resources.Load<GameObject>("Prefabs/Apple");
         woodPrefab = Resources.Load<GameObject>("Prefabs/Wood");
+        applePrefab = Resources.Load<GameObject>("Prefabs/Apple");
+
         woodInVoid = GameObject.Find("WoodInVoid").transform;
         allWoods = GameObject.Find("Woods").transform;
+
         appleInVoid = GameObject.Find("AppleInVoid").transform;
         allApple = GameObject.Find("Apples").transform;
+
         snake = GameObject.Find("Head").transform;
+
+        fireworkInVoid = GameObject.Find("FireworkInVoid").transform;
+        //for (int i = 0; i < transform.childCount; i++)
+        //{
+        //    transform.GetChild(0).GetComponent<FireworkController>().fireworkInVoid = fireworkInVoid;
+        //}
+        fireworkCDTimer = fireworkCoolDownTime;
+        fireworkReloadTimer = 0;
+
+        leftFirework = transform.GetChild(0);
+        rightFirework = transform.GetChild(1);
     }
 
     // Update is called once per frame
-    void Update()
+
+
+    void FixedUpdate()
     {
-        
+
+        if (thisEquipmentIs == Equipments.FireworkStand)
+        {
+            FireworkActions();
+        }
+
     }
+
+    private void FireworkActions()
+    {
+        fireworkCDTimer += Time.fixedDeltaTime;
+
+        if (transform.childCount < 2)
+        {
+            fireworkReloadTimer += Time.fixedDeltaTime;
+        }
+
+        if (fireworkCDTimer >= fireworkCoolDownTime)
+        {
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                if (transform.childCount > 0)
+                {
+                    fireworkCDTimer = 0;
+                    fireworkReloadTimer = 0;
+                    if (transform.childCount == 2 && transform.GetChild(0) == rightFirework)
+                    {
+                        leftFirework.GetComponent<FireworkController>().Launch();
+                    }
+                    else
+                    {
+                        transform.GetChild(0).GetComponent<FireworkController>().Launch();
+                    }
+                }
+            }
+        }
+
+        if (fireworkReloadTimer >= fireworkReloadTime)
+        {
+            if (fireworkInVoid.childCount > 0)
+            {
+                fireworkReloadTimer = 0;
+                if (fireworkInVoid.childCount == 2)
+                {
+                    leftFirework.GetComponent<FireworkController>().Reuse(-1);
+                }
+                else
+                {
+
+                    if (fireworkInVoid.GetChild(0) == leftFirework)
+                    {
+                        leftFirework.GetComponent<FireworkController>().Reuse(-1);
+                    }
+                    else
+                    {
+                        rightFirework.GetComponent<FireworkController>().Reuse(1);
+                    }
+                }
+
+                //switch (transform.childCount)
+                //{
+                //    case 0:
+                //        fireworkReloadTimer = 0;
+                //        // fireworkInVoid.GetChild(0).gameObject.SetActive(true);
+                //        fireworkInVoid.GetChild(0).GetComponent<FireworkController>().Reuse(1);
+
+                //        break;
+                //    case 1:
+                //        fireworkReloadTimer = 0;
+                //        fireworkInVoid.GetChild(0).GetComponent<FireworkController>().Reuse(-1);
+                //        //fireworkInVoid.GetChild(0).gameObject.SetActive(true);
+
+                //        break;
+                //    case 2:
+                //        break;
+                //}
+
+            }
+
+        }
+    }
+
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -42,11 +160,11 @@ public class WeaponController : MonoBehaviour
                         GameObject wood;
                         float x;
                         float y;
-                        if (woodInVoid.childCount!=0)
+                        if (woodInVoid.childCount != 0)
                         {
-                             wood = woodInVoid.GetChild(0).gameObject;
+                            wood = woodInVoid.GetChild(0).gameObject;
                             wood.gameObject.SetActive(true);
-                            wood.transform.position = snake.position + snake.up*5;
+                            wood.transform.position = snake.position + snake.up * 5;
                             wood.transform.Rotate(0, 0, Random.Range(0, 360));
                             wood.transform.SetParent(allWoods);
                         }
@@ -83,7 +201,7 @@ public class WeaponController : MonoBehaviour
                         }
 
                         collision.transform.parent.GetComponent<SpriteRenderer>().enabled = false;
-                        
+
                     }
 
                 }

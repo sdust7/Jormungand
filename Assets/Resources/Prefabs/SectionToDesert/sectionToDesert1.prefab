@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3849914582587428677}
   m_Layer: 0
   m_Name: sectionToDesert1
-  m_TagString: Untagged
+  m_TagString: Sections
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,6 +282,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2664475221874488745}
     m_Modifications:
+    - target: {fileID: 3723891001300707742, guid: 22e6eb4c7959146fbbf79bd9fcf05e1c,
+        type: 3}
+      propertyPath: m_Name
+      value: Stones8
+      objectReference: {fileID: 0}
     - target: {fileID: 3010838591635929409, guid: 22e6eb4c7959146fbbf79bd9fcf05e1c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -336,11 +341,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 55.762
-      objectReference: {fileID: 0}
-    - target: {fileID: 3723891001300707742, guid: 22e6eb4c7959146fbbf79bd9fcf05e1c,
-        type: 3}
-      propertyPath: m_Name
-      value: Stones8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22e6eb4c7959146fbbf79bd9fcf05e1c, type: 3}
@@ -432,6 +432,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2664475221874488745}
     m_Modifications:
+    - target: {fileID: 3610352455827677554, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd,
+        type: 3}
+      propertyPath: m_Name
+      value: SandStone1
+      objectReference: {fileID: 0}
     - target: {fileID: 8374540109539952500, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -486,11 +491,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3610352455827677554, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd,
-        type: 3}
-      propertyPath: m_Name
-      value: SandStone1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8dee9d4e2a52414c9d502dbfc4c5fcd, type: 3}

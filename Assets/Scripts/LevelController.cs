@@ -22,6 +22,8 @@ public class LevelController : MonoBehaviour
     public float xValueStartDesert = 160.0f;
     public float xValueStartSea = -160.0f;
 
+    public Vector3[] mannulUsedPoints;
+
     void Awake()
     {
         myQuest = new List<Quest>();
@@ -31,6 +33,12 @@ public class LevelController : MonoBehaviour
         apple = 0;
         usedPoints = new List<Vector3>();
         usedPoints.Add(new Vector3(0, 0, 0));
+        //
+        foreach (var item in mannulUsedPoints)
+        {
+            usedPoints.Add(item);
+        }
+        //
         canvas = GameObject.Find("Canvas").GetComponent<UIController>();
         UIPanel = GameObject.Find("UIPanel").GetComponent<UIController>();
         questPanel = GameObject.Find("MissionPanel").transform.GetChild(0).transform;
@@ -47,7 +55,7 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SubmitQuest(string id)
@@ -55,12 +63,12 @@ public class LevelController : MonoBehaviour
         switch (id)
         {
             case "0":
-                if (wood>=5)
+                if (wood >= 5)
                 {
                     wood -= 5;
                     UIPanel.UpdateWood(wood);
                     GameObject reward = Instantiate(Apples) as GameObject;
-                    reward.transform.position = snake.transform.position + new Vector3(2, 2,0);
+                    reward.transform.position = snake.transform.position + new Vector3(2, 2, 0);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     myQuest.Remove(quest);
                     quest.finished = true;
@@ -82,7 +90,7 @@ public class LevelController : MonoBehaviour
         questPanel.gameObject.SetActive(true);
         questPanel.GetChild(0).name = quest.ID.ToString();
         questPanel.GetChild(1).GetComponent<TextMeshProUGUI>().text = quest.questName;
-        questPanel.GetChild(2).GetComponent<TextMeshProUGUI>().text = quest.description+"\nReward: "+quest.reward;
+        questPanel.GetChild(2).GetComponent<TextMeshProUGUI>().text = quest.description + "\nReward: " + quest.reward;
 
     }
 
@@ -94,7 +102,7 @@ public class LevelController : MonoBehaviour
 
     public void ExtendBody(int bodies)
     {
-        score+=bodies;
+        score += bodies;
         if (score >= goal)
         {
             GameWin();

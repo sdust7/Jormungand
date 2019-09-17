@@ -68,7 +68,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1726921795
-  m_SortingLayer: 7
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 374c9178ddc81434397618abd5fa6d8c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -147,7 +147,7 @@ GameObject:
   - component: {fileID: -8078367532929673483}
   m_Layer: 0
   m_Name: SeaSection5
-  m_TagString: Untagged
+  m_TagString: Sections
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -337,6 +337,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1842978819153102485}
     m_Modifications:
+    - target: {fileID: 9123165398991361136, guid: 0f18ce4f502f5664a952ce85e70e962d,
+        type: 3}
+      propertyPath: m_Name
+      value: Coral2
+      objectReference: {fileID: 0}
     - target: {fileID: 9123165398991361138, guid: 0f18ce4f502f5664a952ce85e70e962d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -392,11 +397,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9123165398991361136, guid: 0f18ce4f502f5664a952ce85e70e962d,
-        type: 3}
-      propertyPath: m_Name
-      value: Coral2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f18ce4f502f5664a952ce85e70e962d, type: 3}
 --- !u!4 &7424304797986679088 stripped
@@ -412,6 +412,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1842978819153102485}
     m_Modifications:
+    - target: {fileID: 7410449878785356058, guid: b7464b7fe60c5d94e897d243beaa878b,
+        type: 3}
+      propertyPath: m_Name
+      value: HeadBone
+      objectReference: {fileID: 0}
     - target: {fileID: 7410449878785356056, guid: b7464b7fe60c5d94e897d243beaa878b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -466,11 +471,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7410449878785356058, guid: b7464b7fe60c5d94e897d243beaa878b,
-        type: 3}
-      propertyPath: m_Name
-      value: HeadBone
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7464b7fe60c5d94e897d243beaa878b, type: 3}

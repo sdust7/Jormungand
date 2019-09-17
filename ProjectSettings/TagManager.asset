@@ -13,6 +13,7 @@ TagManager:
   - Sheep
   - Obstacle
   - Wood
+  - Firework
   layers:
   - Default
   - TransparentFX
@@ -47,8 +48,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 1496607213
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 2355785783
+    locked: 0
+  - name: 
+    uniqueID: 2993483805
     locked: 0
   - name: Obstacle
     uniqueID: 2419693685
@@ -58,6 +68,9 @@ TagManager:
     locked: 0
   - name: Animals
     uniqueID: 508139889
+    locked: 0
+  - name: SnakeBodyBottom
+    uniqueID: 3417752683
     locked: 0
   - name: Snake
     uniqueID: 640957141

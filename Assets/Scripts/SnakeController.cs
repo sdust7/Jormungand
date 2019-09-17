@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class SnakeController : MonoBehaviour
 {
     private const float accelerateCost = 10.0f;
-    private const float excuteTimesPerSecond = 1 / 50.0f;
+    private const float excuteTimesPerSecond = 1 / 100.0f;
     private const float barLength = 315.0f;
+
+    private const float turnAnglePerSecond = 250.0f;
+
     private int length;
     private LevelController lvControl;
     private GameObject bodyPrefab;
@@ -31,10 +34,16 @@ public class SnakeController : MonoBehaviour
 
     private Rigidbody2D rigi;
     float timer;
-  
+
+    private int frameTimer;
+    private int framesUpdateBody;
+
     // Start is called before the first frame update
     void Start()
     {
+        frameTimer = 0;
+        framesUpdateBody = 2;
+        //
         snake = transform.parent;
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         movingSpeed = lvControl.speed;
@@ -47,17 +56,19 @@ public class SnakeController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar = GameObject.Find("Health").GetComponent<RectTransform>();
         energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
-        bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
+        bodyPrefab = Resources.Load<GameObject>("Prefabs/BodyTest");
 
 
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = snake.GetComponent<Rigidbody2D>();
-        length =700;
+        length = 100;
 
         for (int n = 0; n < length; n++)
         {
-            GameObject newBody =  Instantiate(bodyPrefab,allBody);
+            GameObject newBody = Instantiate(bodyPrefab, allBody);
             newBody.transform.position = new Vector2(snake.position.x, snake.position.y);
+            newBody.GetComponent<SpriteRenderer>().sortingOrder = -n;
+            newBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -n-3;
         }
         firstBody = allBody.GetChild(0);
 
@@ -66,36 +77,57 @@ public class SnakeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-
-        rigi.velocity = snake.up*movingSpeed;
-        firstBody.position = snake.position;
-        //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
-        for (int n = length-1; n > 0; n--)
+        frameTimer++;
+        if (frameTimer >= framesUpdateBody)
         {
-            allBody.GetChild(n).transform.position =allBody.GetChild(n-1).transform.position;
-            //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
+            frameTimer = 0;
+            //
+
+            rigi.velocity = snake.up * movingSpeed;
+
+            //
+            firstBody.up = snake.position - firstBody.position;
+
+            //firstBody.position = snake.position - snake.up;
+            //
+
+            firstBody.position = snake.position;
+
+
+            //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
+            for (int n = length - 1; n > 0; n--)
+            {
+                //
+                allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
+                //
+
+                allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
+
+                //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
+            }
+            framesUpdateBody = 2;
         }
+
         AbilitiesDetection();
         MovementDetection();
-      
+
     }
 
     public void GotDamage(float damage)
     {
         currentHealth -= damage;
-        healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength/maxEnergy), 0);
+        healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength / maxEnergy), 0);
 
     }
 
     public void ExtendBody(int bodies)
     {
-        for (int n = 0; n < 5*bodies; n++)
+        for (int n = 0; n < 5 * bodies; n++)
         {
             GameObject newBody = Instantiate(bodyPrefab, allBody);
-            newBody.transform.position = new Vector2(allBody.GetChild(length-1).position.x, allBody.GetChild(length - 1).position.y);
+            newBody.transform.position = new Vector2(allBody.GetChild(length - 1).position.x, allBody.GetChild(length - 1).position.y);
         }
-        length += 5*bodies;
+        length += 5 * bodies;
     }
 
     private void RecoverEnergy(float value)
@@ -109,11 +141,11 @@ public class SnakeController : MonoBehaviour
         {
             if (currentEnergy >= 5.0f)
             {
+                framesUpdateBody = 1;
                 movingSpeed = 20.0f;
                 steeringSpeed = 10.0f;
                 currentEnergy -= excuteTimesPerSecond * accelerateCost;
                 energyBar.anchoredPosition = new Vector2(energyBar.anchoredPosition.x - (excuteTimesPerSecond * accelerateCost * (barLength / maxEnergy)), 0);
-
 
             }
             else
@@ -141,7 +173,7 @@ public class SnakeController : MonoBehaviour
             }
             else
             {
-                snake.Rotate(0, 0, 5);
+                snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
 
             }
 
@@ -155,7 +187,7 @@ public class SnakeController : MonoBehaviour
             }
             else
             {
-                snake.Rotate(0, 0, -5);
+                snake.Rotate(0, 0, -turnAnglePerSecond * Time.fixedDeltaTime);
 
             }
 
