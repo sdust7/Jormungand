@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a01e0464076b464f95cd88b319b6336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentEquipment: 0
 --- !u!212 &250820503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2307,6 +2308,7 @@ GameObject:
   - component: {fileID: 1080998575}
   - component: {fileID: 1080998576}
   - component: {fileID: 1080998578}
+  - component: {fileID: 1080998577}
   m_Layer: 8
   m_Name: Snake
   m_TagString: Untagged
@@ -2379,6 +2381,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!60 &1080998577
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080998574}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3, y: 3}
+    newSize: {x: 3, y: 3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths: []
 --- !u!50 &1080998578
 Rigidbody2D:
   serializedVersion: 4
@@ -4667,6 +4694,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireworkStand
       objectReference: {fileID: 0}
+    - target: {fileID: 8380242287333372089, guid: c452e346c9406774c9410db3279c6e15,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6407909948606006646, guid: c452e346c9406774c9410db3279c6e15,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4747,7 +4779,7 @@ PrefabInstance:
     - target: {fileID: 7910203894746911814, guid: 2b62b6e070c154243898f4e3ac75c7e4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7910203894746911809, guid: 2b62b6e070c154243898f4e3ac75c7e4,
         type: 3}

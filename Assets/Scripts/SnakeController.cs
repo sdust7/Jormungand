@@ -38,6 +38,12 @@ public class SnakeController : MonoBehaviour
     private int frameTimer;
     private int framesUpdateBody;
 
+    private PolygonCollider2D polygonC;
+
+    private List<Transform> equipments;
+    [SerializeField]
+    private int currentEquipment;  // -1 stands for currently no equipment
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,46 +74,65 @@ public class SnakeController : MonoBehaviour
             GameObject newBody = Instantiate(bodyPrefab, allBody);
             newBody.transform.position = new Vector2(snake.position.x, snake.position.y);
             newBody.GetComponent<SpriteRenderer>().sortingOrder = -n;
-            newBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -n-3;
+            newBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -n - 3;
         }
         firstBody = allBody.GetChild(0);
 
+        equipments = new List<Transform>();
+        AddEquipment(Equipments.Axe);
+        AddEquipment(Equipments.FireworkStand);
+        currentEquipment = (int)Equipments.Axe;
+    }
+
+    void Update()
+    {
+        CheckSwitchEquip();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Vector2[] ps = new Vector2[] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) };
+        //    polygonC.points = ps;
+        //}
+
+
+
         frameTimer++;
-        if (frameTimer >= framesUpdateBody)
+        if (rigi.velocity.magnitude >= 0.005f)
         {
-            frameTimer = 0;
-            //
-
-            rigi.velocity = snake.up * movingSpeed;
-
-            //
-            firstBody.up = snake.position - firstBody.position;
-
-            //firstBody.position = snake.position - snake.up;
-            //
-
-            firstBody.position = snake.position;
-
-
-            //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
-            for (int n = length - 1; n > 0; n--)
+            if (frameTimer >= framesUpdateBody)
             {
-                //
-                allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
+                frameTimer = 0;
                 //
 
-                allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
+                rigi.velocity = snake.up * movingSpeed;
 
-                //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
+                //
+                firstBody.up = snake.position - firstBody.position;
+
+                //firstBody.position = snake.position - snake.up;
+                //
+
+                firstBody.position = snake.position;
+
+                //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
+                for (int n = length - 1; n > 0; n--)
+                {
+                    //
+                    allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
+                    //
+
+                    allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
+
+                    //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
+                }
+                framesUpdateBody = 2;
             }
-            framesUpdateBody = 2;
         }
-
         AbilitiesDetection();
         MovementDetection();
 
@@ -174,7 +199,6 @@ public class SnakeController : MonoBehaviour
             else
             {
                 snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
-
             }
 
         }
@@ -202,7 +226,6 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         switch (collision.gameObject.tag)
@@ -217,4 +240,61 @@ public class SnakeController : MonoBehaviour
                 break;
         }
     }
+
+    public void CheckSwitchEquip()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SwitchEquipment(false);
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            SwitchEquipment(true);
+        }
+    }
+
+    public void AddEquipment(Equipments equipment)
+    {
+        equipments.Add(snake.GetChild(1).GetChild((int)equipment));
+    }
+
+    public void SwitchEquipment(bool leftToRight)
+    {
+        if (equipments.Count > 1)
+        {
+            if (leftToRight)
+            {
+                if (currentEquipment < equipments.Count - 1)
+                {
+                    equipments[currentEquipment].gameObject.SetActive(false);
+                    currentEquipment++;
+                    equipments[currentEquipment].gameObject.SetActive(true);
+                }
+                else
+                {
+                    equipments[currentEquipment].gameObject.SetActive(false);
+                    currentEquipment = 0;
+                    equipments[currentEquipment].gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                if (currentEquipment > 0)
+                {
+                    equipments[currentEquipment].gameObject.SetActive(false);
+                    currentEquipment--;
+                    equipments[currentEquipment].gameObject.SetActive(true);
+                }
+                else
+                {
+                    equipments[currentEquipment].gameObject.SetActive(false);
+                    currentEquipment = equipments.Count - 1;
+                    equipments[currentEquipment].gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
 }
+
+

@@ -34,6 +34,8 @@ public class WeaponController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        snake = GameObject.Find("Head").transform;
+
         woodPrefab = Resources.Load<GameObject>("Prefabs/Wood");
         applePrefab = Resources.Load<GameObject>("Prefabs/Apple");
 
@@ -43,18 +45,20 @@ public class WeaponController : MonoBehaviour
         appleInVoid = GameObject.Find("AppleInVoid").transform;
         allApple = GameObject.Find("Apples").transform;
 
-        snake = GameObject.Find("Head").transform;
 
-        fireworkInVoid = GameObject.Find("FireworkInVoid").transform;
-        //for (int i = 0; i < transform.childCount; i++)
-        //{
-        //    transform.GetChild(0).GetComponent<FireworkController>().fireworkInVoid = fireworkInVoid;
-        //}
-        fireworkCDTimer = fireworkCoolDownTime;
-        fireworkReloadTimer = 0;
+        if (thisEquipmentIs == Equipments.FireworkStand)
+        {
+            fireworkInVoid = GameObject.Find("FireworkInVoid").transform;
+            //for (int i = 0; i < transform.childCount; i++)
+            //{
+            //    transform.GetChild(0).GetComponent<FireworkController>().fireworkInVoid = fireworkInVoid;
+            //}
+            fireworkCDTimer = fireworkCoolDownTime;
+            fireworkReloadTimer = 0;
 
-        leftFirework = transform.GetChild(0);
-        rightFirework = transform.GetChild(1);
+            leftFirework = transform.GetChild(0);
+            rightFirework = transform.GetChild(1);
+        }
     }
 
     // Update is called once per frame
@@ -62,11 +66,12 @@ public class WeaponController : MonoBehaviour
 
     void FixedUpdate()
     {
-
         if (thisEquipmentIs == Equipments.FireworkStand)
         {
             FireworkActions();
         }
+
+
 
     }
 
@@ -149,9 +154,11 @@ public class WeaponController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (transform.name)
+        //  switch (transform.name)
+        switch (thisEquipmentIs)
         {
-            case "AXE":
+            //case "AXE":
+            case Equipments.Axe:
                 if (collision.transform.name == "Trunk")
                 {
                     if (collision.transform.parent.GetComponent<SpriteRenderer>().enabled)
