@@ -24,18 +24,18 @@ public class PickableController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        switch (transform.tag)
+        switch (tag)
         {
             case "Apple":
                 if (col.tag == "Snake")
                 {
                     lvControl.ExtendBody(1);
                     lvControl.AddToUI("Apple");
-                    transform.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
                     transform.SetParent(appleInVoid);
                 }
                 /*
@@ -54,17 +54,17 @@ public class PickableController : MonoBehaviour
                 }*/
 
                 break;
-            case "Wood": 
-                if(col.tag == "Snake")
+            case "Wood":
+                if (col.tag == "Snake")
                 {
-                    transform.gameObject.SetActive(false);
+                    gameObject.SetActive(false);
                     transform.SetParent(woodInVoid);
                     lvControl.AddToUI("Wood");
                 }
                 break;
         }
-       
+
     }
 
-   
+
 }

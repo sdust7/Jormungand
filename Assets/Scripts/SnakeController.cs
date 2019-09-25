@@ -62,7 +62,7 @@ public class SnakeController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar = GameObject.Find("Health").GetComponent<RectTransform>();
         energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
-        bodyPrefab = Resources.Load<GameObject>("Prefabs/BodyTest");
+        bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
 
 
         allBody = GameObject.Find("SnakeBody").transform;
@@ -82,6 +82,8 @@ public class SnakeController : MonoBehaviour
         AddEquipment(Equipments.Axe);
         AddEquipment(Equipments.FireworkStand);
         currentEquipment = (int)Equipments.Axe;
+
+        // rigi.velocity = snake.up * movingSpeed;
     }
 
     void Update()
@@ -102,37 +104,37 @@ public class SnakeController : MonoBehaviour
 
 
         frameTimer++;
-        if (rigi.velocity.magnitude >= 0.005f)
+        //if (rigi.velocity.magnitude >= 0.005f)
+        //{
+        if (frameTimer >= framesUpdateBody)
         {
-            if (frameTimer >= framesUpdateBody)
+            frameTimer = 0;
+            //
+
+            rigi.velocity = snake.up * movingSpeed;
+
+            //
+            firstBody.up = snake.position - firstBody.position;
+
+            //firstBody.position = snake.position - snake.up;
+            //
+
+            firstBody.position = snake.position;
+
+            //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
+            for (int n = length - 1; n > 0; n--)
             {
-                frameTimer = 0;
+                //
+                allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
                 //
 
-                rigi.velocity = snake.up * movingSpeed;
+                allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
 
-                //
-                firstBody.up = snake.position - firstBody.position;
-
-                //firstBody.position = snake.position - snake.up;
-                //
-
-                firstBody.position = snake.position;
-
-                //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
-                for (int n = length - 1; n > 0; n--)
-                {
-                    //
-                    allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
-                    //
-
-                    allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
-
-                    //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
-                }
-                framesUpdateBody = 2;
+                //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
             }
+            framesUpdateBody = 2;
         }
+        //   }
         AbilitiesDetection();
         MovementDetection();
 
