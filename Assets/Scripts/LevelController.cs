@@ -79,6 +79,8 @@ public class LevelController : MonoBehaviour
                 }
                 break;
             case "1":
+
+
                 break;
             default:
                 break;
@@ -98,6 +100,10 @@ public class LevelController : MonoBehaviour
     {
         speed = 10;
         score = 0;
+    }
+
+    public void RestoreEnergy(float amount) {
+        snake.RestoreEnergy(amount);
     }
 
     public void ExtendBody(int bodies)

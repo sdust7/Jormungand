@@ -20,15 +20,18 @@ public class WeaponController : MonoBehaviour
     private Transform allWoods;
     private Transform allApple;
 
-    private Transform fireworkInVoid;
+    //private Transform fireworkInVoid;
 
     public Equipments thisEquipmentIs;
     public float fireworkReloadTime;
-    public float fireworkCoolDownTime;
+    // public float fireworkCoolDownTime;
     private float fireworkReloadTimer;
-    private float fireworkCDTimer;
+    private float fireworkReloadTimer2;
+    // private float fireworkCDTimer;
 
+    [SerializeField]
     private Transform leftFirework;
+    [SerializeField]
     private Transform rightFirework;
 
     // Start is called before the first frame update
@@ -48,13 +51,14 @@ public class WeaponController : MonoBehaviour
 
         if (thisEquipmentIs == Equipments.FireworkStand)
         {
-            fireworkInVoid = GameObject.Find("FireworkInVoid").transform;
+            //fireworkInVoid = GameObject.Find("FireworkInVoid").transform;
             //for (int i = 0; i < transform.childCount; i++)
             //{
             //    transform.GetChild(0).GetComponent<FireworkController>().fireworkInVoid = fireworkInVoid;
             //}
-            fireworkCDTimer = fireworkCoolDownTime;
+            // fireworkCDTimer = fireworkCoolDownTime;
             fireworkReloadTimer = 0;
+            fireworkReloadTimer2 = 0;
 
             leftFirework = transform.GetChild(0);
             rightFirework = transform.GetChild(1);
@@ -63,13 +67,20 @@ public class WeaponController : MonoBehaviour
 
     // Update is called once per frame
 
-
-    void FixedUpdate()
+    void Update()
     {
         if (thisEquipmentIs == Equipments.FireworkStand)
         {
             FireworkActions();
         }
+    }
+
+    void FixedUpdate()
+    {
+        //if (thisEquipmentIs == Equipments.FireworkStand)
+        //{
+        //    FireworkActions();
+        //}
 
 
 
@@ -77,76 +88,113 @@ public class WeaponController : MonoBehaviour
 
     private void FireworkActions()
     {
-        fireworkCDTimer += Time.fixedDeltaTime;
-
-        if (transform.childCount < 2)
+        if (transform.childCount == 0)
         {
-            fireworkReloadTimer += Time.fixedDeltaTime;
+            fireworkReloadTimer += Time.deltaTime;
+            fireworkReloadTimer2 += Time.deltaTime;
+        }
+        else if (transform.childCount == 1)
+        {
+            if (transform.GetChild(0) == leftFirework)
+            {
+                fireworkReloadTimer2 += Time.deltaTime;
+            }
+            else
+            {
+                fireworkReloadTimer += Time.deltaTime;
+            }
         }
 
-        if (fireworkCDTimer >= fireworkCoolDownTime)
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (transform.childCount == 2)
             {
-                if (transform.childCount > 0)
-                {
-                    fireworkCDTimer = 0;
-                    fireworkReloadTimer = 0;
-                    if (transform.childCount == 2 && transform.GetChild(0) == rightFirework)
-                    {
-                        leftFirework.GetComponent<FireworkController>().Launch();
-                    }
-                    else
-                    {
-                        transform.GetChild(0).GetComponent<FireworkController>().Launch();
-                    }
-                }
+                leftFirework.GetComponent<FireworkController>().Launch();
+            }
+            else if (transform.childCount == 1)
+            {
+                transform.GetChild(0).GetComponent<FireworkController>().Launch();
+                //if (transform.GetChild(0) == leftFirework)
+                //{
+                //    leftFirework.GetComponent<FireworkController>().Launch();
+                //}
+                //else
+                //{
+                //    rightFirework.GetComponent<FireworkController>().Launch();
+                //}
             }
         }
 
         if (fireworkReloadTimer >= fireworkReloadTime)
         {
-            if (fireworkInVoid.childCount > 0)
-            {
-                fireworkReloadTimer = 0;
-                if (fireworkInVoid.childCount == 2)
-                {
-                    leftFirework.GetComponent<FireworkController>().Reuse(-1);
-                }
-                else
-                {
-
-                    if (fireworkInVoid.GetChild(0) == leftFirework)
-                    {
-                        leftFirework.GetComponent<FireworkController>().Reuse(-1);
-                    }
-                    else
-                    {
-                        rightFirework.GetComponent<FireworkController>().Reuse(1);
-                    }
-                }
-
-                //switch (transform.childCount)
-                //{
-                //    case 0:
-                //        fireworkReloadTimer = 0;
-                //        // fireworkInVoid.GetChild(0).gameObject.SetActive(true);
-                //        fireworkInVoid.GetChild(0).GetComponent<FireworkController>().Reuse(1);
-
-                //        break;
-                //    case 1:
-                //        fireworkReloadTimer = 0;
-                //        fireworkInVoid.GetChild(0).GetComponent<FireworkController>().Reuse(-1);
-                //        //fireworkInVoid.GetChild(0).gameObject.SetActive(true);
-
-                //        break;
-                //    case 2:
-                //        break;
-                //}
-
-            }
-
+            leftFirework.GetComponent<FireworkController>().Reuse(-1);
+            fireworkReloadTimer = 0;
         }
+        if (fireworkReloadTimer2 >= fireworkReloadTime)
+        {
+            rightFirework.GetComponent<FireworkController>().Reuse(1);
+            fireworkReloadTimer2 = 0;
+        }
+
+
+
+        //fireworkCDTimer += Time.fixedDeltaTime;
+
+        //if (transform.childCount < 2)
+        //{
+        //    fireworkReloadTimer += Time.fixedDeltaTime;
+        //    fireworkReloadTimer2 += Time.fixedDeltaTime;
+        //}
+
+        //if (fireworkCDTimer >= fireworkCoolDownTime)
+        //{
+        //    if (Input.GetKeyDown(KeyCode.J))
+        //    {
+        //        if (transform.childCount > 0)
+        //        {
+        //            fireworkCDTimer = 0;
+        //            //fireworkReloadTimer = 0;
+        //            if (transform.childCount == 2 && transform.GetChild(0) == rightFirework)
+        //            {
+        //                fireworkReloadTimer = 0;
+        //                leftFirework.GetComponent<FireworkController>().Launch();
+        //            }
+        //            else
+        //            {
+        //                fireworkReloadTimer2 = 0;
+        //                transform.GetChild(0).GetComponent<FireworkController>().Launch();
+        //            }
+        //        }
+        //    }
+        //}
+
+        //if (fireworkReloadTimer >= fireworkReloadTime)
+        //{
+        //    if (fireworkInVoid.childCount > 0)
+        //    {
+        //        fireworkReloadTimer = 0;
+        //        if (fireworkInVoid.childCount == 2)
+        //        {
+        //            leftFirework.GetComponent<FireworkController>().Reuse(-1);
+        //        }
+        //        else
+        //        {
+
+        //            if (fireworkInVoid.GetChild(0) == leftFirework)
+        //            {
+        //                leftFirework.GetComponent<FireworkController>().Reuse(-1);
+        //            }
+        //            else
+        //            {
+        //                rightFirework.GetComponent<FireworkController>().Reuse(1);
+        //            }
+        //        }
+
+
+
+        //    }
+
+        //}
     }
 
 

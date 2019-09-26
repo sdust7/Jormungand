@@ -17,6 +17,11 @@ public class UIController : MonoBehaviour
     void Start()
     {
         equipmensName = new List<string>() { "AXE", "FireworkStand" };
+        //for (int i = 0; i < 2; i++)
+        //{
+        //    equipmensName[i] = new Equipments(i);
+        //}
+
         switch (transform.name)
         {
             case "Canvas":
@@ -87,6 +92,7 @@ public class UIController : MonoBehaviour
 
             }
         }
+
 
     }
 }

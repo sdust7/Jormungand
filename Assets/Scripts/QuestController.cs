@@ -9,6 +9,9 @@ public class QuestController
     {
         Quest quest = new Quest("0", "Annoying Trees", "These trees always hurt me!! Could you help me to cut them off? This is your axe!","10 Apples");
         allQuest.Add(quest);
+        Quest quest1 = new Quest("1", "Carson", "There is a Carson", "Volunteer");
+        allQuest.Add(quest1);
+
     }
 
 }

@@ -52,13 +52,15 @@ public class FireworkController : MonoBehaviour
 
     private void Explosion()
     {
-
         launched = false;
         rigid.velocity = Vector2.zero;
         transform.parent = fireworkInVoid;
         //gameObject.SetActive(false);
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
+        //
+
+        //
     }
 
     public void Reuse(int number)

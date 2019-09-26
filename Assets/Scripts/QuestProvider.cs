@@ -9,6 +9,8 @@ public class QuestProvider : MonoBehaviour
     private Quest myQuest;
     private Transform submitPanel;
 
+    public int myQuestNumber;
+
     private void Awake()
     {
         submitPanel = GameObject.Find("MissionPanel").transform.GetChild(1).transform;
@@ -19,18 +21,18 @@ public class QuestProvider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myQuest = lvControl.questController.allQuest[0];
+        myQuest = lvControl.questController.allQuest[myQuestNumber];
         print(myQuest.questName);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private bool hasQuest(Quest myQuest)
     {
-      return  lvControl.myQuest.Exists(x => x.ID.Equals(myQuest.ID));
+        return lvControl.myQuest.Exists(x => x.ID.Equals(myQuest.ID));
     }
 
     private void InteractiveWithSnake()

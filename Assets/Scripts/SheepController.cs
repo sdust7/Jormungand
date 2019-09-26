@@ -6,7 +6,7 @@ public class SheepController : MonoBehaviour
 {
     public enum SheepStatus
     {
-        Rest, Idel, Walk, Escape, Dead, Avoid, AvoidAndEscape
+        Rest, Idel, Walk, Escape, Dead//, Avoid, AvoidAndEscape
     };
     public Animator sheepAnimator;
     private Transform snake;
@@ -32,6 +32,10 @@ public class SheepController : MonoBehaviour
 
     private int frameTimer = 0;
 
+    public float reviveSnakeDis;
+    public float reviveTimeWait;
+    public float reviveTimer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,50 +55,25 @@ public class SheepController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (currentStatus == SheepStatus.Dead)
+        {
+            reviveTimer += Time.fixedDeltaTime;
+            if (reviveTimer >= reviveTimeWait)
+            {
+                if (Vector2.Distance(transform.position, snake.transform.position) >= reviveSnakeDis)
+                {
+                    Revive();
+                }
+            }
+        }
+
+
         frameTimer++;
         if (frameTimer >= 2)
         {
             frameTimer = 0;
             fakeTransform.position = transform.position;
             fakeTransform.up = transform.right;
-
-            if (currentStatus == SheepStatus.Dead)
-            {
-
-            }
-            else if (HasToAvoid(fakeTransform, radius, distance))
-            {
-                if (currentStatus == SheepStatus.Escape)
-                {
-                    currentStatus = SheepStatus.AvoidAndEscape;
-                }
-                else if (currentStatus == SheepStatus.AvoidAndEscape)
-                {
-                }
-                else
-                {
-                    currentStatus = SheepStatus.Avoid;
-                }
-            }
-            else
-            {
-                if (currentStatus == SheepStatus.AvoidAndEscape)
-                {
-                    currentStatus = SheepStatus.Escape;
-                }
-                else if (currentStatus == SheepStatus.Avoid)
-                {
-                    currentStatus = SheepStatus.Walk;
-                }
-            }
-            //if (HasToAvoid(transform, radius, distance) && currentStatus != SheepStatus.Escape)
-            //{
-            //    currentStatus = SheepStatus.avoid;
-            //}
-            //else if (HasToAvoid(transform, radius, distance) && currentStatus == SheepStatus.Escape || HasToAvoid(transform, radius, distance) && currentStatus == SheepStatus.avoidAndEscape)
-            //{
-            //    currentStatus = SheepStatus.avoidAndEscape;
-            //}
 
             switch (currentStatus)
             {
@@ -107,30 +86,42 @@ public class SheepController : MonoBehaviour
                 case SheepStatus.Rest:
                     break;
                 case SheepStatus.Walk:
-                    rigi.velocity = transform.right * movingSpeed;
+                    if (HasToAvoid(fakeTransform, radius, distance))
+                    {
+                        rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed, radius, distance)) * 0.1f, movingSpeed);
+                        transform.right = rigi.velocity;
+                    }
+                    else
+                    {
+                        rigi.velocity = transform.right * movingSpeed;
+                    }
                     break;
                 case SheepStatus.Escape:
-                    rigi.velocity = transform.right * movingSpeed * 5.0f;
-                    escDirection = snake.position - transform.position;
-                    if (timer >= 2.0f)
+                    if (HasToAvoid(fakeTransform, radius, distance))
                     {
-                        escDirectionOffset = Random.Range(120.0f, 240.0f);
-                        timer = 0;
+                        rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed * 5.0f, radius, distance)) * 0.2f, movingSpeed * 5.0f);
+                        transform.right = rigi.velocity;
                     }
-                    angleToSnake = escDirectionOffset + Mathf.Atan2(escDirection.y, escDirection.x) * Mathf.Rad2Deg;
-                    //
-                    timer += Time.fixedDeltaTime * 2;
-                    //
-                    transform.rotation = Quaternion.AngleAxis(angleToSnake, Vector3.forward);
+                    {
+                        Debug.Log("Escape");
+                        rigi.velocity = transform.right * movingSpeed * 5.0f;
+                        escDirection = snake.position - transform.position;
+                        if (timer >= 2.0f)
+                        {
+                            escDirectionOffset = Random.Range(120.0f, 240.0f);
+                            timer = 0;
+                        }
+                        angleToSnake = escDirectionOffset + Mathf.Atan2(escDirection.y, escDirection.x) * Mathf.Rad2Deg;
+                        //
+                        timer += Time.fixedDeltaTime * 2;
+                        //
+                        transform.rotation = Quaternion.AngleAxis(angleToSnake, Vector3.forward);
+                    }
                     break;
-                case SheepStatus.Avoid:
-                    rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed, radius, distance)) * 0.05f, movingSpeed);
-                    transform.right = rigi.velocity;
-                    break;
-                case SheepStatus.AvoidAndEscape:
-                    rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed * 5.0f, radius, distance)) * 0.01f, movingSpeed * 5.0f);
-                    transform.right = rigi.velocity;
-                    break;
+                //case SheepStatus.Avoid:
+                //    rigi.velocity = Vector2.ClampMagnitude(rigi.velocity + V3ToV2(Avoid(fakeTransform, transform.right * movingSpeed, radius, distance)) * 0.05f, movingSpeed);
+                //    transform.right = rigi.velocity;
+                //    break;
                 default:
                     break;
             }
@@ -150,10 +141,19 @@ public class SheepController : MonoBehaviour
         transform.GetComponent<PolygonCollider2D>().enabled = false;
         currentStatus = SheepStatus.Dead;
         sheepAnimator.enabled = true;
-        sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
+        // sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
         lvControl.ExtendBody(4);
-
+        lvControl.RestoreEnergy(100.0f);
     }
+
+    private void Revive()
+    {
+        transform.GetComponent<PolygonCollider2D>().enabled = true;
+        currentStatus = SheepStatus.Walk;
+        sheepAnimator.enabled = false;
+        sprite.sprite = Resources.Load<Sprite>("Sprites/Sheep");
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 

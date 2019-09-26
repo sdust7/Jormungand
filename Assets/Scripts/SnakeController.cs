@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SnakeController : MonoBehaviour
 {
@@ -101,8 +99,6 @@ public class SnakeController : MonoBehaviour
         //    polygonC.points = ps;
         //}
 
-
-
         frameTimer++;
         //if (rigi.velocity.magnitude >= 0.005f)
         //{
@@ -143,8 +139,8 @@ public class SnakeController : MonoBehaviour
     public void GotDamage(float damage)
     {
         currentHealth -= damage;
+        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) - (damage * barLength / maxEnergy), 0);
         healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength / maxEnergy), 0);
-
     }
 
     public void ExtendBody(int bodies)
@@ -153,6 +149,8 @@ public class SnakeController : MonoBehaviour
         {
             GameObject newBody = Instantiate(bodyPrefab, allBody);
             newBody.transform.position = new Vector2(allBody.GetChild(length - 1).position.x, allBody.GetChild(length - 1).position.y);
+            newBody.GetComponent<SpriteRenderer>().sortingOrder = -length - n;
+            newBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -length - n - 3;
         }
         length += 5 * bodies;
     }
@@ -160,6 +158,12 @@ public class SnakeController : MonoBehaviour
     private void RecoverEnergy(float value)
     {
         currentEnergy += value;
+    }
+
+    public void RestoreEnergy(float amount)
+    {
+        currentEnergy = Mathf.Clamp(currentEnergy + amount, 0, maxEnergy);
+        energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
     }
 
     private void AbilitiesDetection()
@@ -170,23 +174,22 @@ public class SnakeController : MonoBehaviour
             {
                 framesUpdateBody = 1;
                 movingSpeed = 20.0f;
-                steeringSpeed = 10.0f;
+                // steeringSpeed = 10.0f;
                 currentEnergy -= excuteTimesPerSecond * accelerateCost;
-                energyBar.anchoredPosition = new Vector2(energyBar.anchoredPosition.x - (excuteTimesPerSecond * accelerateCost * (barLength / maxEnergy)), 0);
-
+                Debug.Log(energyBar.anchoredPosition.x);
+                energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
             }
             else
             {
                 movingSpeed = 10.0f;
-                steeringSpeed = 10.0f;
+                // steeringSpeed = 10.0f;
             }
         }
         else
         {
             movingSpeed = 10.0f;
-            steeringSpeed = 10.0f;
+            // steeringSpeed = 10.0f;
         }
-
     }
 
     private void MovementDetection()
@@ -202,7 +205,6 @@ public class SnakeController : MonoBehaviour
             {
                 snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
             }
-
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -214,9 +216,7 @@ public class SnakeController : MonoBehaviour
             else
             {
                 snake.Rotate(0, 0, -turnAnglePerSecond * Time.fixedDeltaTime);
-
             }
-
         }
         if (Input.GetKeyUp(KeyCode.A))
         {
@@ -295,10 +295,8 @@ public class SnakeController : MonoBehaviour
                 }
             }
         }
-        lvControl.WeaponChanged(equipments,currentEquipment);
-
+        lvControl.WeaponChanged(equipments, currentEquipment);
     }
-
 }
 
 
