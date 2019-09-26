@@ -139,5 +139,8 @@ public class LevelController : MonoBehaviour
         snake.GotDamage(damage);
     }
 
-
+    public void WeaponChanged(List<Transform> equipments, int current)
+    {
+        UIPanel.WeaponChanged(equipments, current);
+    }
 }

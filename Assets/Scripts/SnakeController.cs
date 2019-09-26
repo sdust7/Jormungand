@@ -295,6 +295,8 @@ public class SnakeController : MonoBehaviour
                 }
             }
         }
+        lvControl.WeaponChanged(equipments,currentEquipment);
+
     }
 
 }
