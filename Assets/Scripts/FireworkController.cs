@@ -16,12 +16,21 @@ public class FireworkController : MonoBehaviour
     public Transform fireworkInVoid;
     private Transform fireworkStand;
 
+    // private GameObject explosionAnimation;
+    public Animator animator;
+
+    public CircleCollider2D ccol;
+
+    public bool animationFinished;
+
     // Start is called before the first frame update
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         fireworkStand = transform.parent;
         fireworkInVoid = GameObject.Find("FireworkInVoid").transform;
+        //explosionAnimation = transform.GetChild(0).gameObject;
+
     }
 
 
@@ -32,9 +41,30 @@ public class FireworkController : MonoBehaviour
             launched = true;
             transform.parent = null;
             rigid.velocity = transform.up * speed;
-
-            GetComponent<CapsuleCollider2D>().isTrigger = true;
+            GetComponent<CapsuleCollider2D>().enabled = true;
+            // GetComponent<CapsuleCollider2D>().isTrigger = true;
+            rigid.isKinematic = false;
         }
+    }
+
+    void Update()
+    {
+        //if (!ccol.enabled)
+        //{
+        //    Debug.Log("Circle collider disabled");
+        //    if (animator.GetBool("Reached"))
+        //    {
+        //        Debug.Log("Reached ");
+        //        animator.SetBool("Reached", false);
+        //    }
+        //}
+        if (animationFinished)
+        {
+            animator.SetBool("Reached", false);
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+
     }
 
     // Update is called once per frame
@@ -56,10 +86,10 @@ public class FireworkController : MonoBehaviour
         rigid.velocity = Vector2.zero;
         transform.parent = fireworkInVoid;
         //gameObject.SetActive(false);
-        GetComponent<SpriteRenderer>().enabled = false;
+       // GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
         //
-
+        animator.SetBool("Reached", true);
         //
     }
 
@@ -75,9 +105,12 @@ public class FireworkController : MonoBehaviour
         transform.parent = fireworkStand;
 
         GetComponent<SpriteRenderer>().enabled = true;
-        GetComponent<CapsuleCollider2D>().enabled = true;
-        GetComponent<CapsuleCollider2D>().isTrigger = false;
+
+        GetComponent<CapsuleCollider2D>().enabled = false;
+
+       // GetComponent<CapsuleCollider2D>().isTrigger = false;
         //}
+        rigid.isKinematic = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -95,7 +128,7 @@ public class FireworkController : MonoBehaviour
 
 
                 default:
-                    Debug.Log(" OnTriggerEnter2D  " + collision.name);
+                    //  Debug.Log(" OnTriggerEnter2D  " + collision.name);
                     break;
 
 

@@ -38,22 +38,28 @@ public class PickableController : MonoBehaviour
                     gameObject.SetActive(false);
                     transform.SetParent(appleInVoid);
                 }
-                /*
-                if (col.tag == "Snake")
-                {
-                    lvControl.ExtendBody(1);
-                    int x = Random.Range(-10, 10);
-                    int y = Random.Range(-10, 10);
-                    transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
-                }
-                else if (col.tag == "Deadly")
-                {
-                    int x = Random.Range(-10, 10);
-                    int y = Random.Range(-10, 10);
-                    transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
-                }*/
-
                 break;
+
+            case "Obstacle":
+                gameObject.SetActive(false);
+                transform.SetParent(appleInVoid);
+                break;
+            /*
+            if (col.tag == "Snake")
+            {
+                lvControl.ExtendBody(1);
+                int x = Random.Range(-10, 10);
+                int y = Random.Range(-10, 10);
+                transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
+            }
+            else if (col.tag == "Deadly")
+            {
+                int x = Random.Range(-10, 10);
+                int y = Random.Range(-10, 10);
+                transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
+            }*/
+
+
             case "Wood":
                 if (col.tag == "Snake")
                 {

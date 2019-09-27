@@ -31,41 +31,68 @@ public class DialogController : MonoBehaviour
 
         dialogPanel = transform.GetChild(0).gameObject;
 
-        DisplayDialog(0, 0);
+        //DisplayDialog(0, 0);
     }
 
-    public void DisplayDialog(int dialogIndex, int currentDialog)
+    public void DisplayDialog(int dialog, int index)
     {
-        nameText.text = dialogs[dialogIndex].speakerName[currentDialog];
-        iconImage.sprite = Resources.Load<Sprite>("Sprites/DialogSprites/" + dialogs[dialogIndex].iconSpriteName[currentDialog]);
-        text.text = dialogs[dialogIndex].text[currentDialog];
+        nameText.text = dialogs[dialog].speakerName[index];
+        iconImage.sprite = Resources.Load<Sprite>("Sprites/DialogSprites/" + dialogs[dialog].iconSpriteName[index]);
+        text.text = dialogs[dialog].text[index];
+        dialogs[dialog].haveReadThis[index] = true;
     }
 
-    public void StartDialog(int dialogNumber) {
-        dialogPanel.SetActive(true);
-        Time.timeScale = 0;
-        currentDialog = dialogNumber;
-        currentIndex = 0;
-        DisplayDialog(dialogNumber, 0);
+    public void StartNewDialog(int dialogNumber)
+    {
+        if (!dialogs[dialogNumber].haveRead)
+        {
+            dialogPanel.SetActive(true);
+            Time.timeScale = 0;
+            currentDialog = dialogNumber;
+            currentIndex = 0;
+            DisplayDialog(dialogNumber, 0);
+        }
+    }
+
+    public void FinishDialog()
+    {
+        dialogPanel.SetActive(false);
+        dialogs[currentDialog].haveRead = true;
+        Time.timeScale = 1;
     }
 
     public void AddDialog()
     {
-        // index 1
-        dialogs.Add(new Dialogs(false,
-            new List<bool> { false, false },
-            new List<string> { "Wolf", "You", "Wolf", "You" },
-            new List<string> { "NormalWolf", "Snake", "NormalWolf", "Snake" },
-            new List<string> { "Awoo~~~~~", "Howl!!!!!", "Car~son", "Carson!!!!!!" }));
-        // index 2
+        // haveRead;
+        // List:  haveReadThis;
+        // List:  speakerName;
+        // List:  iconSpriteName;
+        // List:  text;
+
+        // ++++++ Make sure ALL List have same COUNT ++++++
+
+        // dialog 1
+        dialogs.Add(new Dialogs(
+                false,
+                new List<bool> { false, false, false, false },
+                new List<string> { "Wolf", "You", "Wolf", "You" },
+                new List<string> { "NormalWolf", "Snake", "NormalWolf", "Snake" },
+                new List<string> { "Awoo~~~~~", "Howl!!!!!", "Car~son", "Carson!!!!!!" }));
+        // dialog 2
 
     }
 
-    public void NextButton()
+    public void NextSentence()
     {
-        currentIndex++;
-        DisplayDialog(currentDialog, currentIndex);
-
+        if (currentIndex < dialogs[currentDialog].speakerName.Count - 1)
+        {
+            currentIndex++;
+            DisplayDialog(currentDialog, currentIndex);
+        }
+        else
+        {
+            FinishDialog();
+        }
     }
 
 

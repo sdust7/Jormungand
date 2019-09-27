@@ -22,7 +22,7 @@ public class QuestProvider : MonoBehaviour
     void Start()
     {
         myQuest = lvControl.questController.allQuest[myQuestNumber];
-        print(myQuest.questName);
+        //print(myQuest.questName);
     }
 
     // Update is called once per frame

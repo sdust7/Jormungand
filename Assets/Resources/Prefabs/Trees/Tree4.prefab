@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4409823619657635528}
   - component: {fileID: 5413133765510725757}
   - component: {fileID: 5738229582124587511}
+  - component: {fileID: 5067251514472442888}
   m_Layer: 9
   m_Name: Trunk
   m_TagString: Obstacle
@@ -97,6 +98,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5067251514472442888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6078597064952122327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb677a20d2eea2449fad1f988198caa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisObstacle: 0
 --- !u!1 &7723741469336240099
 GameObject:
   m_ObjectHideFlags: 0

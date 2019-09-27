@@ -176,7 +176,6 @@ public class SnakeController : MonoBehaviour
                 movingSpeed = 20.0f;
                 // steeringSpeed = 10.0f;
                 currentEnergy -= excuteTimesPerSecond * accelerateCost;
-                Debug.Log(energyBar.anchoredPosition.x);
                 energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
             }
             else
@@ -236,7 +235,7 @@ public class SnakeController : MonoBehaviour
                 GotDamage(5.0f);
                 break;
             case "Sheep":
-                collision.transform.GetComponent<SheepController>().CollideWithSnake();
+                // collision.transform.GetComponent<SheepController>().CollideWithSnake();
                 break;
             default:
                 break;

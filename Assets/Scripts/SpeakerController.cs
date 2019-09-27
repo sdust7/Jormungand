@@ -29,7 +29,7 @@ public class SpeakerController : MonoBehaviour
 
     private void OnTriggerEnter2D()
     {
-        dialogController.StartDialog(diaglogNumber);
+        dialogController.StartNewDialog(diaglogNumber);
     }
 
 }

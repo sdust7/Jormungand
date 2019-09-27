@@ -6,7 +6,7 @@ public class SheepController : MonoBehaviour
 {
     public enum SheepStatus
     {
-        Rest, Idel, Walk, Escape, Dead//, Avoid, AvoidAndEscape
+        Disabled, Idel, Walk, Escape, Dead//, Avoid, AvoidAndEscape
     };
     public Animator sheepAnimator;
     private Transform snake;
@@ -78,12 +78,13 @@ public class SheepController : MonoBehaviour
             switch (currentStatus)
             {
                 case SheepStatus.Dead:
-                    rigi.velocity = transform.right * stop;
+                    rigi.velocity = stop;
                     break;
                 case SheepStatus.Idel:
                     rigi.velocity = stop;
                     break;
-                case SheepStatus.Rest:
+                case SheepStatus.Disabled:
+                    rigi.velocity = stop;
                     break;
                 case SheepStatus.Walk:
                     if (HasToAvoid(fakeTransform, radius, distance))
@@ -130,7 +131,7 @@ public class SheepController : MonoBehaviour
 
     public void StatusChange(SheepStatus status)
     {
-        if (currentStatus != SheepStatus.Dead)
+        if (currentStatus != SheepStatus.Dead && currentStatus != SheepStatus.Disabled)
         {
             currentStatus = status;
         }
@@ -146,6 +147,15 @@ public class SheepController : MonoBehaviour
         lvControl.RestoreEnergy(100.0f);
     }
 
+    public void CollideWithExplosion()
+    {
+        if (currentStatus != SheepStatus.Dead && currentStatus != SheepStatus.Disabled)
+        {
+            currentStatus = SheepStatus.Disabled;
+            sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
+        }
+    }
+
     private void Revive()
     {
         transform.GetComponent<PolygonCollider2D>().enabled = true;
@@ -156,7 +166,19 @@ public class SheepController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        switch (collision.gameObject.tag)
+        {
+            case "Firework":
+                CollideWithExplosion();
+                break;
+            case "Snake":
+                CollideWithSnake();
+                break;
+        }
+        //if (collision.gameObject.tag == "Firework")
+        //{
+        //    CollideWithExplosion();
+        //}
     }
 
     public bool HasToAvoid(Transform tran, float radius, float distance)
