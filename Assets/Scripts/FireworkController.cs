@@ -44,6 +44,7 @@ public class FireworkController : MonoBehaviour
             GetComponent<CapsuleCollider2D>().enabled = true;
             // GetComponent<CapsuleCollider2D>().isTrigger = true;
             rigid.isKinematic = false;
+
         }
     }
 
@@ -86,10 +87,11 @@ public class FireworkController : MonoBehaviour
         rigid.velocity = Vector2.zero;
         transform.parent = fireworkInVoid;
         //gameObject.SetActive(false);
-       // GetComponent<SpriteRenderer>().enabled = false;
+        // GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
         //
         animator.SetBool("Reached", true);
+        rigid.constraints = RigidbodyConstraints2D.FreezeAll;
         //
     }
 
@@ -108,9 +110,10 @@ public class FireworkController : MonoBehaviour
 
         GetComponent<CapsuleCollider2D>().enabled = false;
 
-       // GetComponent<CapsuleCollider2D>().isTrigger = false;
+        // GetComponent<CapsuleCollider2D>().isTrigger = false;
         //}
         rigid.isKinematic = true;
+        rigid.constraints = RigidbodyConstraints2D.None;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -124,6 +127,7 @@ public class FireworkController : MonoBehaviour
                     break;
                 case "Sheep":
                     Explosion();
+                    collision.GetComponent<SheepController>().CollideWithExplosion();
                     break;
 
 

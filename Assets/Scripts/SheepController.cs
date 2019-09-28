@@ -104,7 +104,6 @@ public class SheepController : MonoBehaviour
                         transform.right = rigi.velocity;
                     }
                     {
-                        Debug.Log("Escape");
                         rigi.velocity = transform.right * movingSpeed * 5.0f;
                         escDirection = snake.position - transform.position;
                         if (timer >= 2.0f)
@@ -166,7 +165,8 @@ public class SheepController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
+        Debug.Log(collision.collider.gameObject.tag);
+        switch (collision.collider.gameObject.tag)
         {
             case "Firework":
                 CollideWithExplosion();

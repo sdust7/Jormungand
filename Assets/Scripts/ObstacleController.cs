@@ -75,14 +75,14 @@ public class ObstacleController : MonoBehaviour
                         {
                             wood = woodInVoid.GetChild(0).gameObject;
                             wood.gameObject.SetActive(true);
-                            wood.transform.position = snake.position + snake.up * 5;
+                            wood.transform.position = transform.position + snake.up * 5;
                             wood.transform.Rotate(0, 0, Random.Range(0, 360));
                             wood.transform.SetParent(allWoods);
                         }
                         else
                         {
                             wood = Instantiate(woodPrefab);
-                            wood.transform.position = snake.position + snake.up * 5;
+                            wood.transform.position = transform.position + snake.up * 5;
                             wood.transform.Rotate(0, 0, Random.Range(0, 360));
                             wood.transform.SetParent(allWoods);
                         }
