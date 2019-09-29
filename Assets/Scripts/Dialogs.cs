@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialogs : MonoBehaviour
+public class Dialogs
 {
     public bool haveRead;
     public List<bool> haveReadThis;
@@ -11,7 +11,7 @@ public class Dialogs : MonoBehaviour
     public List<string> text;
 
 
-    public Dialogs(bool haveRead ,List<bool> haveReadThis, List<string> speakerName, List<string> iconSpriteName, List<string> text)
+    public Dialogs(bool haveRead, List<bool> haveReadThis, List<string> speakerName, List<string> iconSpriteName, List<string> text)
     {
         this.haveRead = haveRead;
         this.haveReadThis = haveReadThis;
@@ -22,16 +22,4 @@ public class Dialogs : MonoBehaviour
     }
 
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

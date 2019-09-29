@@ -43,6 +43,11 @@ public class SnakeController : MonoBehaviour
     private int currentEquipment;  // -1 stands for currently no equipment
     [SerializeField]
     public bool canControll;
+    [Range(1, 100)]
+    public int initialLength;
+
+    private Vector3 lastPosi;
+    private float distanceFromLastFrame;
 
     // Start is called before the first frame update
     void Start()
@@ -67,16 +72,18 @@ public class SnakeController : MonoBehaviour
 
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = snake.GetComponent<Rigidbody2D>();
-        length = 20;
+        length = initialLength;
 
         for (int n = 0; n < length; n++)
         {
             GameObject newBody = Instantiate(bodyPrefab, allBody);
-            newBody.transform.position = new Vector2(snake.position.x, snake.position.y);
+            newBody.transform.position = new Vector2(snake.position.x, snake.position.y - 0.2f * n);
             newBody.GetComponent<SpriteRenderer>().sortingOrder = -n;
             newBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -n - 3;
         }
         firstBody = allBody.GetChild(0);
+
+        // GetComponent<EdgeCollider2D>().enabled = true;
 
         equipments = new List<Transform>();
         AddEquipment(Equipments.Axe);
@@ -85,6 +92,7 @@ public class SnakeController : MonoBehaviour
 
         canControll = false;
         // rigi.velocity = snake.up * movingSpeed;
+        lastPosi = snake.position;
     }
 
     void Update()
@@ -108,28 +116,23 @@ public class SnakeController : MonoBehaviour
         if (frameTimer >= framesUpdateBody)
         {
             frameTimer = 0;
-            //
 
             rigi.velocity = snake.up * movingSpeed;
-
-            //
             firstBody.up = snake.position - firstBody.position;
-
-            //firstBody.position = snake.position - snake.up;
-            //
-
             firstBody.position = snake.position;
 
-            //firstBody.GetComponent<Rigidbody2D>().velocity = rigi.velocity;
+            distanceFromLastFrame = Vector2.Distance(snake.position, lastPosi);
+            lastPosi = snake.position;
+
             for (int n = length - 1; n > 0; n--)
             {
-                //
                 allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
+
+                //
+                allBody.GetChild(n).Translate(0, distanceFromLastFrame, 0);
+                //allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
                 //
 
-                allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
-
-                //allBody.GetChild(n).GetComponent<Rigidbody2D>().velocity = allBody.GetChild(n - 1).GetComponent<Rigidbody2D>().velocity;
             }
             framesUpdateBody = 2;
         }

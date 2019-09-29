@@ -47,15 +47,14 @@ public class SpeakerController : MonoBehaviour
 
     public void ThinWolfDead()
     {
-        GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
         //facePlayer = false;
         GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Sprites/DeadWolf");
         canBeEaten = true;
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    private void OnTriggerStay2D(Collider2D collision)
+    {   // S T A Y   S T A Y   S T A Y   S T A Y   S T A Y   S T A Y   S T A Y 
         if (collision.gameObject.tag == "Snake")
         {
             switch (thisNPC)
