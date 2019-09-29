@@ -17,8 +17,6 @@ public class PickableController : MonoBehaviour
         snake = GameObject.Find("SnakeHead").transform;
         woodInVoid = GameObject.Find("WoodInVoid").transform;
         appleInVoid = GameObject.Find("AppleInVoid").transform;
-
-
     }
 
     // Update is called once per frame
@@ -31,35 +29,21 @@ public class PickableController : MonoBehaviour
         switch (tag)
         {
             case "Apple":
-                if (col.tag == "Snake")
+                switch (col.tag)
                 {
-                    lvControl.ExtendBody(1);
-                    lvControl.AddToUI("Apple");
-                    gameObject.SetActive(false);
-                    transform.SetParent(appleInVoid);
+                    case "Snake":
+
+                        lvControl.ExtendBody(1);
+                        lvControl.AddToUI("Apple");
+                        gameObject.SetActive(false);
+                        transform.SetParent(appleInVoid);
+                        break;
+                    case "Obstacle":
+                        gameObject.SetActive(false);
+                        transform.SetParent(appleInVoid);
+                        break;
                 }
                 break;
-
-            case "Obstacle":
-                gameObject.SetActive(false);
-                transform.SetParent(appleInVoid);
-                break;
-            /*
-            if (col.tag == "Snake")
-            {
-                lvControl.ExtendBody(1);
-                int x = Random.Range(-10, 10);
-                int y = Random.Range(-10, 10);
-                transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
-            }
-            else if (col.tag == "Deadly")
-            {
-                int x = Random.Range(-10, 10);
-                int y = Random.Range(-10, 10);
-                transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
-            }*/
-
-
             case "Wood":
                 if (col.tag == "Snake")
                 {
@@ -68,6 +52,21 @@ public class PickableController : MonoBehaviour
                     lvControl.AddToUI("Wood");
                 }
                 break;
+
+                /*
+                if (col.tag == "Snake")
+                {
+                    lvControl.ExtendBody(1);
+                    int x = Random.Range(-10, 10);
+                    int y = Random.Range(-10, 10);
+                    transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
+                }
+                else if (col.tag == "Deadly")
+                {
+                    int x = Random.Range(-10, 10);
+                    int y = Random.Range(-10, 10);
+                    transform.position = new Vector2(x + snake.position.x, y + snake.position.y);
+                }*/
         }
 
     }

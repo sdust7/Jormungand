@@ -104,7 +104,7 @@ public class SpeakerController : MonoBehaviour
                 {
                     case NPCs.ThinWolf:
                         //gameObject.SetActive(false);
-                        lvControl.ExtendBody(4);
+                        lvControl.ExtendBody(5);
                         lvControl.RestoreEnergy(100.0f);
                         diaglogNumber = 4;
                         dialogController.StartNewDialog(diaglogNumber);

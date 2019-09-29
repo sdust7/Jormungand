@@ -155,6 +155,8 @@ public class SnakeController : MonoBehaviour
         {
             GameObject newBody = Instantiate(bodyPrefab, allBody);
             newBody.transform.position = new Vector2(allBody.GetChild(length - 1).position.x, allBody.GetChild(length - 1).position.y);
+            newBody.transform.rotation = allBody.GetChild(length - 1).rotation;
+
             newBody.GetComponent<SpriteRenderer>().sortingOrder = -length - n;
             newBody.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -length - n - 3;
         }
