@@ -61,6 +61,7 @@ public class DialogController : MonoBehaviour
         dialogs[currentDialog].haveRead = true;
         Time.timeScale = 1;
         dialogInProgress = false;
+
     }
 
     public void AddDialog()
@@ -76,10 +77,10 @@ public class DialogController : MonoBehaviour
         // dialog n
         //dialogs.Add(new Dialogs(
         //    false,
-        //    new List<bool> { },
-        //    new List<string> { },
-        //    new List<string> { },
-        //    new List<string> { } ));
+        //    new List<bool> {false },
+        //    new List<string> {"" },
+        //    new List<string> {"" },
+        //    new List<string> {"" }));
 
 
         // ++++++ Make sure ALL List have same COUNT ++++++
@@ -88,8 +89,8 @@ public class DialogController : MonoBehaviour
         dialogs.Add(new Dialogs(
                 false,
                 new List<bool> { false, false, false, false, false, false, false, false, false, false, false },
-                new List<string> { "Thin Wolf", "You", "Thin Wolf", "You", "Thin Wolf", "You", "Thin Wolf", "You", "Thin Wolf", "You", "You" },
-                new List<string> { "NormalWolf", "Snake", "NormalWolf", "Snake", "NormalWolf", "Snake", "NormalWolf", "Snake", "NormalWolf", "Snake", "Snake" },
+                new List<string> { "Thin Wolf", "Jormungand", "Thin Wolf", "Jormungand", "Thin Wolf", "Jormungand", "Thin Wolf", "Jormungand", "Thin Wolf", "Jormungand", "Jormungand" },
+                new List<string> { "NormalWolf", "SnakeIcon", "NormalWolf", "SnakeIcon", "NormalWolf", "SnakeIcon", "NormalWolf", "SnakeIcon", "NormalWolf", "SnakeIcon", "SnakeIcon" },
                 new List<string> { "Hey! I know you! Although you looks short, you are brother of Fenrir!", "Damn Odin... He cut my body off!!", "I see... also you looks so cute", "He cursed me and I can't getting bigger with that curse!",
                                                "That's so poor...", "You are right... wait... Why you eating apple?? YOU ARE A WOLF!!!", "All sheep in forest became so clever since Fenrir has been sealed. I believe Odin did something. So we hardly to catch sheep... And apple is the only food we can get in this forest... Well it still taste good.",
                                                "... OK... I'm so hungry, please share me an apple.", "Ok, you can take 2 apples beside me. But don't take all 3 apples!", "Don't worry. Trust me", "(Because Odin's curse I can't stop moving. But press A and D can change the direction I moving to. Let get that 2 apples.)"}));
@@ -97,28 +98,36 @@ public class DialogController : MonoBehaviour
         dialogs.Add(new Dialogs(
             false,
             new List<bool> { false, false, false },
-            new List<string> { "Thin Wolf", "You", "Thin Wolf" },
-            new List<string> { "NormalWolf", "Snake", "NormalWolf" },
+            new List<string> { "Thin Wolf", "Jormungand", "Thin Wolf" },
+            new List<string> { "NormalWolf", "SnakeIcon", "NormalWolf" },
             new List<string> { "Wait! You got longer???", "!! Why? Wait... Odin said I can't getting \"Bigger\" but he didn't said \"Longer\" !", "That's sounds so inadequate..." }));
         // dialog 2
         dialogs.Add(new Dialogs(
             false,
             new List<bool> { false, false },
-            new List<string> { "Thin Wolf", "You" },
-            new List<string> { "NormalWolf", "Snake" },
+            new List<string> { "Thin Wolf", "Jormungand" },
+            new List<string> { "NormalWolf", "SnakeIcon" },
             new List<string> { "Fenrir is in the south of the forest, He may needs your help.", "Ok, I will go and see what I can do for him." }));
         // dialog 3
         dialogs.Add(new Dialogs(
             false,
-            new List<bool> { false },
-            new List<string> { "Thin Wolf" },
-            new List<string> { "NormalWolf" },
-            new List<string> { "WHAT ARE YOU DOING!! That's my food for next month! Oh my Fenrir... Oh... (Dead because so angry)" }));
+            new List<bool> { false, false, false, false },
+            new List<string> { "Thin Wolf", "Thin Wolf", "Jormungand", "Jormungand" },
+            new List<string> { "NormalWolf", "NormalWolf", "SnakeIcon", "SnakeIcon" },
+            new List<string> { "WHAT ARE YOU DOING!! That's my food for next month! Oh my Fenrir... Oh...", "(Dead because so angry)", "......\nI'm sorry, dude......", "He is dead...  It's so wastefulI if I just let his body here to decompose..." }));
+        // dialog 4
+        dialogs.Add(new Dialogs(
+            false,
+            new List<bool> { false, false, false },
+            new List<string> { "Jormungand", "Jormungand", "Jormungand" },
+            new List<string> { "SnakeIcon", "SnakeIcon", "SnakeIconSmile" },
+            new List<string> { "nom~nom~(chewing)", "......", "D E L I C I O U S ! ! !" }));
 
     }
 
     public void NextSentence()
     {
+        SpecialActions();
         if (currentIndex < dialogs[currentDialog].speakerName.Count - 1)
         {
             currentIndex++;
@@ -128,6 +137,33 @@ public class DialogController : MonoBehaviour
         {
             FinishDialog();
         }
+    }
+
+    public void SpecialActions()
+    {
+        // Current index should be 1 less than the sentence you want the actions happen.
+        switch (currentDialog)
+        {
+            case 3: // Thin wolf dead
+                switch (currentIndex)
+                {
+                    case 0: // Thin wolf dead
+                        GameObject.Find("ThinWolf").GetComponent<SpeakerController>().ThinWolfDead();
+                        break;
+                }
+                break;
+            case 4:// Eating Thin wolf
+                switch (currentIndex)
+                {
+                    case 1: // Finished eating
+                        GameObject.Find("ThinWolf").SetActive(false);
+                        break;
+                }
+                break;
+
+
+        }
+
     }
 
 

@@ -41,6 +41,8 @@ public class SnakeController : MonoBehaviour
     private List<Transform> equipments;
     [SerializeField]
     private int currentEquipment;  // -1 stands for currently no equipment
+    [SerializeField]
+    public bool canControll;
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +67,7 @@ public class SnakeController : MonoBehaviour
 
         allBody = GameObject.Find("SnakeBody").transform;
         rigi = snake.GetComponent<Rigidbody2D>();
-        length = 100;
+        length = 20;
 
         for (int n = 0; n < length; n++)
         {
@@ -81,6 +83,7 @@ public class SnakeController : MonoBehaviour
         AddEquipment(Equipments.FireworkStand);
         currentEquipment = (int)Equipments.Axe;
 
+        canControll = false;
         // rigi.velocity = snake.up * movingSpeed;
     }
 
@@ -193,37 +196,40 @@ public class SnakeController : MonoBehaviour
 
     private void MovementDetection()
     {
-        if (Input.GetKey(KeyCode.A))
+        if (canControll)
         {
-            timer += Time.fixedDeltaTime;
-            if (timer <= 0.5f)
+            if (Input.GetKey(KeyCode.A))
             {
-                snake.Rotate(0, 0, steeringSpeed * timer);
+                timer += Time.fixedDeltaTime;
+                if (timer <= 0.5f)
+                {
+                    snake.Rotate(0, 0, steeringSpeed * timer);
+                }
+                else
+                {
+                    snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
+                }
             }
-            else
+            else if (Input.GetKey(KeyCode.D))
             {
-                snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
+                timer += Time.fixedDeltaTime;
+                if (timer <= 0.5f)
+                {
+                    snake.Rotate(0, 0, -steeringSpeed * timer);
+                }
+                else
+                {
+                    snake.Rotate(0, 0, -turnAnglePerSecond * Time.fixedDeltaTime);
+                }
             }
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            timer += Time.fixedDeltaTime;
-            if (timer <= 0.5f)
+            if (Input.GetKeyUp(KeyCode.A))
             {
-                snake.Rotate(0, 0, -steeringSpeed * timer);
+                timer = 0;
             }
-            else
+            else if (Input.GetKeyUp(KeyCode.D))
             {
-                snake.Rotate(0, 0, -turnAnglePerSecond * Time.fixedDeltaTime);
+                timer = 0;
             }
-        }
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            timer = 0;
-        }
-        else if (Input.GetKeyUp(KeyCode.D))
-        {
-            timer = 0;
         }
     }
 

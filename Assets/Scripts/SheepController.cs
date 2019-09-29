@@ -165,7 +165,7 @@ public class SheepController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.collider.gameObject.tag);
+        //Debug.Log(collision.collider.gameObject.tag);
         switch (collision.collider.gameObject.tag)
         {
             case "Firework":
