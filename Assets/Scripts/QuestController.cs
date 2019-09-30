@@ -3,14 +3,13 @@ using System.Collections.Generic;
 
 public class QuestController
 {
-    public List<Quest> allQuest= new List<Quest>();
+    public List<Quest> allQuest = new List<Quest>();
 
     public void LoadMission()
     {
-        Quest quest = new Quest("0", "Annoying Trees", "These trees always hurt me!! Could you help me to cut them off? This is your axe!","10 Apples");
+        Quest quest = new Quest("0", "Cutting Trees", "Could you help me to cut 5 trees and take me the trunks? I'd like to exchange with some apples.", "10 Apples");
         allQuest.Add(quest);
-        Quest quest1 = new Quest("1", "Carson", "There is a Carson", "Volunteer");
-        allQuest.Add(quest1);
+
 
     }
 

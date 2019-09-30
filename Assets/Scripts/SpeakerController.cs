@@ -5,6 +5,7 @@ using UnityEngine;
 public enum NPCs
 {
     ThinWolf = 0,
+    AxeWolf = 1
 
 }
 
@@ -60,13 +61,11 @@ public class SpeakerController : MonoBehaviour
             switch (thisNPC)
             {
                 case NPCs.ThinWolf:
-                    if (diaglogNumber == 0 && !dialogController.dialogs[0].haveRead)
+                    if (diaglogNumber == 0 && !dialogController.dialogs[diaglogNumber].haveRead)
                     {
-
                         collision.GetComponent<SnakeController>().canControll = true;
                         dialogController.StartNewDialog(diaglogNumber);
                     }
-
                     else
                     {
                         switch (transform.childCount)
@@ -88,6 +87,12 @@ public class SpeakerController : MonoBehaviour
                         }
                     }
                     break;
+                case NPCs.AxeWolf:
+                    if (diaglogNumber == 5 && !dialogController.dialogs[diaglogNumber].haveRead)
+                    {
+                        dialogController.StartNewDialog(diaglogNumber);
+                    }
+                    break;
             }
         }
     }
@@ -97,7 +102,6 @@ public class SpeakerController : MonoBehaviour
 
         if (canBeEaten)
         {
-
             if (collision.collider.gameObject.tag == "Snake")
             {
                 switch (thisNPC)
