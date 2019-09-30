@@ -27,8 +27,8 @@ TagManager:
   - 
   - NoCollide
   - Obstacle
-  - MiniMap
-  - 
+  - Targets
+  - Wolf
   - 
   - 
   - 
