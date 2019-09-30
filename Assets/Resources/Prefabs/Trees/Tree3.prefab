@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7990853853414431592}
   - component: {fileID: 7990853853414431593}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tree3
   m_TagString: Tree
   m_Icon: {fileID: 0}
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7990853853414431606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.596333, y: 7.048913, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7990853855202674115}
@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 7990853855202674115}
   - component: {fileID: 7990853855202674117}
   - component: {fileID: 1196664892970347466}
-  - component: {fileID: 4647867229337013998}
   m_Layer: 9
   m_Name: Trunk
   m_TagString: Obstacle
@@ -179,16 +178,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4647867229337013998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7990853855202674112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb677a20d2eea2449fad1f988198caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisObstacle: 0
