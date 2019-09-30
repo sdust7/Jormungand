@@ -13,6 +13,9 @@ TagManager:
   - Sheep
   - Obstacle
   - Wood
+  - Firework
+  - Explosion
+  - AXE
   layers:
   - Default
   - TransparentFX
