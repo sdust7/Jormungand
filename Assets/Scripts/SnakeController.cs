@@ -90,7 +90,8 @@ public class SnakeController : MonoBehaviour
         AddEquipment(Equipments.FireworkStand);
         currentEquipment = (int)Equipments.Axe;
 
-        canControll = false;
+        //canControll = false;
+
         // rigi.velocity = snake.up * movingSpeed;
         lastPosi = snake.position;
     }
