@@ -50,8 +50,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 4069476185
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: 
+    uniqueID: 82771851
+    locked: 0
+  - name: 
+    uniqueID: 4040414371
     locked: 0
   - name: Obstacle
     uniqueID: 2419693685
@@ -61,6 +70,9 @@ TagManager:
     locked: 0
   - name: Animals
     uniqueID: 508139889
+    locked: 0
+  - name: SnakeBodyBottom
+    uniqueID: 2240387341
     locked: 0
   - name: Snake
     uniqueID: 640957141
