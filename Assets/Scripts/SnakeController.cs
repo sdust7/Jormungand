@@ -20,7 +20,7 @@ public class SnakeController : MonoBehaviour
 
     private RectTransform healthBar;
 
-    private float movingSpeed;
+    public float movingSpeed;
     private float steeringSpeed;
 
     private float currentEnergy;
