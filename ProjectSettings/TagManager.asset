@@ -89,3 +89,6 @@ TagManager:
   - name: UI
     uniqueID: 2298238829
     locked: 0
+  - name: Animation
+    uniqueID: 1515524859
+    locked: 0
