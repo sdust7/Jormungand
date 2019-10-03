@@ -63,7 +63,7 @@ public class SpeakerController : MonoBehaviour
                 case NPCs.ThinWolf:
                     if (diaglogNumber == 0 && !dialogController.dialogs[diaglogNumber].haveRead)
                     {
-                        collision.GetComponent<SnakeController>().canControll = true;
+                        //collision.GetComponent<SnakeController>().canControll = true;
                         dialogController.StartNewDialog(diaglogNumber);
                     }
                     else

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public enum Equipments
 {
-    Axe = 0,
-    FireworkStand = 1
+    Empty = 0,
+    Axe = 1,
+    FireworkStand = 2
 }
 
 

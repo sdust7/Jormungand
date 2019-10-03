@@ -37,24 +37,25 @@ public class SnakeController : MonoBehaviour
     private int framesUpdateBody;
 
     private PolygonCollider2D polygonC;
-
+    [SerializeField]
     private List<Transform> equipments;
     [SerializeField]
-    private int currentEquipment;  // -1 stands for currently no equipment
-    [SerializeField]
-    public bool canControll;
+    private int currentEquipment;
+    //[SerializeField]
+    //public bool canControll;
     [Range(1, 100)]
     public int initialLength;
 
     private Vector3 lastPosi;
     private float distanceFromLastFrame;
 
+    //public bool canChangeWeapon;
+
     // Start is called before the first frame update
     void Start()
     {
         frameTimer = 0;
         framesUpdateBody = 2;
-        //
         snake = transform.parent;
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         movingSpeed = lvControl.speed;
@@ -86,11 +87,13 @@ public class SnakeController : MonoBehaviour
         // GetComponent<EdgeCollider2D>().enabled = true;
 
         equipments = new List<Transform>();
-        AddEquipment(Equipments.Axe);
-        AddEquipment(Equipments.FireworkStand);
-        currentEquipment = (int)Equipments.Axe;
-
+        AddEquipment(Equipments.Empty);
+        currentEquipment = (int)Equipments.Empty;
+        // AddEquipment(Equipments.Axe);
+        //AddEquipment(Equipments.FireworkStand);
+        //currentEquipment = (int)Equipments.Axe;
         //canControll = false;
+
 
         // rigi.velocity = snake.up * movingSpeed;
         lastPosi = snake.position;
@@ -140,7 +143,6 @@ public class SnakeController : MonoBehaviour
         //   }
         AbilitiesDetection();
         MovementDetection();
-
     }
 
     public void GotDamage(float damage)
@@ -202,41 +204,41 @@ public class SnakeController : MonoBehaviour
 
     private void MovementDetection()
     {
-        if (canControll)
+        //if (canControll)
+        //{
+        if (Input.GetKey(KeyCode.A))
         {
-            if (Input.GetKey(KeyCode.A))
+            timer += Time.fixedDeltaTime;
+            if (timer <= 0.5f)
             {
-                timer += Time.fixedDeltaTime;
-                if (timer <= 0.5f)
-                {
-                    snake.Rotate(0, 0, steeringSpeed * timer);
-                }
-                else
-                {
-                    snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
-                }
+                snake.Rotate(0, 0, steeringSpeed * timer);
             }
-            else if (Input.GetKey(KeyCode.D))
+            else
             {
-                timer += Time.fixedDeltaTime;
-                if (timer <= 0.5f)
-                {
-                    snake.Rotate(0, 0, -steeringSpeed * timer);
-                }
-                else
-                {
-                    snake.Rotate(0, 0, -turnAnglePerSecond * Time.fixedDeltaTime);
-                }
-            }
-            if (Input.GetKeyUp(KeyCode.A))
-            {
-                timer = 0;
-            }
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                timer = 0;
+                snake.Rotate(0, 0, turnAnglePerSecond * Time.fixedDeltaTime);
             }
         }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            timer += Time.fixedDeltaTime;
+            if (timer <= 0.5f)
+            {
+                snake.Rotate(0, 0, -steeringSpeed * timer);
+            }
+            else
+            {
+                snake.Rotate(0, 0, -turnAnglePerSecond * Time.fixedDeltaTime);
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            timer = 0;
+        }
+        else if (Input.GetKeyUp(KeyCode.D))
+        {
+            timer = 0;
+        }
+        // }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -266,9 +268,15 @@ public class SnakeController : MonoBehaviour
         }
     }
 
-    public void AddEquipment(Equipments equipment)
+    public void AddEquipment(Equipments equip)
     {
-        equipments.Add(snake.GetChild(1).GetChild((int)equipment));
+        equipments.Add(snake.GetChild(1).GetChild((int)equip));
+        if (equipments.Count == 2)
+        {
+            equipments[currentEquipment].gameObject.SetActive(false);
+            currentEquipment = (int)equip;
+            equipments[currentEquipment].gameObject.SetActive(true);
+        }
     }
 
     public void SwitchEquipment(bool leftToRight)
@@ -305,8 +313,8 @@ public class SnakeController : MonoBehaviour
                     equipments[currentEquipment].gameObject.SetActive(true);
                 }
             }
+            lvControl.WeaponChanged(equipments, currentEquipment);
         }
-        lvControl.WeaponChanged(equipments, currentEquipment);
     }
 }
 

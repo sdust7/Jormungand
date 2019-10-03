@@ -19,6 +19,8 @@ public class DialogController : MonoBehaviour
 
     private bool dialogInProgress;
 
+    private GameObject snake;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class DialogController : MonoBehaviour
         dialogPanel = transform.GetChild(0).gameObject;
         dialogInProgress = false;
         //DisplayDialog(0, 0);
+        snake = GameObject.Find("Head");
     }
 
     public void DisplayDialog(int dialog, int index)
@@ -125,9 +128,9 @@ public class DialogController : MonoBehaviour
         // dialog 5
         dialogs.Add(new Dialogs(
             false,
-            new List<bool> {false, false, false, false, false },
-            new List<string> {"AxeWolf", "Jormungand", "AxeWolf", "Jormungand", "AxeWolf"},
-            new List<string> {"AxeWolf", "SnakeIcon", "AxeWolf", "SnakeIcon", "AxeWolf" },
+            new List<bool> { false, false, false, false, false },
+            new List<string> { "AxeWolf", "Jormungand", "AxeWolf", "Jormungand", "AxeWolf" },
+            new List<string> { "AxeWolf", "SnakeIcon", "AxeWolf", "SnakeIcon", "AxeWolf" },
             new List<string> {"Yo, what's up little bro?",
                               "I'm feeling dizzy, the apples have been eaten up and sheep run too fast to catch!!",
                               "I've got many apples, I can share that to you if you hlep me to cut the tree~~~",
@@ -171,6 +174,16 @@ public class DialogController : MonoBehaviour
                         break;
                 }
                 break;
+            case 5: //Axe wolf
+                switch (currentIndex)
+                {
+                    case 4:
+                        snake.GetComponent<SnakeController>().AddEquipment(Equipments.Axe);
+                        GameObject.Find("AxeWolf").transform.GetChild(0).gameObject.SetActive(true);
+                        break;
+                }
+                break;
+
 
 
         }
