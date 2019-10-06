@@ -8,8 +8,9 @@ public class QuestController : MonoBehaviour
 
     public void LoadMission()
     {
-        Quest quest = new Quest("0", "Cutting Trees", "Could you help me to cut 5 trees and take me the trunks? I'd like to exchange with some apples.", "10 Apples", GameObject.Find("AxeWolf").transform, true);
-        allQuest.Add(quest);
+        allQuest.Add(new Quest("0", "Find Fenrir", "Empty.", "Empty", GameObject.Find("AxeWolf").transform, true));
+        //Quest quest = new Quest("0", "Cutting Trees", "Could you help me to cut 5 trees and take me the trunks? I'd like to exchange with some apples.", "10 Apples", GameObject.Find("AxeWolf").transform, true);
+        allQuest.Add(new Quest("1", "Cutting Trees", "Could you help me to cut 5 trees and take me the trunks? I'd like to exchange with some apples.", "10 Apples", GameObject.Find("AxeWolf").transform, true));
 
 
     }

@@ -12,7 +12,7 @@ public class LevelController : MonoBehaviour
     public List<Vector3> usedPoints;
     public GameObject Apples;
     public MiniMapMark miniMapMark;
-    public TextMeshPro currentQuestNameTMP;
+    public TextMeshProUGUI currentQuestNameTMP;
 
     public float speed;
     public int score;
@@ -21,7 +21,7 @@ public class LevelController : MonoBehaviour
     public int apple;
     public QuestController questController;
     public List<Quest> myQuest;
-    public int currentQuestIndex;
+    public int currentQuestID;
 
     public float xValueStartDesert = 160.0f;
     public float xValueStartSea = -160.0f;
@@ -49,7 +49,9 @@ public class LevelController : MonoBehaviour
 
         snake = GameObject.Find("SnakeHead").GetComponent<SnakeController>();
         miniMapMark = GameObject.Find("MiniMapMark").GetComponent<MiniMapMark>();
-        currentQuestNameTMP = GameObject.Find("QuestInfoPanel").transform.GetChild(1).GetComponent<TextMeshPro>();
+        currentQuestNameTMP = GameObject.Find("QuestInfoPanel").transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        currentQuestID = -1;
     }
 
     // Start is called before the first frame update
@@ -68,7 +70,11 @@ public class LevelController : MonoBehaviour
     {
         switch (id)
         {
-            case "0":
+            //case "0":
+
+            //    break;
+            case "1":
+
                 if (wood >= 5)
                 {
                     wood -= 5;
@@ -76,7 +82,7 @@ public class LevelController : MonoBehaviour
                     GameObject reward = Instantiate(Apples) as GameObject;
                     reward.transform.position = snake.transform.position + new Vector3(2, 2, 0);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
-                    myQuest.Remove(quest);
+                    RemoveQuest(quest);
                     quest.finished = true;
                     miniMapMark.EndShowMark();
                 }
@@ -84,10 +90,6 @@ public class LevelController : MonoBehaviour
                 {
 
                 }
-                break;
-            case "1":
-
-
                 break;
             default:
                 break;
@@ -101,6 +103,75 @@ public class LevelController : MonoBehaviour
         questPanel.GetChild(1).GetComponent<TextMeshProUGUI>().text = quest.questName;
         questPanel.GetChild(2).GetComponent<TextMeshProUGUI>().text = quest.description + "\nReward: " + quest.reward;
 
+    }
+
+
+    public void AddQuest(Quest newQuest)
+    {
+        if (currentQuestID == myQuest.Count - 1)
+        {
+            myQuest.Add(newQuest);
+            currentQuestID++;
+        }
+        else
+        {
+            myQuest.Insert(currentQuestID + 1, newQuest);
+            currentQuestID++;
+        }
+        currentQuestNameTMP.text = myQuest[currentQuestID].questName;
+    }
+
+    public void RemoveQuest(Quest quest)
+    {
+        for (int i = 0; i < myQuest.Count; i++)
+        {
+            if (myQuest[i].ID == quest.ID)
+            {
+                if (i < currentQuestID)
+                {
+                    currentQuestID--;
+                    myQuest.Remove(quest);
+                    return;
+                }
+                else
+                {
+                    myQuest.Remove(quest);
+                    return;
+                }
+            }
+        }
+    }
+
+    //public void ChangeCurrentQuest(string id)
+    //{
+
+    //}
+
+    public void ChangeCurrentQuest(bool toLeft)
+    {
+        if (toLeft)
+        {
+            if (currentQuestID > 0)
+            {
+                currentQuestID--;
+            }
+            else
+            {
+                currentQuestID = myQuest.Count - 1;
+            }
+        }
+        else
+        {
+            if (currentQuestID < myQuest.Count - 1)
+            {
+                currentQuestID++;
+            }
+            else
+            {
+                currentQuestID = 0;
+            }
+        }
+        currentQuestNameTMP.text = myQuest[currentQuestID].questName;
     }
 
     public void Restart()

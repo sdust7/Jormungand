@@ -21,6 +21,9 @@ public class DialogController : MonoBehaviour
 
     private GameObject snake;
 
+    private LevelController lvController;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,9 @@ public class DialogController : MonoBehaviour
         dialogInProgress = false;
         //DisplayDialog(0, 0);
         snake = GameObject.Find("Head");
+
+        lvController = GameObject.Find("LevelController").GetComponent<LevelController>();
+
     }
 
     public void DisplayDialog(int dialog, int index)
@@ -158,6 +164,14 @@ public class DialogController : MonoBehaviour
         // Current index should be 1 less than the sentence you want the actions happen.
         switch (currentDialog)
         {
+            case 0: // Start scene
+                switch (currentIndex)
+                {
+                    case 10: // End
+                        lvController.AddQuest(lvController.questController.allQuest[0]);
+                        break;
+                }
+                break;
             case 3: // Thin wolf dead
                 switch (currentIndex)
                 {

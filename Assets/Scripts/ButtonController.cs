@@ -61,8 +61,8 @@ public class ButtonController : MonoBehaviour
         
         int id = int.Parse(questPanel.GetChild(0).name);
         Quest quest = lvControl.questController.allQuest[id];
-        lvControl.myQuest.Add(quest);
-
+        //lvControl.myQuest.Add(quest);
+        lvControl.AddQuest(quest);
         
         questPanel.gameObject.SetActive(false);
         Time.timeScale = 1;
