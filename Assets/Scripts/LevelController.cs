@@ -11,6 +11,9 @@ public class LevelController : MonoBehaviour
     private SnakeController snake;
     public List<Vector3> usedPoints;
     public GameObject Apples;
+    public MiniMapMark miniMapMark;
+    public TextMeshPro currentQuestNameTMP;
+
     public float speed;
     public int score;
     public int goal;
@@ -18,6 +21,7 @@ public class LevelController : MonoBehaviour
     public int apple;
     public QuestController questController;
     public List<Quest> myQuest;
+    public int currentQuestIndex;
 
     public float xValueStartDesert = 160.0f;
     public float xValueStartSea = -160.0f;
@@ -44,6 +48,8 @@ public class LevelController : MonoBehaviour
         questPanel = GameObject.Find("MissionPanel").transform.GetChild(0).transform;
 
         snake = GameObject.Find("SnakeHead").GetComponent<SnakeController>();
+        miniMapMark = GameObject.Find("MiniMapMark").GetComponent<MiniMapMark>();
+        currentQuestNameTMP = GameObject.Find("QuestInfoPanel").transform.GetChild(1).GetComponent<TextMeshPro>();
     }
 
     // Start is called before the first frame update
@@ -72,6 +78,7 @@ public class LevelController : MonoBehaviour
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     myQuest.Remove(quest);
                     quest.finished = true;
+                    miniMapMark.EndShowMark();
                 }
                 else
                 {
@@ -102,7 +109,8 @@ public class LevelController : MonoBehaviour
         score = 0;
     }
 
-    public void RestoreEnergy(float amount) {
+    public void RestoreEnergy(float amount)
+    {
         snake.RestoreEnergy(amount);
     }
 
@@ -115,6 +123,7 @@ public class LevelController : MonoBehaviour
         }
         snake.ExtendBody(bodies);
     }
+
     public void AddToUI(string pickable)
     {
         switch (pickable)
@@ -128,6 +137,12 @@ public class LevelController : MonoBehaviour
                 break;
         }
     }
+
+    public void ShowMiniMapMark(Vector3 targetPosi)
+    {
+        miniMapMark.StartShowMark(targetPosi);
+    }
+
     public void GameOver()
     {
         Time.timeScale = 0;
