@@ -12,6 +12,7 @@ public class SheepController : MonoBehaviour
     private Transform snake;
     private LevelController lvControl;
     private Rigidbody2D rigi;
+    private ToolBar toolbar;
 
     [SerializeField]
     private SheepStatus currentStatus;
@@ -36,9 +37,13 @@ public class SheepController : MonoBehaviour
     public float reviveTimeWait;
     public float reviveTimer;
 
+    private Items bone;
+
     // Start is called before the first frame update
     void Start()
     {
+        bone = new Items("SheepBone", false, 1);
+        toolbar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
         movingSpeed = 2.0f;
         stop = Vector2.zero;
         sprite = transform.GetComponent<SpriteRenderer>();
@@ -144,6 +149,7 @@ public class SheepController : MonoBehaviour
         // sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
         lvControl.ExtendBody(4);
         lvControl.RestoreEnergy(100.0f);
+        toolbar.GotItem(bone);
     }
 
     public void CollideWithExplosion()

@@ -17,6 +17,7 @@ public class SnakeController : MonoBehaviour
     private Transform firstBody;
     private Transform snake;
     private RectTransform energyBar;
+    private ToolBar toolbar;
 
     private RectTransform healthBar;
 
@@ -54,6 +55,7 @@ public class SnakeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        toolbar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
         frameTimer = 0;
         framesUpdateBody = 2;
         snake = transform.parent;
@@ -102,6 +104,7 @@ public class SnakeController : MonoBehaviour
     void Update()
     {
         CheckSwitchEquip();
+        DebugInput();
     }
 
     // Update is called once per frame
@@ -314,6 +317,23 @@ public class SnakeController : MonoBehaviour
                 }
             }
             lvControl.WeaponChanged(equipments, currentEquipment);
+        }
+    }
+
+
+    private void DebugInput()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Items energy = new Items();
+            energy.name = "EnergyPotion";
+            energy.usable = true;
+            toolbar.GotItem(energy);
+        }else if (Input.GetKeyDown(KeyCode.P))
+        {
+            Items bone = new Items();
+            bone.name = "SheepBone";
+            toolbar.GotItem(bone);
         }
     }
 }

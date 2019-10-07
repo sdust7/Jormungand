@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PickableController : MonoBehaviour
 {
+    private ToolBar toolbar;
     private LevelController lvControl;
     private Transform snake;
     private Transform woodInVoid;
     private Transform appleInVoid;
+    private Items apple;
+    private Items wood;
+    private Items bone;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        apple = new Items("AppleCore",false,1);
+        wood = new Items("Wood", false, 1);
+        bone = new Items("SheepBone", false, 1);
+        toolbar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
+
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         snake = GameObject.Find("SnakeHead").transform;
         woodInVoid = GameObject.Find("WoodInVoid").transform;
@@ -37,6 +46,7 @@ public class PickableController : MonoBehaviour
                         lvControl.AddToUI("Apple");
                         gameObject.SetActive(false);
                         transform.SetParent(appleInVoid);
+                        toolbar.GotItem(apple);
                         break;
                     case "Obstacle":
                         gameObject.SetActive(false);
@@ -50,6 +60,7 @@ public class PickableController : MonoBehaviour
                     gameObject.SetActive(false);
                     transform.SetParent(woodInVoid);
                     lvControl.AddToUI("Wood");
+                    toolbar.GotItem(wood);
                 }
                 break;
 
