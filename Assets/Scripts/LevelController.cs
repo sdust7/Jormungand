@@ -230,6 +230,14 @@ public class LevelController : MonoBehaviour
     {
         snake.GotDamage(damage);
     }
+    public void RestoreSnakeEnergy(float energy)
+    {
+        snake.RestoreEnergy(energy);
+    }
+    public void RestoreSnakeHealth(float health)
+    {
+        snake.RestoreHealth(health);
+    }
 
     public void WeaponChanged(List<Transform> equipments, int current)
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SnakeController : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class SnakeController : MonoBehaviour
     private Transform snake;
     private RectTransform energyBar;
     private ToolBar toolbar;
+    private ItemEffects itemEffects;
 
     private RectTransform healthBar;
 
@@ -55,6 +57,7 @@ public class SnakeController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        itemEffects = GameObject.Find("ItemEffects").GetComponent<ItemEffects>();
         toolbar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
         frameTimer = 0;
         framesUpdateBody = 2;
@@ -106,6 +109,7 @@ public class SnakeController : MonoBehaviour
         if (equipments.Contains(GameObject.Find("EquipSlot").transform.GetChild(2)))
         {
             GameObject.Find("Head").GetComponent<SnakeController>().AddEquipment(Equipments.FireworkStand);
+            lvControl.WeaponChanged(equipments, currentEquipment);
         }
     }
 
@@ -177,10 +181,7 @@ public class SnakeController : MonoBehaviour
         length += 5 * bodies;
     }
 
-    private void RecoverEnergy(float value)
-    {
-        currentEnergy += value;
-    }
+
 
     public void RestoreEnergy(float amount)
     {
@@ -188,6 +189,11 @@ public class SnakeController : MonoBehaviour
         energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
     }
 
+    public void RestoreHealth(float amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxHealth), 0);
+    }
     private void AbilitiesDetection()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -211,6 +217,8 @@ public class SnakeController : MonoBehaviour
             movingSpeed = 10.0f;
             // steeringSpeed = 10.0f;
         }
+
+       
     }
 
     private void MovementDetection()
@@ -276,6 +284,41 @@ public class SnakeController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.E))
         {
             SwitchEquipment(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            itemEffects.DoEffect(toolbar.transform.GetChild(0).GetComponent<Image>().sprite.name);
+            toolbar.UsedItem(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            itemEffects.DoEffect(toolbar.transform.GetChild(1).GetComponent<Image>().sprite.name);
+            toolbar.UsedItem(2);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            itemEffects.DoEffect(toolbar.transform.GetChild(2).GetComponent<Image>().sprite.name);
+            toolbar.UsedItem(3);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            itemEffects.DoEffect(toolbar.transform.GetChild(3).GetComponent<Image>().sprite.name);
+            toolbar.UsedItem(4);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            itemEffects.DoEffect(toolbar.transform.GetChild(4).GetComponent<Image>().sprite.name);
+            toolbar.UsedItem(5);
+
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            itemEffects.DoEffect(toolbar.transform.GetChild(5).GetComponent<Image>().sprite.name);
+            toolbar.UsedItem(6);
+
         }
     }
 

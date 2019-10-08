@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class ItemEffects : MonoBehaviour
 {
+    //private ToolBar toolBar;
+    private LevelController lvControl;
 
-    private SnakeController snake;
 
-    
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
+        //toolBar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+
+    public void DoEffect(string name)
     {
-        
+        switch (name)
+        {
+            case "HealthPotion":
+                lvControl.RestoreSnakeHealth(20);
+                break;
+            case "EnergyPotion":
+                lvControl.RestoreSnakeEnergy(50);
+                break;
+        }
+
     }
 }

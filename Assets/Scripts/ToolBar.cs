@@ -27,6 +27,7 @@ public class ToolBar : MonoBehaviour
     private Items[] allItem;
     private Items[] allUsable;
     public Sprite[] itemSprites;
+    private Items empty = new Items("Empty",false,0);
 
 
     // Start is called before the first frame update
@@ -34,7 +35,6 @@ public class ToolBar : MonoBehaviour
     {
         slots = new Image[11];
         counts = new TextMeshProUGUI[11];
-        Items empty = new Items();
         allItem = new Items[] { empty, empty, empty, empty, empty };
         allUsable = new Items[] { empty, empty, empty, empty, empty, empty };
         for (int i = 0; i < slots.Length; i++)
@@ -59,6 +59,16 @@ public class ToolBar : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void UsedItem(int slot)
+    {
+        allUsable[slot - 1].count--;
+        if (allUsable[slot - 1].count == 0)
+        {
+            allUsable[slot - 1] = empty;
+        }
+        UpdateUI();
     }
 
     public bool GotItem(Items item)

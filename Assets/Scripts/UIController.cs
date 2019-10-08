@@ -16,7 +16,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        equipmensName = new List<string>() { "Empty", "AXE", "FireworkStand" };
+
         //for (int i = 0; i < 2; i++)
         //{
         //    equipmensName[i] = new Equipments(i);
@@ -30,8 +30,10 @@ public class UIController : MonoBehaviour
                 gameWin = transform.GetChild(1).gameObject;
                 break;
             case "UIPanel":
+                equipmensName = new List<string>() { "Empty", "AXE", "FireworkStand" };
                 woodCount = transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
                 weaponPanel = transform.GetChild(4);
+                UpdateWeaponUI(equipmensName[0], equipmensName[0],equipmensName[0]);
                 break;
         }
 
@@ -78,23 +80,28 @@ public class UIController : MonoBehaviour
                 leftName = equipments[current - 1].name;
                 rightName = equipments[current + 1].name;
             }
-            for (int i = 0; i < equipmensName.Count; i++)
-            {
-                if (leftName == equipmensName[i])
-                {
-                    weaponPanel.GetChild(0).GetComponent<Image>().sprite = equipmentUI[i];
-                }
-                if (rightName == equipmensName[i])
-                {
-                    weaponPanel.GetChild(2).GetComponent<Image>().sprite = equipmentUI[i];
-                }
-                if (currentName == equipmensName[i])
-                {
-                    weaponPanel.GetChild(1).GetComponent<Image>().sprite = equipmentUI[i];
+            UpdateWeaponUI(leftName,rightName,currentName);
 
-                }
-            }
         }
 
+    }
+    public void UpdateWeaponUI(string leftName,string rightName,string currentName)
+    {
+        for (int i = 0; i < equipmensName.Count; i++)
+        {
+            if (leftName == equipmensName[i])
+            {
+                weaponPanel.GetChild(0).GetComponent<Image>().sprite = equipmentUI[i];
+            }
+            if (rightName == equipmensName[i])
+            {
+                weaponPanel.GetChild(2).GetComponent<Image>().sprite = equipmentUI[i];
+            }
+            if (currentName == equipmensName[i])
+            {
+                weaponPanel.GetChild(1).GetComponent<Image>().sprite = equipmentUI[i];
+
+            }
+        }
     }
 }
