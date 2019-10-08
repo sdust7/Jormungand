@@ -27,7 +27,7 @@ public class ToolBar : MonoBehaviour
     private Items[] allItem;
     private Items[] allUsable;
     public Sprite[] itemSprites;
-    private Items empty = new Items("Empty",false,0);
+    private Items empty = new Items("Empty", false, 0);
 
 
     // Start is called before the first frame update
@@ -44,21 +44,52 @@ public class ToolBar : MonoBehaviour
         }
         UpdateUI();
     }
-    
-    public void DebugGotItemSlot1()
-    {
-        GotItem(new Items("EnergyPotion", true, 1));
-    }
 
-    public void DebugGotItemSlot2()
-    {
-        GotItem(new Items("HealthPotion", true, 1));
-    }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    public void SetItemCount(string name, int countChange)
+    {
+        foreach (var item in allItem)
+        {
+            if (item.name == name)
+            {
+                item.count += countChange;
+                return;
+            }
+        }
+        foreach (var item in allUsable)
+        {
+            if (item.name == name)
+            {
+                item.count += countChange;
+                return;
+            }
+        }
+        return;
+    }
+
+    public int GetItemCount(string name)
+    {
+        foreach (var item in allItem)
+        {
+            if (item.name == name)
+            {
+                return item.count;
+            }
+        }
+        foreach (var item in allUsable)
+        {
+            if (item.name == name)
+            {
+                return item.count;
+            }
+        }
+        return 0;
     }
 
     public void UsedItem(int slot)
@@ -109,6 +140,46 @@ public class ToolBar : MonoBehaviour
         }
     }
 
+    public bool GotItem(Items item, int amount)
+    {
+        if (!HasItem(item, amount))
+        {
+            if (item.usable == false)
+            {
+                for (int i = 0; i < allItem.Length; i++)
+                {
+                    if (allItem[i].name == "Empty")
+                    {
+                        allItem[i] = item;
+                        allItem[i].count = amount;
+                        UpdateUI();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                for (int i = 0; i < allUsable.Length; i++)
+                {
+                    if (allUsable[i].name == "Empty")
+                    {
+                        allUsable[i] = item;
+                        allUsable[i].count = amount;
+                        UpdateUI();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        }
+        else
+        {
+            UpdateUI();
+            return true;
+        }
+    }
+
     private bool HasItem(Items item)
     {
         if (item.usable == false)
@@ -118,7 +189,37 @@ public class ToolBar : MonoBehaviour
                 if (allItem[i].name == item.name)
                 {
                     allItem[i].count++;
-                    print(allItem[i].count);
+                    //print(allItem[i].count + "  Has item, not usable");
+                    return true;
+                }
+            }
+            return false;
+        }
+        else
+        {
+            for (int i = 0; i < allUsable.Length; i++)
+            {
+                if (allUsable[i].name == item.name)
+                {
+                    allUsable[i].count++;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
+    private bool HasItem(Items item, int amount)
+    {
+        if (item.usable == false)
+        {
+            for (int i = 0; i < allItem.Length; i++)
+            {
+                if (allItem[i].name == item.name)
+                {
+                    allItem[i].count += amount;
+                    //print(allItem[i].count + "   Has item, not usable, Override");
 
                     return true;
                 }
@@ -132,7 +233,7 @@ public class ToolBar : MonoBehaviour
             {
                 if (allUsable[i].name == item.name)
                 {
-                    allUsable[i].count++;
+                    allUsable[i].count += amount;
                     return true;
                 }
             }
@@ -196,6 +297,5 @@ public class ToolBar : MonoBehaviour
             }
         }
     }
-
 
 }

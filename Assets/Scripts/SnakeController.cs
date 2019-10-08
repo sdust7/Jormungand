@@ -52,6 +52,8 @@ public class SnakeController : MonoBehaviour
     private Vector3 lastPosi;
     private float distanceFromLastFrame;
 
+    public bool canSpeedUp;
+
     //public bool canChangeWeapon;
 
     // Start is called before the first frame update
@@ -104,14 +106,7 @@ public class SnakeController : MonoBehaviour
         lastPosi = snake.position;
     }
 
-    public void DebugEnableFirework()
-    {
-        if (equipments.Contains(GameObject.Find("EquipSlot").transform.GetChild(2)))
-        {
-            GameObject.Find("Head").GetComponent<SnakeController>().AddEquipment(Equipments.FireworkStand);
-            lvControl.WeaponChanged(equipments, currentEquipment);
-        }
-    }
+
 
     void Update()
     {
@@ -119,7 +114,6 @@ public class SnakeController : MonoBehaviour
         DebugInput();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
 
@@ -162,9 +156,10 @@ public class SnakeController : MonoBehaviour
 
     public void GotDamage(float damage)
     {
-        currentHealth -= damage;
-        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) - (damage * barLength / maxEnergy), 0);
-        healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength / maxEnergy), 0);
+        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        //currentHealth -= damage; 
+        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxEnergy), 0);
+        //healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength / maxEnergy), 0);
     }
 
     public void ExtendBody(int bodies)
@@ -181,8 +176,6 @@ public class SnakeController : MonoBehaviour
         length += 5 * bodies;
     }
 
-
-
     public void RestoreEnergy(float amount)
     {
         currentEnergy = Mathf.Clamp(currentEnergy + amount, 0, maxEnergy);
@@ -194,22 +187,26 @@ public class SnakeController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxHealth), 0);
     }
+
     private void AbilitiesDetection()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            if (currentEnergy >= 5.0f)
+            if (canSpeedUp)
             {
-                framesUpdateBody = 1;
-                movingSpeed = 20.0f;
-                // steeringSpeed = 10.0f;
-                currentEnergy -= excuteTimesPerSecond * accelerateCost;
-                energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
-            }
-            else
-            {
-                movingSpeed = 10.0f;
-                // steeringSpeed = 10.0f;
+                if (currentEnergy >= 5.0f)
+                {
+                    framesUpdateBody = 1;
+                    movingSpeed = 20.0f;
+                    // steeringSpeed = 10.0f;
+                    currentEnergy -= excuteTimesPerSecond * accelerateCost;
+                    energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
+                }
+                else
+                {
+                    movingSpeed = 10.0f;
+                    // steeringSpeed = 10.0f;
+                }
             }
         }
         else
@@ -218,7 +215,7 @@ public class SnakeController : MonoBehaviour
             // steeringSpeed = 10.0f;
         }
 
-       
+
     }
 
     private void MovementDetection()
@@ -324,12 +321,15 @@ public class SnakeController : MonoBehaviour
 
     public void AddEquipment(Equipments equip)
     {
-        equipments.Add(snake.GetChild(1).GetChild((int)equip));
-        if (equipments.Count == 2)
+        if (!equipments.Contains(snake.GetChild(1).GetChild((int)equip)))
         {
-            equipments[currentEquipment].gameObject.SetActive(false);
-            currentEquipment = (int)equip;
-            equipments[currentEquipment].gameObject.SetActive(true);
+            equipments.Add(snake.GetChild(1).GetChild((int)equip));
+            if (equipments.Count == 2)
+            {
+                equipments[0].gameObject.SetActive(false);
+                currentEquipment = 1;
+                equipments[1].gameObject.SetActive(true);
+            }
         }
     }
 
@@ -370,7 +370,6 @@ public class SnakeController : MonoBehaviour
             lvControl.WeaponChanged(equipments, currentEquipment);
         }
     }
-
 
     private void DebugInput()
     {

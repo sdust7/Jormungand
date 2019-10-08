@@ -14,6 +14,8 @@ public class ButtonController : MonoBehaviour
     public Transform submitPanel;
     private LevelController lvControl;
 
+    public GameObject snake;
+
 
 
 
@@ -21,8 +23,8 @@ public class ButtonController : MonoBehaviour
     void Start()
     {
         lvControl = lvObject.GetComponent<LevelController>();
-        if(singlePlay!=null)
-        MenuSnakeAni = GameObject.Find("MenuSnakeAni").GetComponent<Animator>();
+        if (singlePlay != null)
+            MenuSnakeAni = GameObject.Find("MenuSnakeAni").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -31,12 +33,29 @@ public class ButtonController : MonoBehaviour
 
     }
 
+
+
+    public void DebugEnableFirework()
+    {
+        snake.GetComponent<SnakeController>().AddEquipment(Equipments.FireworkStand);
+    }
+
+
+    public void DebugGotItemSlot1()
+    {
+        GameObject.Find("ToolBar").GetComponent<ToolBar>().GotItem(new Items("EnergyPotion", true, 1));
+    }
+
+    public void DebugGotItemSlot2()
+    {
+        GameObject.Find("ToolBar").GetComponent<ToolBar>().GotItem(new Items("HealthPotion", true, 1));
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1;
     }
-
 
     IEnumerator WaitForSnake(float time)
     {
@@ -58,12 +77,12 @@ public class ButtonController : MonoBehaviour
 
     public void ComfirmQuest()
     {
-        
+
         int id = int.Parse(questPanel.GetChild(0).name);
         Quest quest = lvControl.questController.allQuest[id];
         //lvControl.myQuest.Add(quest);
         lvControl.AddQuest(quest);
-        
+
         questPanel.gameObject.SetActive(false);
         Time.timeScale = 1;
 

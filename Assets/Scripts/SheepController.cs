@@ -148,7 +148,7 @@ public class SheepController : MonoBehaviour
         sheepAnimator.enabled = true;
         // sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
         lvControl.ExtendBody(4);
-        lvControl.RestoreEnergy(100.0f);
+        lvControl.RestoreSnakeEnergy(100.0f);
         toolbar.GotItem(bone);
     }
 

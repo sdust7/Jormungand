@@ -92,7 +92,7 @@ public class DialogController : MonoBehaviour
         //    new List<string> {"" }));
 
 
-        // ++++++ Make sure ALL List have same COUNT ++++++
+        // ++++++ Make sure ALL List in one dialog have same COUNT ++++++
 
         // dialog 0
         dialogs.Add(new Dialogs(
@@ -143,6 +143,15 @@ public class DialogController : MonoBehaviour
                               "Yeah! for sure!!",
                               "So you could learn how to help me cut the tree right now. Take my axe, then cut the tree and collect the trunk, it's in the middle of the tree, "
             }));
+        // dialog 6
+        dialogs.Add(new Dialogs(
+            false,
+            new List<bool> { false },
+            new List<string> { "Fenrir", "Jormungand" },
+            new List<string> { "" },
+            new List<string> { "" }));
+
+
     }
 
     public void NextSentence()

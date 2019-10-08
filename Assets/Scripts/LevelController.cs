@@ -13,11 +13,12 @@ public class LevelController : MonoBehaviour
     public GameObject Apples;
     public MiniMapMark miniMapMark;
     public TextMeshProUGUI currentQuestNameTMP;
+    private ToolBar toolBar;
 
     public float speed;
     public int score;
     public int goal;
-    public int wood;
+    //public int wood;
     public int apple;
     public QuestController questController;
     public List<Quest> myQuest;
@@ -28,12 +29,14 @@ public class LevelController : MonoBehaviour
 
     public Vector3[] mannulUsedPoints;
 
+
+
     void Awake()
     {
         myQuest = new List<Quest>();
         questController = new QuestController();
         questController.LoadMission();
-        wood = 4;
+        //wood = 4;
         apple = 0;
         usedPoints = new List<Vector3>();
         usedPoints.Add(new Vector3(0, 0, 0));
@@ -50,6 +53,8 @@ public class LevelController : MonoBehaviour
         snake = GameObject.Find("SnakeHead").GetComponent<SnakeController>();
         miniMapMark = GameObject.Find("MiniMapMark").GetComponent<MiniMapMark>();
         currentQuestNameTMP = GameObject.Find("QuestInfoPanel").transform.GetChild(1).GetComponent<TextMeshProUGUI>();
+
+        toolBar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
 
         currentQuestID = -1;
     }
@@ -75,12 +80,16 @@ public class LevelController : MonoBehaviour
             //    break;
             case "1":
 
-                if (wood >= 5)
+                if (toolBar.GetItemCount("Wood") >= 5)
                 {
-                    wood -= 5;
-                    UIPanel.UpdateWood(wood);
-                    GameObject reward = Instantiate(Apples) as GameObject;
-                    reward.transform.position = snake.transform.position + new Vector3(2, 2, 0);
+                    //wood -= 5;
+                    //
+                    toolBar.SetItemCount("Wood", -5);
+                    toolBar.GotItem(new Items("HealthPotion", true, 1), 5);
+                    toolBar.GotItem(new Items("EnergyPotion", true, 1), 5);
+                    //UIPanel.UpdateWood(wood);
+                    //GameObject reward = Instantiate(Apples) as GameObject;
+                    //reward.transform.position = snake.transform.position + new Vector3(2, 2, 0);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     RemoveQuest(quest);
                     quest.finished = true;
@@ -104,7 +113,6 @@ public class LevelController : MonoBehaviour
         questPanel.GetChild(2).GetComponent<TextMeshProUGUI>().text = quest.description + "\nReward: " + quest.reward;
 
     }
-
 
     public void AddQuest(Quest newQuest)
     {
@@ -180,9 +188,9 @@ public class LevelController : MonoBehaviour
         score = 0;
     }
 
-    public void RestoreEnergy(float amount)
+    public void SnakeCanSpeedUp(bool canSpeedUp)
     {
-        snake.RestoreEnergy(amount);
+        snake.canSpeedUp = canSpeedUp;
     }
 
     public void ExtendBody(int bodies)
@@ -202,10 +210,10 @@ public class LevelController : MonoBehaviour
             case "Apple":
                 apple++;
                 break;
-            case "Wood":
-                wood++;
-                UIPanel.UpdateWood(wood);
-                break;
+                //   case "Wood":
+                //  wood++;
+                // UIPanel.UpdateWood(wood);
+                //     break;
         }
     }
 
@@ -230,10 +238,15 @@ public class LevelController : MonoBehaviour
     {
         snake.GotDamage(damage);
     }
-    public void RestoreSnakeEnergy(float energy)
+    //public void RestoreEnergy(float amount)
+    //{
+    //    snake.RestoreEnergy(amount);
+    //}
+    public void RestoreSnakeEnergy(float amount)
     {
-        snake.RestoreEnergy(energy);
+        snake.RestoreEnergy(amount);
     }
+
     public void RestoreSnakeHealth(float health)
     {
         snake.RestoreHealth(health);
