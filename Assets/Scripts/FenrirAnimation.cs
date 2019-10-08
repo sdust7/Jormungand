@@ -10,6 +10,7 @@ public class FenrirAnimation : MonoBehaviour
 
 
     private bool isPlaying;
+    [SerializeField]
     private float playTimer;
     private int currentAnimation;
 
@@ -28,10 +29,17 @@ public class FenrirAnimation : MonoBehaviour
     {
         if (isPlaying)
         {
-            playTimer += Time.deltaTime;
+            playTimer += Time.unscaledDeltaTime;
             if (playTimer >= animationLength[currentAnimation])
             {
                 Time.timeScale = 1;
+                anime[currentAnimation].SetActive(false);
+                played[currentAnimation] = true;
+                isPlaying = false;
+                if (currentAnimation < anime.Length - 1)
+                {
+                    currentAnimation++;
+                }
             }
         }
     }

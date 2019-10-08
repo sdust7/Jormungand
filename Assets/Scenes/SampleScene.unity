@@ -3891,7 +3891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &841857096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7910,7 +7910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1434960732
 Transform:
   m_ObjectHideFlags: 0
@@ -13401,6 +13401,7 @@ MonoBehaviour:
   - {fileID: 583797189}
   animationLength:
   - 16
+  playTimer: 0
 --- !u!58 &3632299512403013284
 CircleCollider2D:
   m_ObjectHideFlags: 0
