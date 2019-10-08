@@ -172,6 +172,14 @@ public class DialogController : MonoBehaviour
                         break;
                 }
                 break;
+            case 2: // Eat 2 apples
+                switch (currentIndex)
+                {
+                    case 1: // End
+                        lvController.ShowMiniMapMark(GameObject.Find("FenrirLocked").transform.position);
+                        break;
+                }
+                break;
             case 3: // Thin wolf dead
                 switch (currentIndex)
                 {

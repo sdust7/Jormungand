@@ -7,6 +7,7 @@ public class Items
     public string name;
     public bool usable;
     public int count;
+
     public Items()
     {
         name = "Empty";
