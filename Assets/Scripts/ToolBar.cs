@@ -8,7 +8,18 @@ public class ToolBar : MonoBehaviour
 {
     private enum SpriteOrder
     {
-        Empty,HealthPotion,EnergyPotion,AppleCore,Wood,SheepBone
+        Empty, HealthPotion, EnergyPotion, AppleCore, Wood, SheepBone
+    }
+
+    public enum ItemsList
+    {
+        Empty = 0,
+        EnergyPotion = 1,
+        HealthPotion = 2,
+
+        AppleCore = 7,
+        SheepBone = 8,
+        Wood = 9,
     }
 
     private Image[] slots;
@@ -24,8 +35,8 @@ public class ToolBar : MonoBehaviour
         slots = new Image[11];
         counts = new TextMeshProUGUI[11];
         Items empty = new Items();
-        allItem = new Items[] { empty, empty, empty, empty, empty};
-        allUsable = new Items[] { empty, empty, empty, empty, empty,empty };
+        allItem = new Items[] { empty, empty, empty, empty, empty };
+        allUsable = new Items[] { empty, empty, empty, empty, empty, empty };
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i] = transform.GetChild(i).GetComponent<Image>();
@@ -34,12 +45,20 @@ public class ToolBar : MonoBehaviour
         UpdateUI();
     }
 
+    public void DebugGotItemSlot1()
+    {
+        GotItem(new Items("EnergyPotion", true, 1));
+    }
 
+    public void DebugGotItemSlot2()
+    {
+        GotItem(new Items("HealthPotion", true, 1));
+    }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public bool GotItem(Items item)
@@ -50,7 +69,7 @@ public class ToolBar : MonoBehaviour
             {
                 for (int i = 0; i < allItem.Length; i++)
                 {
-                    if (allItem[i].name=="Empty")
+                    if (allItem[i].name == "Empty")
                     {
                         allItem[i] = item;
                         UpdateUI();
@@ -80,7 +99,7 @@ public class ToolBar : MonoBehaviour
         }
     }
 
-    private bool HasItem( Items item)
+    private bool HasItem(Items item)
     {
         if (item.usable == false)
         {
@@ -95,18 +114,19 @@ public class ToolBar : MonoBehaviour
                 }
             }
             return false;
-        }else
+        }
+        else
         {
 
-                for (int i = 0; i < allUsable.Length; i++)
+            for (int i = 0; i < allUsable.Length; i++)
+            {
+                if (allUsable[i].name == item.name)
                 {
-                    if (allUsable[i].name == item.name)
-                    {
                     allUsable[i].count++;
                     return true;
-                    }
                 }
-            
+            }
+
             return false;
         }
     }
@@ -143,13 +163,13 @@ public class ToolBar : MonoBehaviour
             switch (allItem[i].name)
             {
                 case "Empty":
-                    slots[i+6].sprite = itemSprites[(int)SpriteOrder.Empty];
-                    counts[i+6].enabled = false;
+                    slots[i + 6].sprite = itemSprites[(int)SpriteOrder.Empty];
+                    counts[i + 6].enabled = false;
                     break;
                 case "AppleCore":
-                    slots[i+6].sprite = itemSprites[(int)SpriteOrder.AppleCore];
-                    counts[i+6].enabled = true;
-                    counts[i+6].text = "x" + allItem[i].count.ToString();
+                    slots[i + 6].sprite = itemSprites[(int)SpriteOrder.AppleCore];
+                    counts[i + 6].enabled = true;
+                    counts[i + 6].text = "x" + allItem[i].count.ToString();
                     break;
                 case "Wood":
                     slots[i + 6].sprite = itemSprites[(int)SpriteOrder.Wood];
@@ -159,7 +179,7 @@ public class ToolBar : MonoBehaviour
                 case "SheepBone":
                     slots[i + 6].sprite = itemSprites[(int)SpriteOrder.SheepBone];
                     counts[i + 6].enabled = true;
-                    counts[i + 6].text = "x"+allItem[i].count.ToString();
+                    counts[i + 6].text = "x" + allItem[i].count.ToString();
                     break;
                 default:
                     break;
