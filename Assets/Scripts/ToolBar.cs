@@ -44,7 +44,7 @@ public class ToolBar : MonoBehaviour
         }
         UpdateUI();
     }
-
+    
     public void DebugGotItemSlot1()
     {
         GotItem(new Items("EnergyPotion", true, 1));

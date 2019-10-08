@@ -101,6 +101,14 @@ public class SnakeController : MonoBehaviour
         lastPosi = snake.position;
     }
 
+    public void DebugEnableFirework()
+    {
+        if (equipments.Contains(GameObject.Find("EquipSlot").transform.GetChild(2)))
+        {
+            GameObject.Find("Head").GetComponent<SnakeController>().AddEquipment(Equipments.FireworkStand);
+        }
+    }
+
     void Update()
     {
         CheckSwitchEquip();
@@ -329,7 +337,8 @@ public class SnakeController : MonoBehaviour
             energy.name = "EnergyPotion";
             energy.usable = true;
             toolbar.GotItem(energy);
-        }else if (Input.GetKeyDown(KeyCode.P))
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
         {
             Items bone = new Items();
             bone.name = "SheepBone";
