@@ -16,6 +16,7 @@ TagManager:
   - Firework
   - Explosion
   - AXE
+  - Wolf
   layers:
   - Default
   - TransparentFX

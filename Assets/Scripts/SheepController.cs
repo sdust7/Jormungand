@@ -152,6 +152,14 @@ public class SheepController : MonoBehaviour
         toolbar.GotItem(bone);
     }
 
+
+    public void CollideWithWolf()
+    {
+        transform.GetComponent<PolygonCollider2D>().enabled = false;
+        currentStatus = SheepStatus.Dead;
+        sheepAnimator.enabled = true;
+    }
+
     public void CollideWithExplosion()
     {
         if (currentStatus != SheepStatus.Dead && currentStatus != SheepStatus.Disabled)
@@ -179,6 +187,9 @@ public class SheepController : MonoBehaviour
                 break;
             case "Snake":
                 CollideWithSnake();
+                break;
+            case "Wolf":
+                CollideWithWolf();
                 break;
         }
         //if (collision.gameObject.tag == "Firework")
