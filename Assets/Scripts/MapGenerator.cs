@@ -62,7 +62,7 @@ public class MapGenerator : MonoBehaviour
     {
         for (int n = 0; n < lvControl.usedPoints.Count; n++)
         {
-            if (point == lvControl.usedPoints[n])
+            if (point.x  == lvControl.usedPoints[n].x && point.y == lvControl.usedPoints[n].y)
             {
                 return true;
             }
