@@ -116,6 +116,19 @@ public class FireworkController : MonoBehaviour
         rigid.constraints = RigidbodyConstraints2D.None;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.transform.tag)
+        {
+            case "Shark":
+                collision.transform.GetComponent<Shark>().CollideWithExplosion(true);
+                break;
+            case "Octopus":                
+                collision.transform.GetComponent<Octopus>().CollideWithExplosion(true);
+                break;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (launched)
@@ -128,6 +141,14 @@ public class FireworkController : MonoBehaviour
                 case "Sheep":
                     Explosion();
                     collision.GetComponent<SheepController>().CollideWithExplosion();
+                    break;
+                case "Shark":
+                    Explosion();
+                    collision.GetComponent<Shark>().CollideWithExplosion(false);
+                    break;
+                case "Octopus":
+                    Explosion();
+                    collision.GetComponent<Octopus>().CollideWithExplosion(false);
                     break;
 
 
