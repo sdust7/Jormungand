@@ -33,7 +33,10 @@ public class ButtonController : MonoBehaviour
 
     }
 
-
+    public void DebugEnableAxe()
+    {
+        snake.GetComponent<SnakeController>().AddEquipment(Equipments.Axe);
+    }
 
     public void DebugEnableFirework()
     {
