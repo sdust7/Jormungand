@@ -28,11 +28,15 @@ public class LevelController : MonoBehaviour
     public float xValueStartSea = -160.0f;
 
     public Vector3[] mannulUsedPoints;
+    private bool damaged;
+    private float damageCooldown;
 
 
 
     void Awake()
     {
+        damaged = false;
+        damageCooldown = 0;
         myQuest = new List<Quest>();
         questController = new QuestController();
         questController.LoadMission();
@@ -68,6 +72,15 @@ public class LevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (damaged)
+        {
+            damageCooldown += Time.deltaTime;
+            if (damageCooldown > 0.5f)
+            {
+                damageCooldown = 0;
+                damaged = false;
+            }
+        }
 
     }
 
@@ -236,7 +249,11 @@ public class LevelController : MonoBehaviour
 
     public void DamageSnake(float damage)
     {
-        snake.GotDamage(damage);
+        if (!damaged)
+        {
+            snake.GotDamage(damage);
+            damaged = true;
+        }
     }
     //public void RestoreEnergy(float amount)
     //{

@@ -137,7 +137,16 @@ public class Shark : MonoBehaviour
             damaged = true;
         }else if (collision.collider.gameObject.tag == "Snake")
         {
-            lvControl.DamageSnake(15);
+            if (HP <= 0)
+            {
+                lvControl.RestoreSnakeHealth(100);
+                transform.GetComponent<SpriteRenderer>().sprite = damageSprites[7];
+                transform.GetComponent<PolygonCollider2D>().enabled = false;
+            }
+            else
+            {
+                lvControl.DamageSnake(10);
+            }
         }
     }
 

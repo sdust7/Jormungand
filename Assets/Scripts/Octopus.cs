@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Octopus : MonoBehaviour
 {
+    const int numberOfTwo = 8;
+    const int numberOfThree = 8;
     private LevelController lvControl;
 
+    private List<Transform> phaseTwoSharks;
+    private List<Transform> phaseThreeSharks;
     public int aliveShark;
     private Transform center;
     public int phase;
@@ -17,8 +21,17 @@ public class Octopus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        phaseTwoSharks = new List<Transform>();
+        phaseThreeSharks = new List<Transform>();
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
-
+        for (int i = 0; i < numberOfTwo; i++)
+        {
+            phaseTwoSharks.Add(transform.GetChild(i).transform);
+        }
+        for (int i = 0; i < numberOfThree; i++)
+        {
+            phaseThreeSharks.Add(transform.GetChild(i+8).transform);
+        }
         HP = 15;
         animator = transform.GetComponent<Animator>();
         damageTimer = 0;
@@ -47,8 +60,16 @@ public class Octopus : MonoBehaviour
             case 1:
                 break;
             case 2:
+                for (int i = 0; i < phaseTwoSharks.Count; i++)
+                {
+                    phaseTwoSharks[i].gameObject.SetActive(true);
+                }
                 break;
             case 3:
+                for (int i = 0; i < phaseThreeSharks.Count; i++)
+                {
+                    phaseThreeSharks[i].gameObject.SetActive(true);
+                }
                 break;
         }
 
@@ -58,6 +79,10 @@ public class Octopus : MonoBehaviour
         if (HP == 0)
         {
             transform.gameObject.SetActive(false);
+            foreach(GameObject shark in GameObject.FindGameObjectsWithTag("Shark"))
+            {
+                shark.SetActive(false);
+            }
         }
     }
 
