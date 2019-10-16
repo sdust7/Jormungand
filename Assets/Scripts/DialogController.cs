@@ -197,7 +197,7 @@ public class DialogController : MonoBehaviour
                 switch (currentIndex)
                 {
                     case 1: // End
-                        lvController.ShowMiniMapMark(GameObject.Find("FenrirLocked").transform.position);
+                        lvController.ShowMiniMapMark(lvController.questController.allQuest[0].targetTrans.position);
                         break;
                 }
                 break;
@@ -223,6 +223,8 @@ public class DialogController : MonoBehaviour
                     case 4:
                         snake.GetComponent<SnakeController>().AddEquipment(Equipments.Axe);
                         GameObject.Find("AxeWolf").transform.GetChild(0).gameObject.SetActive(true);
+
+                        lvController.questController.allQuest[0].targetTrans = GameObject.Find("FenrirLocked").transform;
                         break;
                 }
                 break;

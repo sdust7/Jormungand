@@ -22,7 +22,7 @@ public class LevelController : MonoBehaviour
     public int apple;
     public QuestController questController;
     public List<Quest> myQuest;
-    public int currentQuestID;
+    public int currentMyQuestIndex;
 
     public float xValueStartDesert = 160.0f;
     public float xValueStartSea = -160.0f;
@@ -31,7 +31,7 @@ public class LevelController : MonoBehaviour
     private bool damaged;
     private float damageCooldown;
 
-
+    public Vector3 currentCheckPoint = new Vector3(0, 8, 0);
 
     void Awake()
     {
@@ -60,7 +60,7 @@ public class LevelController : MonoBehaviour
 
         toolBar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
 
-        currentQuestID = -1;
+        currentMyQuestIndex = -1;
     }
 
     // Start is called before the first frame update
@@ -81,14 +81,13 @@ public class LevelController : MonoBehaviour
                 damaged = false;
             }
         }
+
     }
 
-    public void SnakeRespawn(Vector3 posi)
+    public void SnakeRespawn()
     {
-        snake.transform.parent.position = posi;
-
-        snake.MoveAllBody(posi);
-
+        canvas.GameRestart();
+        snake.RespwanSettings(currentCheckPoint);
     }
 
     public void SubmitQuest(string id)
@@ -112,8 +111,8 @@ public class LevelController : MonoBehaviour
                     //reward.transform.position = snake.transform.position + new Vector3(2, 2, 0);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     RemoveQuest(quest);
-                    quest.finished = true;
-                    miniMapMark.EndShowMark();
+                    // quest.finished = true;
+                    // miniMapMark.EndShowMark();
                 }
                 else
                 {
@@ -127,8 +126,8 @@ public class LevelController : MonoBehaviour
                     snake.AddEquipment(Equipments.FireworkStand);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     RemoveQuest(quest);
-                    quest.finished = true;
-                    miniMapMark.EndShowMark();
+                    // quest.finished = true;
+                    //  miniMapMark.EndShowMark();
                 }
                 break;
             default:
@@ -147,22 +146,20 @@ public class LevelController : MonoBehaviour
 
     public void AddQuest(Quest newQuest)
     {
-        
-        if (currentQuestID == myQuest.Count - 1)
+
+        if (currentMyQuestIndex == myQuest.Count - 1)
         {
             myQuest.Add(newQuest);
-            currentQuestID++;
+            currentMyQuestIndex++;
         }
         else
         {
-            Debug.Log(currentQuestID);
+            Debug.Log(currentMyQuestIndex);
 
-            myQuest.Insert(currentQuestID + 1, newQuest);
-            currentQuestID++;
+            myQuest.Insert(currentMyQuestIndex + 1, newQuest);
+            currentMyQuestIndex++;
         }
-        currentQuestNameTMP.text = myQuest[currentQuestID].questName;
-        Debug.Log(currentQuestID);
-
+        currentQuestNameTMP.text = myQuest[currentMyQuestIndex].questName;
     }
 
     public void RemoveQuest(Quest quest)
@@ -171,58 +168,71 @@ public class LevelController : MonoBehaviour
         {
             if (myQuest[i].ID == quest.ID)
             {
-                if (i <= currentQuestID)
+                if (i <= currentMyQuestIndex)
                 {
-                    currentQuestID--;
-                    myQuest.Remove(quest);
-                    return;
+                    currentMyQuestIndex--;
+                    if (currentMyQuestIndex >= 0 && myQuest[currentMyQuestIndex].showMapMark)
+                    {
+                        miniMapMark.ChangeMarkPosi(myQuest[currentMyQuestIndex].targetTrans.position);
+                    }
                 }
-                else
+
+                quest.finished = true;
+                myQuest.Remove(quest);
+
+                foreach (var item in myQuest)
                 {
-                    myQuest.Remove(quest);
-                    return;
+                    if (item.showMapMark)
+                    {
+                        return;
+                    }
                 }
+                miniMapMark.EndShowMark();
+                return;
             }
         }
     }
-
-    //public void ChangeCurrentQuest(string id)
-    //{
-
-    //}
 
     public void ChangeCurrentQuest(bool toLeft)
     {
-        if (toLeft)
+        if (currentMyQuestIndex >= 0)
         {
-            if (currentQuestID > 0)
+            if (toLeft)
             {
-                currentQuestID--;
+                if (currentMyQuestIndex > 0)
+                {
+                    currentMyQuestIndex--;
+                }
+                else
+                {
+                    currentMyQuestIndex = myQuest.Count - 1;
+                }
             }
             else
             {
-                currentQuestID = myQuest.Count - 1;
+                if (currentMyQuestIndex < myQuest.Count - 1)
+                {
+                    currentMyQuestIndex++;
+                }
+                else
+                {
+                    currentMyQuestIndex = 0;
+                }
+            }
+            currentQuestNameTMP.text = myQuest[currentMyQuestIndex].questName;
+            if (myQuest[currentMyQuestIndex].showMapMark)
+            {
+                miniMapMark.ChangeMarkPosi(myQuest[currentMyQuestIndex].targetTrans.position);
             }
         }
-        else
-        {
-            if (currentQuestID < myQuest.Count - 1)
-            {
-                currentQuestID++;
-            }
-            else
-            {
-                currentQuestID = 0;
-            }
-        }
-        currentQuestNameTMP.text = myQuest[currentQuestID].questName;
     }
 
-    public void Restart()
-    {
-        speed = 10;
-        score = 0;
-    }
+    //public void Restart()
+    //{
+
+    //    //speed = 10;
+    //    //score = 0;
+    //}
 
     public void SnakeCanSpeedUp(bool canSpeedUp)
     {
@@ -260,7 +270,6 @@ public class LevelController : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0;
         canvas.GameOver();
     }
 
@@ -278,10 +287,7 @@ public class LevelController : MonoBehaviour
             damaged = true;
         }
     }
-    //public void RestoreEnergy(float amount)
-    //{
-    //    snake.RestoreEnergy(amount);
-    //}
+
     public bool RestoreSnakeEnergy(float amount)
     {
         if (!snake.EnergyIsfull())

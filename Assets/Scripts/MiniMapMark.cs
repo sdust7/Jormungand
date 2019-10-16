@@ -28,6 +28,11 @@ public class MiniMapMark : MonoBehaviour
         targetPosi = targetPosition;
     }
 
+    public void ChangeMarkPosi(Vector3 targetPosition)
+    {
+        targetPosi = targetPosition;
+    }
+
     public void StartShowMark(Vector3 targetPosition)
     {
         image.enabled = true;
@@ -53,7 +58,6 @@ public class MiniMapMark : MonoBehaviour
         if (showMark)
         {
             CalculateImagePosi(snake.position, targetPosi, posiRadius);
-
         }
 
     }

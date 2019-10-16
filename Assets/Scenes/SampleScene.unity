@@ -2407,7 +2407,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: -1996728467
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!224 &281360237
 RectTransform:
@@ -5339,25 +5339,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 731649660}
   m_CullTransparentMesh: 0
---- !u!1 &741537620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4997739989665576354, guid: 68dc80dc750cf4548829583a5d12e232,
-    type: 3}
-  m_PrefabInstance: {fileID: 3632299512403013278}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &741537624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741537620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb677a20d2eea2449fad1f988198caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisObstacle: 0
 --- !u!1 &753763987
 GameObject:
   m_ObjectHideFlags: 0
@@ -10832,7 +10813,7 @@ MonoBehaviour:
   goal: 9999
   apple: 0
   questController: {fileID: 0}
-  currentQuestID: 0
+  currentMyQuestIndex: 0
   xValueStartDesert: 160
   xValueStartSea: -120
   mannulUsedPoints:
@@ -10855,6 +10836,7 @@ MonoBehaviour:
   - {x: -280, y: -280, z: 0}
   - {x: -280, y: -320, z: 0}
   - {x: 0, y: -120, z: 0}
+  currentCheckPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1402414647
 Transform:
   m_ObjectHideFlags: 0
@@ -11499,25 +11481,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1502402647}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1502954856 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652383305726883844, guid: 68dc80dc750cf4548829583a5d12e232,
-    type: 3}
-  m_PrefabInstance: {fileID: 3632299512403013278}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1502954860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502954856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deb677a20d2eea2449fad1f988198caa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thisObstacle: 0
 --- !u!1 &1509398535
 GameObject:
   m_ObjectHideFlags: 0

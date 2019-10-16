@@ -35,7 +35,7 @@ public class ButtonController : MonoBehaviour
 
     public void DebugMoveSnake()
     {
-        lvControl.SnakeRespawn(Vector3.zero);
+        lvControl.SnakeRespawn();
     }
 
     public void DebugEnableAxe()
@@ -66,8 +66,10 @@ public class ButtonController : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("SampleScene");
-        Time.timeScale = 1;
+        lvControl.SnakeRespawn();
+        
+        //SceneManager.LoadScene("SampleScene");
+        //Time.timeScale = 1;
     }
 
     IEnumerator WaitForSnake(float time)

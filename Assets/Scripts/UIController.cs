@@ -33,7 +33,7 @@ public class UIController : MonoBehaviour
                 equipmensName = new List<string>() { "Empty", "AXE", "FireworkStand" };
                 woodCount = transform.GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>();
                 weaponPanel = transform.GetChild(4);
-                UpdateWeaponUI(equipmensName[0], equipmensName[0],equipmensName[0]);
+                UpdateWeaponUI(equipmensName[0], equipmensName[0], equipmensName[0]);
                 break;
         }
 
@@ -49,6 +49,12 @@ public class UIController : MonoBehaviour
     {
         gameOver.SetActive(true);
     }
+
+    public void GameRestart()
+    {
+        gameOver.SetActive(false);
+    }
+
     public void GameWin()
     {
         gameWin.SetActive(true);
@@ -80,13 +86,13 @@ public class UIController : MonoBehaviour
                 leftName = equipments[current - 1].name;
                 rightName = equipments[current + 1].name;
             }
-            UpdateWeaponUI(leftName,rightName,currentName);
+            UpdateWeaponUI(leftName, rightName, currentName);
 
         }
 
     }
 
-    public void UpdateWeaponUI(string leftName,string rightName,string currentName)
+    public void UpdateWeaponUI(string leftName, string rightName, string currentName)
     {
         for (int i = 0; i < equipmensName.Count; i++)
         {

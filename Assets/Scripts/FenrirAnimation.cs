@@ -16,6 +16,8 @@ public class FenrirAnimation : MonoBehaviour
 
     public GameObject energyBar;
 
+    private LevelController lvController;
+
     private void Start()
     {
         played = new bool[anime.Length];
@@ -25,6 +27,8 @@ public class FenrirAnimation : MonoBehaviour
             played[i] = false;
         }
         playTimer = 0;
+
+        lvController = GameObject.Find("LevelController").GetComponent<LevelController>();
     }
 
     void Update()
@@ -41,8 +45,12 @@ public class FenrirAnimation : MonoBehaviour
                 if (currentAnimation == 0)
                 {
                     transform.GetChild(0).gameObject.SetActive(true);
-                    GameObject.Find("LevelController").GetComponent<LevelController>().SnakeCanSpeedUp(true);
+                    lvController.SnakeCanSpeedUp(true);
                     energyBar.SetActive(true);
+
+                    lvController.RemoveQuest(lvController.myQuest[0]);
+
+                    lvController.currentCheckPoint = new Vector3(-25, -260, 0);
                 }
                 if (currentAnimation < anime.Length - 1)
                 {

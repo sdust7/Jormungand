@@ -114,7 +114,10 @@ public class SnakeController : MonoBehaviour
     void Update()
     {
         CheckSwitchEquip();
+        CheckUseItem();
+        CheckSwitchQuests();
         DebugInput();
+        CheckDead();
     }
 
     void FixedUpdate()
@@ -208,6 +211,29 @@ public class SnakeController : MonoBehaviour
     public bool EnergyIsfull()
     {
         return currentEnergy >= maxEnergy;
+    }
+
+    private void CheckDead()
+    {
+        if (currentHealth <= 0)
+        {
+            Time.timeScale = 0;
+            lvControl.GameOver();
+        }
+    }
+
+    public void RespwanSettings(Vector3 posi)
+    {
+        currentHealth = maxHealth;
+        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxHealth), 0);
+        currentEnergy = maxEnergy;
+        energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
+
+        transform.parent.position = posi;
+        //transform.up = Vector3.up;
+
+        MoveAllBody(posi);
+        Time.timeScale = 1.0f;
     }
 
     private void AbilitiesDetection()
@@ -304,6 +330,10 @@ public class SnakeController : MonoBehaviour
         {
             SwitchEquipment(true);
         }
+    }
+
+    public void CheckUseItem()
+    {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             if (itemEffects.DoEffect(toolbar.transform.GetChild(0).GetComponent<Image>().sprite.name))
@@ -349,6 +379,18 @@ public class SnakeController : MonoBehaviour
         }
     }
 
+    public void CheckSwitchQuests()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            lvControl.ChangeCurrentQuest(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.I))
+        {
+            lvControl.ChangeCurrentQuest(false);
+        }
+    }
+
     public void AddEquipment(Equipments equip)
     {
         if (!equipments.Contains(snake.GetChild(1).GetChild((int)equip)))
@@ -359,7 +401,7 @@ public class SnakeController : MonoBehaviour
             {
                 SwitchEquipment(true);
                 count++;
-                Debug.Log(count);
+                // Debug.Log(count);
             }
 
             //if (equipments.Count == 2)
