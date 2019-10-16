@@ -155,11 +155,14 @@ public class LevelController : MonoBehaviour
         }
         else
         {
+            Debug.Log(currentQuestID);
+
             myQuest.Insert(currentQuestID + 1, newQuest);
             currentQuestID++;
         }
         currentQuestNameTMP.text = myQuest[currentQuestID].questName;
         Debug.Log(currentQuestID);
+
     }
 
     public void RemoveQuest(Quest quest)
@@ -168,7 +171,7 @@ public class LevelController : MonoBehaviour
         {
             if (myQuest[i].ID == quest.ID)
             {
-                if (i < currentQuestID)
+                if (i <= currentQuestID)
                 {
                     currentQuestID--;
                     myQuest.Remove(quest);
