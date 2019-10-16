@@ -33,6 +33,11 @@ public class ButtonController : MonoBehaviour
 
     }
 
+    public void DebugMoveSnake()
+    {
+        lvControl.SnakeRespawn(Vector3.zero);
+    }
+
     public void DebugEnableAxe()
     {
         snake.GetComponent<SnakeController>().AddEquipment(Equipments.Axe);
@@ -52,6 +57,11 @@ public class ButtonController : MonoBehaviour
     public void DebugGotItemSlot2()
     {
         GameObject.Find("ToolBar").GetComponent<ToolBar>().GotItem(new Items("HealthPotion", true, 1));
+    }
+
+    public void DebugGotItemSlot3()
+    {
+        GameObject.Find("ToolBar").GetComponent<ToolBar>().GotItem(new Items("SheepBone", false, 10));
     }
 
     public void Restart()

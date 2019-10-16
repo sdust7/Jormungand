@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3656701948400379818}
   - component: {fileID: -7325923970298412470}
   - component: {fileID: -8226064377563141055}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: DesertSection12
   m_TagString: Sections
   m_Icon: {fileID: 0}

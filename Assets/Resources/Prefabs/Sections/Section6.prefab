@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 6526860806354653685}
   - component: {fileID: 9104210761188275081}
   - component: {fileID: 2241845665708015540}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Section6
   m_TagString: Sections
   m_Icon: {fileID: 0}

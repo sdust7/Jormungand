@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1451438080490589620}
   - component: {fileID: 4522180990115977057}
   - component: {fileID: 4162502156314125258}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SeaSection4
   m_TagString: Sections
   m_Icon: {fileID: 0}

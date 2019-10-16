@@ -81,6 +81,13 @@ public class LevelController : MonoBehaviour
                 damaged = false;
             }
         }
+    }
+
+    public void SnakeRespawn(Vector3 posi)
+    {
+        snake.transform.parent.position = posi;
+
+        snake.MoveAllBody(posi);
 
     }
 
@@ -113,6 +120,17 @@ public class LevelController : MonoBehaviour
 
                 }
                 break;
+            case "2":
+                if (toolBar.GetItemCount("SheepBone") >= 10)
+                {
+                    toolBar.SetItemCount("SheepBone", -10);
+                    snake.AddEquipment(Equipments.FireworkStand);
+                    Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
+                    RemoveQuest(quest);
+                    quest.finished = true;
+                    miniMapMark.EndShowMark();
+                }
+                break;
             default:
                 break;
         }
@@ -129,6 +147,7 @@ public class LevelController : MonoBehaviour
 
     public void AddQuest(Quest newQuest)
     {
+        
         if (currentQuestID == myQuest.Count - 1)
         {
             myQuest.Add(newQuest);
@@ -140,6 +159,7 @@ public class LevelController : MonoBehaviour
             currentQuestID++;
         }
         currentQuestNameTMP.text = myQuest[currentQuestID].questName;
+        Debug.Log(currentQuestID);
     }
 
     public void RemoveQuest(Quest quest)
@@ -259,14 +279,24 @@ public class LevelController : MonoBehaviour
     //{
     //    snake.RestoreEnergy(amount);
     //}
-    public void RestoreSnakeEnergy(float amount)
+    public bool RestoreSnakeEnergy(float amount)
     {
-        snake.RestoreEnergy(amount);
+        if (!snake.EnergyIsfull())
+        {
+            snake.RestoreEnergy(amount);
+            return true;
+        }
+        return false;
     }
 
-    public void RestoreSnakeHealth(float health)
+    public bool RestoreSnakeHealth(float health)
     {
-        snake.RestoreHealth(health);
+        if (!snake.HealthIsfull())
+        {
+            snake.RestoreHealth(health);
+            return true;
+        }
+        return false;
     }
 
     public void WeaponChanged(List<Transform> equipments, int current)

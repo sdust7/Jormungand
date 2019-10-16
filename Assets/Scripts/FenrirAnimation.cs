@@ -14,6 +14,8 @@ public class FenrirAnimation : MonoBehaviour
     private float playTimer;
     private int currentAnimation;
 
+    public GameObject energyBar;
+
     private void Start()
     {
         played = new bool[anime.Length];
@@ -36,6 +38,12 @@ public class FenrirAnimation : MonoBehaviour
                 anime[currentAnimation].SetActive(false);
                 played[currentAnimation] = true;
                 isPlaying = false;
+                if (currentAnimation == 0)
+                {
+                    transform.GetChild(0).gameObject.SetActive(true);
+                    GameObject.Find("LevelController").GetComponent<LevelController>().SnakeCanSpeedUp(true);
+                    energyBar.SetActive(true);
+                }
                 if (currentAnimation < anime.Length - 1)
                 {
                     currentAnimation++;

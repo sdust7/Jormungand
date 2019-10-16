@@ -19,7 +19,7 @@ public class Shark : MonoBehaviour
     {
         lvControl = GameObject.Find("LevelController").GetComponent<LevelController>();
         octopus = GameObject.Find("Octopus").GetComponent<Octopus>();
-        damageTimer=0;
+        damageTimer = 0;
         damaged = false;
         HP = 6;
         center = GameObject.Find("Octopus").transform;
@@ -57,7 +57,7 @@ public class Shark : MonoBehaviour
         {
             if (speed > 0)
             {
-                speed -= Time.fixedDeltaTime*5;
+                speed -= Time.fixedDeltaTime * 5;
             }
         }
         rigid.velocity = transform.right * speed;
@@ -130,12 +130,13 @@ public class Shark : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.gameObject.tag == "AXE"&&damaged==false)
+        if (collision.collider.gameObject.tag == "AXE" && damaged == false)
         {
             HP -= 1;
             UpdateDamge();
             damaged = true;
-        }else if (collision.collider.gameObject.tag == "Snake")
+        }
+        else if (collision.collider.gameObject.tag == "Snake")
         {
             if (HP <= 0)
             {

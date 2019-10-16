@@ -75,6 +75,7 @@ public class SnakeController : MonoBehaviour
         currentHealth = maxHealth;
         healthBar = GameObject.Find("Health").GetComponent<RectTransform>();
         energyBar = GameObject.Find("Energy").GetComponent<RectTransform>();
+        energyBar.parent.parent.gameObject.SetActive(false);
         bodyPrefab = Resources.Load<GameObject>("Prefabs/Body");
 
 
@@ -104,6 +105,8 @@ public class SnakeController : MonoBehaviour
 
         // rigi.velocity = snake.up * movingSpeed;
         lastPosi = snake.position;
+
+        GotDamage(20.0f);
     }
 
 
@@ -139,13 +142,12 @@ public class SnakeController : MonoBehaviour
 
             for (int n = length - 1; n > 0; n--)
             {
-                allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
-
-                //
-                allBody.GetChild(n).Translate(0, distanceFromLastFrame, 0);
-                //allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
-                //
-
+                if (allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position != Vector3.zero)
+                {
+                    allBody.GetChild(n).transform.up = allBody.GetChild(n - 1).transform.position - allBody.GetChild(n).transform.position;
+                    allBody.GetChild(n).Translate(0, distanceFromLastFrame, 0);
+                    //allBody.GetChild(n).transform.position = allBody.GetChild(n - 1).transform.position;
+                }
             }
             framesUpdateBody = 2;
         }
@@ -154,11 +156,21 @@ public class SnakeController : MonoBehaviour
         MovementDetection();
     }
 
+    public void MoveAllBody(Vector2 posi)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            allBody.GetChild(i).transform.position = posi;
+            distanceFromLastFrame = 0;
+            lastPosi = snake.position;
+        }
+    }
+
     public void GotDamage(float damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         //currentHealth -= damage; 
-        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxEnergy), 0);
+        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxHealth), 0);
         //healthBar.anchoredPosition = new Vector2(healthBar.anchoredPosition.x - (damage * barLength / maxEnergy), 0);
     }
 
@@ -176,16 +188,26 @@ public class SnakeController : MonoBehaviour
         length += 5 * bodies;
     }
 
+    public void RestoreHealth(float amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxHealth), 0);
+    }
+
     public void RestoreEnergy(float amount)
     {
         currentEnergy = Mathf.Clamp(currentEnergy + amount, 0, maxEnergy);
         energyBar.anchoredPosition = new Vector2((currentEnergy - maxEnergy) * (barLength / maxEnergy), 0);
     }
 
-    public void RestoreHealth(float amount)
+    public bool HealthIsfull()
     {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        healthBar.anchoredPosition = new Vector2((currentHealth - maxHealth) * (barLength / maxHealth), 0);
+        return currentHealth >= maxHealth;
+    }
+
+    public bool EnergyIsfull()
+    {
+        return currentEnergy >= maxEnergy;
     }
 
     private void AbilitiesDetection()
@@ -284,38 +306,46 @@ public class SnakeController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            itemEffects.DoEffect(toolbar.transform.GetChild(0).GetComponent<Image>().sprite.name);
-            toolbar.UsedItem(1);
+            if (itemEffects.DoEffect(toolbar.transform.GetChild(0).GetComponent<Image>().sprite.name))
+            {
+                toolbar.UsedItem(1);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            itemEffects.DoEffect(toolbar.transform.GetChild(1).GetComponent<Image>().sprite.name);
-            toolbar.UsedItem(2);
-
+            if (itemEffects.DoEffect(toolbar.transform.GetChild(1).GetComponent<Image>().sprite.name))
+            {
+                toolbar.UsedItem(2);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            itemEffects.DoEffect(toolbar.transform.GetChild(2).GetComponent<Image>().sprite.name);
-            toolbar.UsedItem(3);
+            if (itemEffects.DoEffect(toolbar.transform.GetChild(2).GetComponent<Image>().sprite.name))
+            {
+                toolbar.UsedItem(3);
+            }
 
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            itemEffects.DoEffect(toolbar.transform.GetChild(3).GetComponent<Image>().sprite.name);
-            toolbar.UsedItem(4);
-
+            if (itemEffects.DoEffect(toolbar.transform.GetChild(3).GetComponent<Image>().sprite.name))
+            {
+                toolbar.UsedItem(4);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            itemEffects.DoEffect(toolbar.transform.GetChild(4).GetComponent<Image>().sprite.name);
-            toolbar.UsedItem(5);
-
+            if (itemEffects.DoEffect(toolbar.transform.GetChild(4).GetComponent<Image>().sprite.name))
+            {
+                toolbar.UsedItem(5);
+            }
         }
         else if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            itemEffects.DoEffect(toolbar.transform.GetChild(5).GetComponent<Image>().sprite.name);
-            toolbar.UsedItem(6);
-
+            if (itemEffects.DoEffect(toolbar.transform.GetChild(5).GetComponent<Image>().sprite.name))
+            {
+                toolbar.UsedItem(6);
+            }
         }
     }
 
@@ -324,12 +354,20 @@ public class SnakeController : MonoBehaviour
         if (!equipments.Contains(snake.GetChild(1).GetChild((int)equip)))
         {
             equipments.Add(snake.GetChild(1).GetChild((int)equip));
-            if (equipments.Count == 2)
+            int count = 0;
+            while ((int)equip != currentEquipment)
             {
-                equipments[0].gameObject.SetActive(false);
-                currentEquipment = 1;
-                equipments[1].gameObject.SetActive(true);
+                SwitchEquipment(true);
+                count++;
+                Debug.Log(count);
             }
+
+            //if (equipments.Count == 2)
+            //{
+            //    equipments[0].gameObject.SetActive(false);
+            //    currentEquipment = 1;
+            //    equipments[1].gameObject.SetActive(true);
+            //}
         }
     }
 

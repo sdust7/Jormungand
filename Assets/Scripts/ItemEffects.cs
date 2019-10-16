@@ -17,17 +17,15 @@ public class ItemEffects : MonoBehaviour
 
 
 
-    public void DoEffect(string name)
+    public bool DoEffect(string name)
     {
         switch (name)
         {
             case "HealthPotion":
-                lvControl.RestoreSnakeHealth(20);
-                break;
+                return lvControl.RestoreSnakeHealth(20);
             case "EnergyPotion":
-                lvControl.RestoreSnakeEnergy(50);
-                break;
+                return lvControl.RestoreSnakeEnergy(50);
         }
-
+        return true;
     }
 }

@@ -54,7 +54,8 @@ public class SheepController : MonoBehaviour
         currentStatus = SheepStatus.Walk;
         escDirectionOffset = 180;
 
-        fakeTransform = new GameObject().transform;
+        fakeTransform = GameObject.Find("FakeTransformForSheep").transform;
+        // fakeTransform = new GameObject().transform;
     }
 
     // Update is called once per frame
@@ -183,6 +184,9 @@ public class SheepController : MonoBehaviour
         switch (collision.collider.gameObject.tag)
         {
             case "Firework":
+                CollideWithExplosion();
+                break;
+            case "AXE":
                 CollideWithExplosion();
                 break;
             case "Snake":

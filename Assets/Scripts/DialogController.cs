@@ -131,18 +131,30 @@ public class DialogController : MonoBehaviour
             new List<string> { "Jormungand", "Jormungand", "Jormungand" },
             new List<string> { "SnakeIcon", "SnakeIcon", "SnakeIconSmile" },
             new List<string> { "nom~nom~(chewing)", "......", "D E L I C I O U S ! ! !" }));
-        // dialog 5
+        // dialog 5 old
+        //dialogs.Add(new Dialogs(
+        //    false,
+        //    new List<bool> { false, false, false, false, false },
+        //    new List<string> { "AxeWolf", "Jormungand", "AxeWolf", "Jormungand", "AxeWolf" },
+        //    new List<string> { "AxeWolf", "SnakeIcon", "AxeWolf", "SnakeIcon", "AxeWolf" },
+        //    new List<string> {"Yo, what's up little bro?",
+        //                      "I'm feeling dizzy, the apples have been eaten up and sheep run too fast to catch!!",
+        //                      "I've got many apples, I can share that to you if you hlep me to cut the tree~~~",
+        //                      "Yeah! for sure!!",
+        //                      "So you could learn how to help me cut the tree right now. Take my axe, then cut the tree and collect the trunk, it's in the middle of the tree, "
+        //    }));
+        // dialog 5 new 
         dialogs.Add(new Dialogs(
-            false,
-            new List<bool> { false, false, false, false, false },
-            new List<string> { "AxeWolf", "Jormungand", "AxeWolf", "Jormungand", "AxeWolf" },
-            new List<string> { "AxeWolf", "SnakeIcon", "AxeWolf", "SnakeIcon", "AxeWolf" },
-            new List<string> {"Yo, what's up little bro?",
-                              "I'm feeling dizzy, the apples have been eaten up and sheep run too fast to catch!!",
-                              "I've got many apples, I can share that to you if you hlep me to cut the tree~~~",
-                              "Yeah! for sure!!",
+          false,
+          new List<bool> { false, false, false, false, false },
+          new List<string> { "AxeWolf", "Jormungand", "AxeWolf", "Jormungand", "AxeWolf" },
+          new List<string> { "AxeWolf", "SnakeIcon", "AxeWolf", "SnakeIcon", "AxeWolf" },
+          new List<string> {"Yo, what's up little bro?",
+                              "I'm bleeding, damn Odin cut my body off!!",
+                              "I'm sorry man... Hey, I have some portions, may help to heal you, I can share them to you if you help me to cut the tree~~~",
+                              "Yeah! For sure!!",
                               "So you could learn how to help me cut the tree right now. Take my axe, then cut the tree and collect the trunk, it's in the middle of the tree, "
-            }));
+          }));
         // dialog 6
         dialogs.Add(new Dialogs(
             false,

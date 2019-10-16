@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3977697075413041141}
   - component: {fileID: -683733987749270}
   - component: {fileID: 4396741087319022087}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: SeaSection7
   m_TagString: Sections
   m_Icon: {fileID: 0}

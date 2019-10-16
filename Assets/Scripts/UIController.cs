@@ -85,6 +85,7 @@ public class UIController : MonoBehaviour
         }
 
     }
+
     public void UpdateWeaponUI(string leftName,string rightName,string currentName)
     {
         for (int i = 0; i < equipmensName.Count; i++)
