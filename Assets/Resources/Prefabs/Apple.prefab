@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8526695874823451850}
   - component: {fileID: 8526695874823451849}
-  - component: {fileID: 8526695874823451851}
   - component: {fileID: 8526695874823451844}
   - component: {fileID: 8526695874823451848}
+  - component: {fileID: 3430115857691842962}
   m_Layer: 0
   m_Name: Apple
   m_TagString: Apple
@@ -83,92 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &8526695874823451851
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8526695874823451855}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.5}
-    newSize: {x: 3, y: 3}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.39499998, y: -0.47}
-      - {x: 0.45499998, y: -0.35}
-      - {x: 0.49499997, y: -0.185}
-      - {x: 0.49499997, y: -0.04}
-      - {x: 0.48999998, y: 0}
-      - {x: 0.42999998, y: 0.114999995}
-      - {x: 0.355, y: 0.19999999}
-      - {x: 0.315, y: 0.22999999}
-      - {x: 0.22999999, y: 0.26}
-      - {x: 0.145, y: 0.28}
-      - {x: 0.195, y: 0.33499998}
-      - {x: 0.22999999, y: 0.345}
-      - {x: 0.25, y: 0.36499998}
-      - {x: 0.25, y: 0.39499998}
-      - {x: 0.32999998, y: 0.45499998}
-      - {x: 0.47, y: 0.53999996}
-      - {x: 0.475, y: 0.59499997}
-      - {x: 0.45, y: 0.62}
-      - {x: 0.32999998, y: 0.585}
-      - {x: 0.145, y: 0.465}
-      - {x: 0.155, y: 0.51}
-      - {x: 0.114999995, y: 0.575}
-      - {x: 0.035, y: 0.61}
-      - {x: -0.099999994, y: 0.635}
-      - {x: -0.12, y: 0.64}
-      - {x: -0.305, y: 0.64}
-      - {x: -0.39999998, y: 0.61}
-      - {x: -0.42, y: 0.59}
-      - {x: -0.405, y: 0.53}
-      - {x: -0.295, y: 0.48999998}
-      - {x: -0.195, y: 0.415}
-      - {x: -0.114999995, y: 0.35999998}
-      - {x: 0.01, y: 0.34}
-      - {x: -0.02, y: 0.31}
-      - {x: -0.04, y: 0.275}
-      - {x: -0.04, y: 0.235}
-      - {x: -0.02, y: 0.195}
-      - {x: -0.055, y: 0.17999999}
-      - {x: -0.14999999, y: 0.275}
-      - {x: -0.19999999, y: 0.29999998}
-      - {x: -0.275, y: 0.305}
-      - {x: -0.32, y: 0.295}
-      - {x: -0.35999998, y: 0.275}
-      - {x: -0.475, y: 0.185}
-      - {x: -0.57, y: 0.099999994}
-      - {x: -0.61, y: 0.02}
-      - {x: -0.61, y: -0.125}
-      - {x: -0.60499996, y: -0.16499999}
-      - {x: -0.58, y: -0.275}
-      - {x: -0.555, y: -0.345}
-      - {x: -0.5, y: -0.44}
-      - {x: -0.47, y: -0.48499998}
-      - {x: -0.415, y: -0.545}
-      - {x: -0.325, y: -0.63}
-      - {x: -0.26999998, y: -0.65999997}
-      - {x: -0.22, y: -0.66499996}
-      - {x: -0.105, y: -0.675}
-      - {x: 0.105, y: -0.675}
-      - {x: 0.205, y: -0.64}
-      - {x: 0.24, y: -0.615}
-      - {x: 0.35, y: -0.52}
 --- !u!50 &8526695874823451844
 Rigidbody2D:
   serializedVersion: 4
@@ -202,3 +116,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25a77d53e57e02448302bb2d458409d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &3430115857691842962
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8526695874823451855}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.64
