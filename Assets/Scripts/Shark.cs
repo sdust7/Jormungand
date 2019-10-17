@@ -142,7 +142,8 @@ public class Shark : MonoBehaviour
             {
                 lvControl.RestoreSnakeHealth(100);
                 transform.GetComponent<SpriteRenderer>().sprite = damageSprites[7];
-                transform.GetComponent<PolygonCollider2D>().enabled = false;
+                // transform.GetComponent<PolygonCollider2D>().enabled = false;
+                transform.GetComponent<CapsuleCollider2D>().enabled = false;
             }
             else
             {

@@ -39,7 +39,7 @@ public class SnakeController : MonoBehaviour
     private int frameTimer;
     private int framesUpdateBody;
 
-    private PolygonCollider2D polygonC;
+    // private PolygonCollider2D polygonC;
     [SerializeField]
     private List<Transform> equipments;
     [SerializeField]
@@ -381,6 +381,17 @@ public class SnakeController : MonoBehaviour
 
     public void CheckSwitchQuests()
     {
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        {
+            lvControl.ChangeCurrentQuest(true);
+
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+        {
+            lvControl.ChangeCurrentQuest(false);
+        }
+
         if (Input.GetKeyDown(KeyCode.U))
         {
             lvControl.ChangeCurrentQuest(true);

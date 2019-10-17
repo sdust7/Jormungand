@@ -158,10 +158,12 @@ public class DialogController : MonoBehaviour
         // dialog 6
         dialogs.Add(new Dialogs(
             false,
-            new List<bool> { false },
-            new List<string> { "Fenrir", "Jormungand" },
-            new List<string> { "" },
-            new List<string> { "" }));
+            new List<bool> { false, false, false, false, false },
+            new List<string> { "Fast Wolf", "Jormungand", "Fast Wolf", "Jormungand", "Fast Wolf" },
+            new List<string> { "NormalWolf", "SnakeIcon", "NormalWolf", "SnakeIcon", "NormalWolf" },
+            new List<string> { "Hey! You must be Jormungand!", "Hi, you know me?",
+                "Of course I know you! I'm the only wolf who faster than those clever sheep cause I use A* Algorithm, so Fenrir want me to help you to catch sheep.",
+                "That will be helpful, thank you so much!", "You are welcome~ XD" }));
 
 
     }
@@ -220,7 +222,7 @@ public class DialogController : MonoBehaviour
             case 5: //Axe wolf
                 switch (currentIndex)
                 {
-                    case 4:
+                    case 4: // over
                         snake.GetComponent<SnakeController>().AddEquipment(Equipments.Axe);
                         GameObject.Find("AxeWolf").transform.GetChild(0).gameObject.SetActive(true);
 
@@ -228,8 +230,15 @@ public class DialogController : MonoBehaviour
                         break;
                 }
                 break;
+            case 6: // Fast wolf
+                switch (currentIndex)
+                {
+                    case 4: // over
+                        GameObject.Find("WolfAI").GetComponent<CircleCollider2D>().radius = 25;
 
-
+                        break;
+                }
+                break;
 
         }
 

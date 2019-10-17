@@ -5,7 +5,8 @@ using UnityEngine;
 public enum NPCs
 {
     ThinWolf = 0,
-    AxeWolf = 1
+    AxeWolf = 1,
+    FastWolf = 2
 
 }
 
@@ -89,6 +90,12 @@ public class SpeakerController : MonoBehaviour
                     break;
                 case NPCs.AxeWolf:
                     if (diaglogNumber == 5 && !dialogController.dialogs[diaglogNumber].haveRead)
+                    {
+                        dialogController.StartNewDialog(diaglogNumber);
+                    }
+                    break;
+                case NPCs.FastWolf:
+                    if (diaglogNumber == 6 && !dialogController.dialogs[diaglogNumber].haveRead)
                     {
                         dialogController.StartNewDialog(diaglogNumber);
                     }

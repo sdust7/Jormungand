@@ -14,7 +14,7 @@ public class WolfAI : MonoBehaviour
     public WolfState state = WolfState.Wandering;
     private CircleCollider2D circleCollider;
     public Rigidbody2D rb; // IMPORTANT: Set this to the parent if AI is in a child object
-    LevelController snake;
+    LevelController lvController;
     private bool full;
     private bool sheepEaten;
     private bool runningCoroutine = false;
@@ -25,14 +25,17 @@ public class WolfAI : MonoBehaviour
     private int width = 50;
     private int depth = 50;
     private float nodeSize = 1;
-
+    ////
+    private Transform snakeTrans;
 
     void Awake()
     {
         circleCollider = GetComponent<CircleCollider2D>();
         pursuit = GetComponent<PursuitBehaviour>();
         wander = GetComponent<WanderBehaviour>();
-        snake = GameObject.Find("LevelController").GetComponent<LevelController>(); ;
+        lvController = GameObject.Find("LevelController").GetComponent<LevelController>(); ;
+        ////
+        snakeTrans = GameObject.Find("Head").transform;
     }
 
     private void Start()
@@ -73,6 +76,14 @@ public class WolfAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //  Debug.Log(targetObj + "      " + state);
+        if (transform.position.x >= lvController.xValueStartDesert - 20.0f || transform.position.x <= lvController.xValueStartSea + 20.0f)
+        {
+            transform.right = new Vector2(-transform.position.x, 0);
+            //rb.velocity = transform.right * 5;
+            rb.AddForce(transform.right * 100);
+        }
+
         gg.center = rb.transform.localPosition;
         if (runningScan != true)
         {
@@ -122,15 +133,37 @@ public class WolfAI : MonoBehaviour
     {
         //Track player if nearby
         //print(collision.gameObject.name);
-        if (collision.gameObject.layer == 10 || collision.gameObject.tag == "Snake")
+        //if (collision.gameObject.layer == 10 || collision.gameObject.tag == "Snake")
+        //{
+        //    if (targetObj == this.gameObject || collision.gameObject.tag == "Snake")
+        //    {
+        //        targetObj = collision.gameObject;
+        //        pursuit.SetTargetObj(targetObj);
+        //    }
+        //}
+        //Track self as a substitute for null targets
+        ////
+        if (collision.gameObject.tag == "Snake")
         {
-            if (targetObj == this.gameObject || collision.gameObject.tag == "Snake")
+            if (Vector2.Distance(collision.transform.position, transform.position) > 13.0f)
+            {
+                targetObj = collision.gameObject;
+                pursuit.SetTargetObj(targetObj);
+            }
+            else
+            {
+                targetObj = this.gameObject;
+                pursuit.SetTargetObj(targetObj);
+            }
+        }
+        else if (collision.gameObject.layer == 10)
+        {
+            if (Vector2.Distance(snakeTrans.position, transform.position) <= 13.0f)
             {
                 targetObj = collision.gameObject;
                 pursuit.SetTargetObj(targetObj);
             }
         }
-        //Track self as a substitute for null targets
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -150,9 +183,10 @@ public class WolfAI : MonoBehaviour
         if (collision != null && collision.gameObject.tag == "Snake")
         {
             full = pursuit.ToggleHunger(full);
-            snake.DamageSnake(10.0f);
+            // lvController.DamageSnake(10.0f);
         }
-        if (collision.gameObject.tag == "Sheep") {
+        if (collision.gameObject.tag == "Sheep")
+        {
             sheepEaten = pursuit.ToggleHunger(sheepEaten);
         }
     }

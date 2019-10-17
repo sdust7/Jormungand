@@ -103,7 +103,7 @@ public class WeaponController : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J) || Input.GetMouseButtonDown(0))
         {
             if (transform.childCount == 2)
             {

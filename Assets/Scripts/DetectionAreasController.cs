@@ -14,14 +14,17 @@ public class DetectionAreasController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    // private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Snake"&&transform.name=="AlertArea")
+        if (collision.tag == "Snake" && transform.name == "AlertArea")
         {
-            
+            sheep.StatusChange(SheepController.SheepStatus.Escape);
+        }
+        else if (collision.tag == "Wolf" && transform.name == "AlertArea")
+        {
             sheep.StatusChange(SheepController.SheepStatus.Escape);
         }
     }
@@ -29,6 +32,10 @@ public class DetectionAreasController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Snake" && transform.name == "SafeArea")
+        {
+            sheep.StatusChange(SheepController.SheepStatus.Walk);
+        }
+        else if (collision.tag == "Wolf" && transform.name == "SafeArea")
         {
             sheep.StatusChange(SheepController.SheepStatus.Walk);
         }

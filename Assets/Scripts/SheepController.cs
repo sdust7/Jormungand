@@ -73,9 +73,19 @@ public class SheepController : MonoBehaviour
             }
         }
 
+        if (currentStatus == SheepStatus.Escape || currentStatus == SheepStatus.Walk)
+        {
+            if (transform.position.x >= lvControl.xValueStartDesert - 20.0f || transform.position.x <= lvControl.xValueStartSea + 20.0f)
+            {
+                transform.right = new Vector2(-transform.position.x, 0);
+                rigi.velocity = transform.right * movingSpeed * 5.0f;
+                //    Debug.Log((int)(0.02f / Time.fixedDeltaTime));  // 2
+                frameTimer = -50 * (int)(0.02f / Time.fixedDeltaTime);
+            }
+        }
 
         frameTimer++;
-        if (frameTimer >= 2)
+        if (frameTimer >= 0.02f / Time.fixedDeltaTime)
         {
             frameTimer = 0;
             fakeTransform.position = transform.position;
@@ -119,7 +129,7 @@ public class SheepController : MonoBehaviour
                         }
                         angleToSnake = escDirectionOffset + Mathf.Atan2(escDirection.y, escDirection.x) * Mathf.Rad2Deg;
                         //
-                        timer += Time.fixedDeltaTime * 2;
+                        timer += Time.fixedDeltaTime * 0.02f / Time.fixedDeltaTime;
                         //
                         transform.rotation = Quaternion.AngleAxis(angleToSnake, Vector3.forward);
                     }
@@ -132,6 +142,7 @@ public class SheepController : MonoBehaviour
                     break;
             }
         }
+
     }
 
     public void StatusChange(SheepStatus status)
@@ -144,7 +155,8 @@ public class SheepController : MonoBehaviour
 
     public void CollideWithSnake()
     {
-        transform.GetComponent<PolygonCollider2D>().enabled = false;
+        // transform.GetComponent<PolygonCollider2D>().enabled = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
         currentStatus = SheepStatus.Dead;
         sheepAnimator.enabled = true;
         // sprite.sprite = Resources.Load<Sprite>("Sprites/DeadSheep");
@@ -154,12 +166,13 @@ public class SheepController : MonoBehaviour
     }
 
 
-    public void CollideWithWolf()
-    {
-        transform.GetComponent<PolygonCollider2D>().enabled = false;
-        currentStatus = SheepStatus.Dead;
-        sheepAnimator.enabled = true;
-    }
+    //public void CollideWithWolf()
+    //{
+    //    // transform.GetComponent<PolygonCollider2D>().enabled = false;
+    //    GetComponent<CapsuleCollider2D>().enabled = false;
+    //    currentStatus = SheepStatus.Dead;
+    //    sheepAnimator.enabled = true;
+    //}
 
     public void CollideWithExplosion()
     {
@@ -172,7 +185,8 @@ public class SheepController : MonoBehaviour
 
     private void Revive()
     {
-        transform.GetComponent<PolygonCollider2D>().enabled = true;
+        // transform.GetComponent<PolygonCollider2D>().enabled = true;
+        GetComponent<CapsuleCollider2D>().enabled = false;
         currentStatus = SheepStatus.Walk;
         sheepAnimator.enabled = false;
         sprite.sprite = Resources.Load<Sprite>("Sprites/Sheep");
@@ -193,7 +207,8 @@ public class SheepController : MonoBehaviour
                 CollideWithSnake();
                 break;
             case "Wolf":
-                CollideWithWolf();
+                //  CollideWithWolf();
+                CollideWithExplosion();
                 break;
         }
         //if (collision.gameObject.tag == "Firework")
