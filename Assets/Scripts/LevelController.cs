@@ -33,6 +33,8 @@ public class LevelController : MonoBehaviour
 
     public Vector3 currentCheckPoint = new Vector3(0, 8, 0);
 
+    public GameObject debugPanel;
+
     void Awake()
     {
         damaged = false;
@@ -58,6 +60,8 @@ public class LevelController : MonoBehaviour
         miniMapMark = GameObject.Find("MiniMapMark").GetComponent<MiniMapMark>();
         currentQuestNameTMP = GameObject.Find("QuestInfoPanel").transform.GetChild(1).GetComponent<TextMeshProUGUI>();
 
+        debugPanel = GameObject.Find("DebugPanel");
+
         toolBar = GameObject.Find("ToolBar").GetComponent<ToolBar>();
 
         currentMyQuestIndex = -1;
@@ -66,6 +70,19 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    public void DebugPanelOnOff()
+    {
+        if (debugPanel.activeSelf)
+        {
+            debugPanel.SetActive(false);
+        }
+        else
+        {
+            debugPanel.SetActive(true);
+        }
 
     }
 
@@ -187,6 +204,7 @@ public class LevelController : MonoBehaviour
                         return;
                     }
                 }
+                currentQuestNameTMP.text = "None";
                 miniMapMark.EndShowMark();
                 return;
             }

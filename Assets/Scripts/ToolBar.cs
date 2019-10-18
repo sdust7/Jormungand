@@ -228,7 +228,6 @@ public class ToolBar : MonoBehaviour
         }
         else
         {
-
             for (int i = 0; i < allUsable.Length; i++)
             {
                 if (allUsable[i].name == item.name)

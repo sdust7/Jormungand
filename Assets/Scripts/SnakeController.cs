@@ -32,7 +32,6 @@ public class SnakeController : MonoBehaviour
     private float currentHealth;
     private float maxHealth;
 
-
     private Rigidbody2D rigi;
     float timer;
 
@@ -108,8 +107,6 @@ public class SnakeController : MonoBehaviour
 
         GotDamage(20.0f);
     }
-
-
 
     void Update()
     {
@@ -305,18 +302,26 @@ public class SnakeController : MonoBehaviour
         // }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    switch (collision.gameObject.tag)
+    //    {
+    //        case "Obstacle":
+    //        //   GotDamage(5.0f);
+    //            break;
+    //        case "Sheep":
+    //            // collision.transform.GetComponent<SheepController>().CollideWithSnake();
+    //            break;
+    //        default:
+    //            break;
+    //    }
+    //}
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
+        if (collision.gameObject.tag == "Obstacle")
         {
-            case "Obstacle":
-                GotDamage(5.0f);
-                break;
-            case "Sheep":
-                // collision.transform.GetComponent<SheepController>().CollideWithSnake();
-                break;
-            default:
-                break;
+            GotDamage(0.5f);
         }
     }
 
@@ -407,20 +412,14 @@ public class SnakeController : MonoBehaviour
         if (!equipments.Contains(snake.GetChild(1).GetChild((int)equip)))
         {
             equipments.Add(snake.GetChild(1).GetChild((int)equip));
-            int count = 0;
-            while ((int)equip != currentEquipment)
+            for (int i = 0; i < equipments.Count; i++)
             {
                 SwitchEquipment(true);
-                count++;
-                // Debug.Log(count);
+                if (equipments[currentEquipment] == snake.GetChild(1).GetChild((int)equip))
+                {
+                    return;
+                }
             }
-
-            //if (equipments.Count == 2)
-            //{
-            //    equipments[0].gameObject.SetActive(false);
-            //    currentEquipment = 1;
-            //    equipments[1].gameObject.SetActive(true);
-            //}
         }
     }
 
@@ -464,18 +463,27 @@ public class SnakeController : MonoBehaviour
 
     private void DebugInput()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    Items energy = new Items();
+        //    energy.name = "EnergyPotion";
+        //    energy.usable = true;
+        //    toolbar.GotItem(energy);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    Items bone = new Items();
+        //    bone.name = "SheepBone";
+        //    toolbar.GotItem(bone);
+        //}
+
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            Items energy = new Items();
-            energy.name = "EnergyPotion";
-            energy.usable = true;
-            toolbar.GotItem(energy);
+            lvControl.DebugPanelOnOff();
         }
-        else if (Input.GetKeyDown(KeyCode.P))
+        else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Items bone = new Items();
-            bone.name = "SheepBone";
-            toolbar.GotItem(bone);
+            Application.Quit();
         }
     }
 }

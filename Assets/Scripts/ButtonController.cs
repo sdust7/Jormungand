@@ -33,6 +33,11 @@ public class ButtonController : MonoBehaviour
 
     }
 
+    public void DebugEnableSpeedUp()
+    {
+        lvControl.SnakeCanSpeedUp(true);
+    }
+
     public void DebugMoveSnake()
     {
         lvControl.SnakeRespawn();
@@ -61,13 +66,13 @@ public class ButtonController : MonoBehaviour
 
     public void DebugGotItemSlot3()
     {
-        GameObject.Find("ToolBar").GetComponent<ToolBar>().GotItem(new Items("SheepBone", false, 10));
+        GameObject.Find("ToolBar").GetComponent<ToolBar>().GotItem(new Items("SheepBone", false, 1), 10);
     }
 
     public void Restart()
     {
         lvControl.SnakeRespawn();
-        
+
         //SceneManager.LoadScene("SampleScene");
         //Time.timeScale = 1;
     }
