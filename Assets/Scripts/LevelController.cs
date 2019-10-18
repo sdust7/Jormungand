@@ -143,6 +143,7 @@ public class LevelController : MonoBehaviour
                     snake.AddEquipment(Equipments.FireworkStand);
                     Quest quest = questController.allQuest.Find(x => x.ID.Equals(id));
                     RemoveQuest(quest);
+                    AddQuest(questController.allQuest[3]);
                     // quest.finished = true;
                     //  miniMapMark.EndShowMark();
                 }
@@ -176,7 +177,12 @@ public class LevelController : MonoBehaviour
             myQuest.Insert(currentMyQuestIndex + 1, newQuest);
             currentMyQuestIndex++;
         }
+
         currentQuestNameTMP.text = myQuest[currentMyQuestIndex].questName;
+        if (myQuest[currentMyQuestIndex].showMapMark)
+        {
+            miniMapMark.StartShowMark(myQuest[currentMyQuestIndex].targetTrans.position);
+        }
     }
 
     public void RemoveQuest(Quest quest)
@@ -188,26 +194,42 @@ public class LevelController : MonoBehaviour
                 if (i <= currentMyQuestIndex)
                 {
                     currentMyQuestIndex--;
-                    if (currentMyQuestIndex >= 0 && myQuest[currentMyQuestIndex].showMapMark)
-                    {
-                        miniMapMark.ChangeMarkPosi(myQuest[currentMyQuestIndex].targetTrans.position);
-                    }
+                    //if (currentMyQuestIndex >= 0 && myQuest[currentMyQuestIndex].showMapMark)
+                    //{
+                    //    miniMapMark.ChangeMarkPosi(myQuest[currentMyQuestIndex].targetTrans.position);
+                    //}
                 }
-
                 quest.finished = true;
                 myQuest.Remove(quest);
-
-                foreach (var item in myQuest)
-                {
-                    if (item.showMapMark)
-                    {
-                        return;
-                    }
-                }
-                currentQuestNameTMP.text = "None";
-                miniMapMark.EndShowMark();
-                return;
             }
+        }
+        if (myQuest.Count == 0)
+        {
+            currentMyQuestIndex = -1;
+            currentQuestNameTMP.text = "None";
+            miniMapMark.EndShowMark();
+        }
+        else
+        {
+            currentQuestNameTMP.text = myQuest[currentMyQuestIndex].questName;
+            if (myQuest[currentMyQuestIndex].showMapMark)
+            {
+                miniMapMark.StartShowMark(myQuest[currentMyQuestIndex].targetTrans.position);
+            }
+            else
+            {
+                miniMapMark.EndShowMark();
+            }
+            //foreach (var item in myQuest)
+            //{
+            //    if (item.showMapMark)
+            //    {
+            //        return;
+            //    }
+            //}
+            ////currentQuestNameTMP.text = "None";
+            //miniMapMark.EndShowMark();
+            //return;
         }
     }
 
@@ -240,7 +262,7 @@ public class LevelController : MonoBehaviour
             currentQuestNameTMP.text = myQuest[currentMyQuestIndex].questName;
             if (myQuest[currentMyQuestIndex].showMapMark)
             {
-                miniMapMark.ChangeMarkPosi(myQuest[currentMyQuestIndex].targetTrans.position);
+                miniMapMark.StartShowMark(myQuest[currentMyQuestIndex].targetTrans.position);
             }
         }
     }

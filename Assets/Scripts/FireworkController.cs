@@ -123,7 +123,7 @@ public class FireworkController : MonoBehaviour
             case "Shark":
                 collision.transform.GetComponent<Shark>().CollideWithExplosion(true);
                 break;
-            case "Octopus":                
+            case "Octopus":
                 collision.transform.GetComponent<Octopus>().CollideWithExplosion(true);
                 break;
         }
@@ -148,7 +148,7 @@ public class FireworkController : MonoBehaviour
                     break;
                 case "Octopus":
                     Explosion();
-                    collision.GetComponent<Octopus>().CollideWithExplosion(false);
+                    collision.gameObject.GetComponent<Octopus>().CollideWithExplosion(false);
                     break;
 
 

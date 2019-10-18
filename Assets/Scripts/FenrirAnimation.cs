@@ -48,7 +48,7 @@ public class FenrirAnimation : MonoBehaviour
                     lvController.SnakeCanSpeedUp(true);
                     energyBar.SetActive(true);
 
-                    lvController.RemoveQuest(lvController.myQuest[0]);
+                    //lvController.RemoveQuest(lvController.myQuest[0]);
 
                     lvController.currentCheckPoint = new Vector3(-25, -260, 0);
                 }

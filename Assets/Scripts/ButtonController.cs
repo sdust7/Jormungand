@@ -16,7 +16,7 @@ public class ButtonController : MonoBehaviour
 
     public GameObject snake;
 
-
+    public GameObject energyBar;
 
 
     // Start is called before the first frame update
@@ -36,6 +36,7 @@ public class ButtonController : MonoBehaviour
     public void DebugEnableSpeedUp()
     {
         lvControl.SnakeCanSpeedUp(true);
+        energyBar.SetActive(true);
     }
 
     public void DebugMoveSnake()
@@ -105,8 +106,14 @@ public class ButtonController : MonoBehaviour
 
         questPanel.gameObject.SetActive(false);
         Time.timeScale = 1;
-
-
+        if (id == 2)
+        {
+            lvControl.RemoveQuest(lvControl.myQuest[0]);
+        }
+        if (quest.showMapMark)
+        {
+            lvControl.ShowMiniMapMark(quest.targetTrans.position);
+        }
     }
 
     public void BackQuest()

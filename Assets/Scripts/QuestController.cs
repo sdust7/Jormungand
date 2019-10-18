@@ -12,7 +12,7 @@ public class QuestController : MonoBehaviour
         //Quest quest = new Quest("0", "Cutting Trees", "Could you help me to cut 5 trees and take me the trunks? I'd like to exchange with some apples.", "10 Apples", GameObject.Find("AxeWolf").transform, true);
         allQuest.Add(new Quest("1", "Cutting Trees", "Could you help me to cut 5 trees and take me the trunks? I'd like to exchange with some potions.", "5 Health Potion  \n5 Energy Potion", GameObject.Find("AxeWolf").transform, true));
         allQuest.Add(new Quest("2", "Kill Sheep", "Kill 10 sheep and bring me the bones, I'll make you a magic weapon with them.", "Secret Weapon", GameObject.Find("FenrirLocked").transform, true));
-
+        allQuest.Add(new Quest("3", "Beat Octopus", "Empty.", "Empty", GameObject.Find("Octopus").transform, true));
     }
 
 }

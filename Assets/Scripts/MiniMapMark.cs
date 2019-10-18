@@ -23,15 +23,15 @@ public class MiniMapMark : MonoBehaviour
         image = gameObject.GetComponent<Image>();
     }
 
-    public void ChangeTarget(Vector3 targetPosition)
-    {
-        targetPosi = targetPosition;
-    }
+    //public void ChangeTarget(Vector3 targetPosition)
+    //{
+    //    targetPosi = targetPosition;
+    //}
 
-    public void ChangeMarkPosi(Vector3 targetPosition)
-    {
-        targetPosi = targetPosition;
-    }
+    //public void ChangeMarkPosi(Vector3 targetPosition)
+    //{
+    //    targetPosi = targetPosition;
+    //}
 
     public void StartShowMark(Vector3 targetPosition)
     {

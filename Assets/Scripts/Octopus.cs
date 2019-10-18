@@ -83,6 +83,10 @@ public class Octopus : MonoBehaviour
             {
                 shark.SetActive(false);
             }
+            if (lvControl.myQuest.Contains(lvControl.questController.allQuest[3]))
+            {
+                lvControl.RemoveQuest(lvControl.myQuest.Find(x => x.ID.Equals("3")));
+            }
         }
     }
 

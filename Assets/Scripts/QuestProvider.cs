@@ -51,9 +51,9 @@ public class QuestProvider : MonoBehaviour
             {
                 lvControl.ShowMissionPanel(myQuest);
                 Time.timeScale = 0;
-                if (myQuest.showMapMark) {
-                    lvControl.ShowMiniMapMark(myQuest.targetTrans.position);
-                }
+                //if (myQuest.showMapMark) {
+                //    lvControl.ShowMiniMapMark(myQuest.targetTrans.position);
+                //}
             }
         }
     }
