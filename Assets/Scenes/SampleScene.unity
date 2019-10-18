@@ -11666,6 +11666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forestMusic: {fileID: 893289491}
   bossBattleMusic: {fileID: 756210876}
+  octo: {fileID: 264825730}
   isInBossBattle: 0
 --- !u!1 &1498149725
 GameObject:

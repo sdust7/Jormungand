@@ -30,7 +30,7 @@ public class Octopus : MonoBehaviour
         }
         for (int i = 0; i < numberOfThree; i++)
         {
-            phaseThreeSharks.Add(transform.GetChild(i+8).transform);
+            phaseThreeSharks.Add(transform.GetChild(i + 8).transform);
         }
         HP = 15;
         animator = transform.GetComponent<Animator>();
@@ -72,14 +72,14 @@ public class Octopus : MonoBehaviour
                 }
                 break;
         }
-
     }
+
     private void UpdateHP()
     {
         if (HP == 0)
         {
-            transform.gameObject.SetActive(false);
-            foreach(GameObject shark in GameObject.FindGameObjectsWithTag("Shark"))
+            gameObject.SetActive(false);
+            foreach (GameObject shark in GameObject.FindGameObjectsWithTag("Shark"))
             {
                 shark.SetActive(false);
             }
@@ -123,7 +123,8 @@ public class Octopus : MonoBehaviour
                 }
                 UpdateShield();
                 damaged = true;
-            }else if (phase == 3)
+            }
+            else if (phase == 3)
             {
                 HP -= 1;
                 if (HP < 0)
@@ -143,7 +144,7 @@ public class Octopus : MonoBehaviour
 
     public void CollideWithExplosion(bool wave)
     {
-        if (phase ==2)
+        if (phase == 2)
         {
             if (wave)
             {
@@ -168,7 +169,7 @@ public class Octopus : MonoBehaviour
                 UpdateShield();
             }
         }
-        else if(phase == 3)
+        else if (phase == 3)
         {
             if (wave)
             {

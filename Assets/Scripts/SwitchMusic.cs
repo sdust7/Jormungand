@@ -7,6 +7,8 @@ public class SwitchMusic : MonoBehaviour
     public AudioSource forestMusic;
     public AudioSource bossBattleMusic;
 
+    public GameObject octo;
+
     public bool isInBossBattle;
     //public float switchMusicTime;
     //public float timer;
@@ -20,6 +22,12 @@ public class SwitchMusic : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (!octo.activeSelf)
+        {
+            isInBossBattle = false;
+            GetComponent<CircleCollider2D>().enabled = false;
+        }
+
         if (!isInBossBattle)
         {
             if (forestMusic.volume < 1.0f)
@@ -31,8 +39,6 @@ public class SwitchMusic : MonoBehaviour
                 bossBattleMusic.volume -= 0.005f;
             }
         }
-
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)
